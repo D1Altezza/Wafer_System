@@ -91,6 +91,15 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ACS.SPiiPlusNET">
       <HintPath>dll\ACS.SPiiPlusNET.dll</HintPath>
@@ -104,10 +113,10 @@
       <HintPath>dll\ColorPicker.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSimpleTcp, Version=3.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SuperSimpleTcp.3.0.13\lib\net48\SuperSimpleTcp.dll</HintPath>
+    <Reference Include="SuperSimpleTcp, Version=3.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SuperSimpleTcp.3.0.14\lib\net48\SuperSimpleTcp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -592,6 +601,7 @@
     </EmbeddedResource>
     <None Include="bin\x64\Debug\Wafer_System.exe.config" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
