@@ -402,12 +402,59 @@ namespace Wafer_System
             var z_in_zero_pos = (main.cML.recData == configWR.ReadSettings("Z0"));
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
+            //TN-XY move to XL,YL
+            main.aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL"));
+            Thread.Sleep(1000);
+            main.wait_axis_Inp("x", 100000);
+            main.wait_axis_Inp("y", 100000);
+            this.BeginInvoke(new Action(() => { progresBar.Increment(2); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "XN1_ON ON..."; }));
+            //OUT8
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
             
 
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
+            //-------pass
+            if (!main.pass && (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 4))
+            {
+                MessageBox.Show("E058", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "XN1_ON OFF..."; }));
+            //OUT8
+            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            Chek_XY_pin_status();
 
 
             return true;
         }
+
+        private void Chek_XY_pin_status()
+        {
+            //TN-XY move to Xp1,Yp1~Xp4,Yp4
+            for (int i = 1; i < 4; i++)
+            {
+                main.aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("Xp" + i) + "," + configWR.ReadSettings("Yp" + i));
+                Thread.Sleep(1000);
+                main.wait_axis_Inp("x", 100000);
+                main.wait_axis_Inp("y", 100000);
+            }
+
+
+        }
+
         private void Progres_update(bool on_off, int max, string title)
         {
             if (on_off)

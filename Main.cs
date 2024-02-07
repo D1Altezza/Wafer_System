@@ -976,7 +976,7 @@ namespace Wafer_System
         /// </summary>
         /// <param name="D111"></param>
         /// <returns></returns>
-        private bool TNWAFER(ref int D111)
+        public bool TNWAFER(ref int D111)
         {
             try
             {
