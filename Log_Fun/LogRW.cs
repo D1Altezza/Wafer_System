@@ -24,8 +24,9 @@ namespace Wafer_System.Log_Fun
             //    File.Create(FILENAME).Close();
             //}
             using (StreamWriter sw = File.AppendText(FILENAME))
-            {
+            {               
                 Log(message, sw);
+                sw.Close();
             }
 
         }
@@ -36,7 +37,7 @@ namespace Wafer_System.Log_Fun
             w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
             w.WriteLine("");
             w.WriteLine("{0}", logMessage);
-            w.WriteLine("-------------------------------");
+            w.WriteLine("-------------------------------");           
         }
 
         public static void ReadLog(string Date_yyyyMMdd)
