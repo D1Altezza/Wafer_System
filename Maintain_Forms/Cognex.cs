@@ -51,7 +51,9 @@ namespace Wafer_System
             client.Events.DataReceived += DataReceived;
             try
             {
+                //this.BeginInvoke(new Action(() => { client.Connect(); }));
                 client.Connect();
+                //client.ConnectWithRetries(1);
                 if (client.IsConnected)
                 {
                     return true;

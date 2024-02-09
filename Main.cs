@@ -87,7 +87,7 @@ namespace Wafer_System
         int efem_timeout = 100000;
         public int IO_timeout = 3000;
         bool[] home_end_flag = new bool[] { false, false, false };
-        public bool pass = false;
+        public bool pass = true;
       
         public Main()
         {
@@ -249,31 +249,31 @@ namespace Wafer_System
             var step1 = Task.Run(() =>
             {
                 conn = InitialAllDevice_Conn();
-            });
-            //    .ContinueWith(task =>
-            //{
-            //    if (conn)
-            //        ini = sys_Ini();
-            
-            //}, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
-            //{
+            })
+            .ContinueWith(task =>
+            {
+                if (conn)
+                    ini = sys_Ini();
 
-            //    if (ini && MessageBox.Show("GO Home?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
-            //        home = sys_Home();
-            //    }
-            //}, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
-            //{
-            //    if (home)
-            //    {
-            //        this.BeginInvoke(new Action(() =>
-            //        {
-            //            btn_System_Initial.Hide();
-            //            Auto_Run_Page0.Hide();
-            //            Auto_Run_Page1.Show();
-            //        }));
-            //    }
-            //});
+            }, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            {
+
+                if (ini && MessageBox.Show("GO Home?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    home = sys_Home();
+                }
+            }, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            {
+                if (home)
+                {
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        btn_System_Initial.Hide();
+                        Auto_Run_Page0.Hide();
+                        Auto_Run_Page1.Show();
+                    }));
+                }
+            });
         }
 
         private void Btn_System_Initial_Click(object sender, EventArgs e)
@@ -329,7 +329,8 @@ namespace Wafer_System
                 
                 if (configWR.ReadSettings("CL3000_IP") != string.Empty && configWR.ReadSettings("CL3000_Port") != string.Empty) 
                 {
-                    this.BeginInvoke(new Action(() => { keyence._OpenEthernetCommunication(); }));
+                    //this.BeginInvoke(new Action(() => { keyence._OpenEthernetCommunication(); }));
+                    keyence._OpenEthernetCommunication();
                     Thread.Sleep(1000);
                 }
                
@@ -343,14 +344,14 @@ namespace Wafer_System
             }
 
 
-
+           
             Cognex.Connect();
             this.BeginInvoke(new Action(() => { c.Text += "Wafer ID Reader...\r\n"; }));
             if (Cognex.client.IsConnected)
             {
                 this.BeginInvoke(new Action(() => { c.Text += ("connection successful!\r\n"); }));
                 Cognex.client.Events.DataReceived += Diameter_Monitor.Events_DataReceived;
-            }
+            } 
             else
                 this.BeginInvoke(new Action(() => { c.Text += ("connection failed!\r\n"); }));
 
