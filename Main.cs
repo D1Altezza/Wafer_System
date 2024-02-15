@@ -84,7 +84,7 @@ namespace Wafer_System
         bool eFEM_Received_Update = false;
         bool cm1_Received_Update = false;
         bool PROGRAMEND_Status_Update = false;
-        int efem_timeout = 100000;
+        public int efem_timeout = 100000;
         public int IO_timeout = 3000;
         bool[] home_end_flag = new bool[] { false, false, false };
         public bool pass = true;
@@ -701,7 +701,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
             //IN5---->pass
-            if (!pass && !Wait_IO_Check(0, 1, 5, 1, 120000))
+            if (!pass && !Wait_IO_Check(0, 0, 5, 1, 120000))
             {
                 MessageBox.Show("E165\r\n" + "Z_ULS OFF\r\n", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
@@ -1641,17 +1641,11 @@ namespace Wafer_System
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="mode"></param>
-        /// 0:IN
-        /// 1:OUT
-        /// <param name="port"></param>
-        /// Port
-        /// <param name="bit"></param>
-        /// Bit
-        /// <param name="value"></param>
-        /// Target value
-        /// <param name="timeout"></param>
-        /// Time Out
+        /// <param name="mode">0:IN 1:OUT</param>
+        /// <param name="port">Port</param>       
+        /// <param name="bit">Bit</param>
+        /// <param name="value"> Target value</param>
+        /// <param name="timeout">Time Out</param>
         /// <returns></returns>
         public bool Wait_IO_Check(int mode, int port, int bit, int value, int timeout)
         {

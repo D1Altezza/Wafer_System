@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wafer_System.Config_Fun;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static Wafer_System.Auto_run_page1;
 using static Wafer_System.Main;
 using ProgressBar = System.Windows.Forms.ProgressBar;
 
@@ -42,7 +43,7 @@ namespace Wafer_System
             progresBar.Width = 500;
             progresBar.Location = new Point(panel.Width / 2 - progresBar.Width / 2, panel.Height / 2 - progresBar.Height / 2);
             progresBar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            progresBar.Maximum = 100;
+            progresBar.Maximum = 150;
             panel.Controls.Add(progresBar);
             lb_progress.Location = new Point(progresBar.Location.X, progresBar.Location.Y + progresBar.Height);
             lb_progress.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -384,7 +385,7 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
             main.aCS_Motion._ACS.SetOutput(1, 5, 0);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-            this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //this.BeginInvoke(new Action(() => { Progres_update(false); }));
 
 
 
@@ -396,6 +397,7 @@ namespace Wafer_System
                 MessageBox.Show("E167\r\n" + "EFEMOUT3 OFF", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z in orgin"; }));
             //當前位置回傳格式未檢查----待修正       
             main.cML.Query("?69");
             main.Wait_Cm1_Received_Update();
@@ -414,13 +416,13 @@ namespace Wafer_System
             //OUT8
             main.aCS_Motion._ACS.SetOutput(1, 8, 1);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-            
+
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
             //-------pass
             if (!main.pass && (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 4))
             {
-                MessageBox.Show("E058", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("E058", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
                 {
                     Progres_update(false);
@@ -435,14 +437,214 @@ namespace Wafer_System
             main.aCS_Motion._ACS.SetOutput(1, 8, 0);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
-            Chek_XY_pin_status();
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "XN2_ON ON..."; }));
+            //OUT9 打開雷射
+            main.aCS_Motion._ACS.SetOutput(1, 9, 1);
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Pin not exist..."; }));
+            if (!main.pass && !Chek_XY_pin_status())
+            {
+                MessageBox.Show("E049", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
+            //TN-XY move to XL,YL
+            main.aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL"));
+            Thread.Sleep(1000);
+            main.wait_axis_Inp("x", 100000);
+            main.wait_axis_Inp("y", 100000);
+            this.BeginInvoke(new Action(() => { progresBar.Increment(2); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check XY in load position..."; }));
+            var xy_in_load_pos = (main.aCS_Motion.m_X_lfFPos == Convert.ToDouble(configWR.ReadSettings("XL")) &&
+                   main.aCS_Motion.m_Y_lfFPos == Convert.ToDouble(configWR.ReadSettings("YL")));
+            if (!xy_in_load_pos)
+            {
+                MessageBox.Show("E173\r\n"+"X,Y not in load postion", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check X_LS ON..."; }));
+            if (!main.Wait_IO_Check(0, 0, 0, 1, 10000))
+            {
+                MessageBox.Show("E173\r\n"+"X_LS CMnT_IN0 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Y_LS ON..."; }));
+            if (!main.Wait_IO_Check(0, 0, 1, 1, 10000))
+            {
+                MessageBox.Show("E173" + "Y_LS CMnT_IN1 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check IOMps IN2 ON..."; }));
+            if (!main.Wait_IO_Check(0, 1, 2, 1, 10000))
+            {
+                MessageBox.Show("IN2 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z in load pos..."; }));
+            main.cML.Query("?69");
+            main.Wait_Cm1_Received_Update();
+            //當前位置回傳格式未檢查----待修正              
+            var z_in_load_pos = (main.cML.recData == configWR.ReadSettings("ZL"));
+            if (!z_in_load_pos) 
+            {
+                MessageBox.Show("E175"+"Z not in looad pos", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z_LS..."; }));
+            if (!main.Wait_IO_Check(0, 0, 0, 1, 10000))
+            {
+                MessageBox.Show("Z_LS IN0 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
+            //-------pass
+            if (!main.pass && (!main.TNWAFER(ref main.d_Param.D111)))
+            {
+                MessageBox.Show("E058", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Load LoadPort1..."; }));
+            main.eFEM.EFEM_Cmd = "Load,Loadport1";
+            main.eFEM._Paser._Cmd_Loadport.Error = "";
+            main.eFEM._Paser._Cmd_Loadport.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._Cmd_Loadport.Error != "OK")
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("E043\r\n" + "Load,Loadport1\r\n" + main.eFEM._Paser._Cmd_Loadport.Error+"\r\n"+main.eFEM._Paser._Cmd_Loadport.ErrorCode, "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Load LoadPort2..."; }));
+            main.eFEM.EFEM_Cmd = "Load,Loadport2";
+            main.eFEM._Paser._Cmd_Loadport.Error = "";
+            main.eFEM._Paser._Cmd_Loadport.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._Cmd_Loadport.Error != "OK")
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("E044\r\n" + "Load,Loadport2\r\n" + main.eFEM._Paser._Cmd_Loadport.Error + "\r\n" + main.eFEM._Paser._Cmd_Loadport.ErrorCode, "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Load LoadPort3..."; }));
+            main.eFEM.EFEM_Cmd = "Load,Loadport3";
+            main.eFEM._Paser._Cmd_Loadport.Error = "";
+            main.eFEM._Paser._Cmd_Loadport.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._Cmd_Loadport.Error != "OK")
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("E045\r\n" + "Load,Loadport3\r\n" + main.eFEM._Paser._Cmd_Loadport.Error + "\r\n" + main.eFEM._Paser._Cmd_Loadport.ErrorCode, "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
 
+
+            
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Get Current LPWaferSize Loadport1..."; }));
+            main.eFEM.EFEM_Cmd = " GetCurrentLPWaferSize,Loadport1";
+            main.eFEM._Paser._GetCurrentLPWaferSize.Error = "";
+            main.eFEM._Paser._GetCurrentLPWaferSize.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._GetCurrentLPWaferSize.Error != "OK" || main.eFEM._Paser._GetCurrentLPWaferSize.Result!= autorun_Prarm.wafer_Size.ToString())
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("E046\r\n" + "GetCurrentLPWaferSize,Loadport1\r\n" + main.eFEM._Paser._GetCurrentLPWaferSize.Error +
+                    "\r\n" + main.eFEM._Paser._GetCurrentLPWaferSize.ErrorCode, "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Get Current LPWaferSize Loadport2..."; }));
+            main.eFEM.EFEM_Cmd = " GetCurrentLPWaferSize,Loadport2";
+            main.eFEM._Paser._GetCurrentLPWaferSize.Error = "";
+            main.eFEM._Paser._GetCurrentLPWaferSize.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._GetCurrentLPWaferSize.Error != "OK" || main.eFEM._Paser._GetCurrentLPWaferSize.Result != autorun_Prarm.wafer_Size.ToString())
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("E047\r\n" + "GetCurrentLPWaferSize,Loadport2\r\n" + main.eFEM._Paser._GetCurrentLPWaferSize.Error +
+                    "\r\n" + main.eFEM._Paser._GetCurrentLPWaferSize.ErrorCode, "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Get Current LPWaferSize Loadport3..."; }));
+            main.eFEM.EFEM_Cmd = " GetCurrentLPWaferSize,Loadport3";
+            main.eFEM._Paser._GetCurrentLPWaferSize.Error = "";
+            main.eFEM._Paser._GetCurrentLPWaferSize.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._GetCurrentLPWaferSize.Error != "OK" || main.eFEM._Paser._GetCurrentLPWaferSize.Result != autorun_Prarm.wafer_Size.ToString())
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("E047\r\n" + "GetCurrentLPWaferSize,Loadport3\r\n" + main.eFEM._Paser._GetCurrentLPWaferSize.Error +
+                    "\r\n" + main.eFEM._Paser._GetCurrentLPWaferSize.ErrorCode, "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            this.BeginInvoke(new Action(() => { Progres_update(false); progresBar.Hide(); }));
             return true;
         }
-
-        private void Chek_XY_pin_status()
+        //check pin is not exist
+        private bool Chek_XY_pin_status()
         {
+            var pin2 = false;
+            var pin3 = false;
+            var pin4 = false;
+            var pin1 = false;
             //TN-XY move to Xp1,Yp1~Xp4,Yp4
             for (int i = 1; i < 4; i++)
             {
@@ -450,8 +652,38 @@ namespace Wafer_System
                 Thread.Sleep(1000);
                 main.wait_axis_Inp("x", 100000);
                 main.wait_axis_Inp("y", 100000);
+                switch (i)
+                {
+                    case 1:
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 1000))
+                        {
+                            pin1 = true;
+                        }                       
+                        break;
+                    case 2:
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 1000))
+                        {
+                            pin2 = true;
+                        }
+                        break;
+                    case 3:
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 1000))
+                        {
+                            pin3 = true;
+                        }
+                        break;
+                    case 4:
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 1000))
+                        {
+                            pin4 = true;
+                        }
+                        break;
+                }
+             
             }
-
+            if (pin1 & pin2 & pin3 & pin4)
+                return true;
+            else return false;
 
         }
 

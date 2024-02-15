@@ -267,6 +267,33 @@ namespace Wafer_System
         /// </summary>
         public string Error;
     }
+    public struct _Cmd_Loadport
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+
+    public struct _GetCurrentLPWaferSize
+    {
+        /// <summary>
+        /// 4: 8inch,6: 12inch
+        /// </summary>
+        public string Result;
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
     public class EFEM_Paser
     {
         public _EFEM_Status _EFEM_Status = new _EFEM_Status();
@@ -276,16 +303,19 @@ namespace Wafer_System
         public _Loadport_Status _Loadport2_Status = new _Loadport_Status();
         public _Loadport_Status _Loadport3_Status = new _Loadport_Status();
         public _SignalTower_Status _SignalTower_Status = new _SignalTower_Status();
-        public _Home_Cmd _Home_Cmd = new _Home_Cmd();   
+        public _Home_Cmd _Home_Cmd = new _Home_Cmd();
         public _RobotSpeed_Set_Cmd _RobotSpeed_Set_Cmd = new _RobotSpeed_Set_Cmd();
         public _AlignmentAngle_Set_Cmd _AlignmentAngle_Set_Cmd = new _AlignmentAngle_Set_Cmd();
         public _WaferType_Set_Cmd _WaferType_Set_Cmd = new _WaferType_Set_Cmd();
         public _WaferMode_Set_Cmd _WaferMode_Set_Cmd = new _WaferMode_Set_Cmd();
-        public _WaferSize_Set_Cmd _WaferSize_Set_Cmd=new _WaferSize_Set_Cmd();
+        public _WaferSize_Set_Cmd _WaferSize_Set_Cmd = new _WaferSize_Set_Cmd();
         public _Reset_Error_LoadPort _Reset_Error_LoadPort1 = new _Reset_Error_LoadPort();
         public _Reset_Error_LoadPort _Reset_Error_LoadPort2 = new _Reset_Error_LoadPort();
         public _Reset_Error_LoadPort _Reset_Error_LoadPort3 = new _Reset_Error_LoadPort();
         public _Reset_Error_Aligner _Reset_Error_Aligner1 = new _Reset_Error_Aligner();
+        public _Cmd_Loadport _Cmd_Loadport = new _Cmd_Loadport();
+        public _GetCurrentLPWaferSize _GetCurrentLPWaferSize = new _GetCurrentLPWaferSize();
+
         string[] _Robot_Controller_State = new string[16]
         {
             "Macro command has been received but not executed yet"
@@ -582,6 +612,124 @@ namespace Wafer_System
                             break;
                     }
                 }
+                else if (words[1] == "Home" || words[1] == "Load" ||
+                    words[1] == "Unload" || words[1] == "Clamp" ||
+                    words[1] == "Unclamp" || words[1] == "HoldPlate" ||
+                    words[1] == "Unholdplate" || words[1] == "Map")
+                {
+                    switch (words[2])
+                    {
+                        case "Loadport1":
+                            _Cmd_Loadport.Error = words[3];
+                            if (_Cmd_Loadport.Error == "OK")
+                            {
+                                _Cmd_Loadport.ErrorCode = "";
+                                break;
+                            }
+                            else
+                            {
+                                _Cmd_Loadport.ErrorCode = words[4];
+                            }
+                            break;
+                        case "Loadport2":
+                            _Cmd_Loadport.Error = words[3];
+                            if (_Cmd_Loadport.Error == "OK")
+                            {
+                                _Cmd_Loadport.ErrorCode = "";
+                                break;
+                            }
+                            else
+                            {
+                                _Cmd_Loadport.ErrorCode = words[4];
+                            }
+                            break;
+                        case "Loadport3":
+                            _Cmd_Loadport.Error = words[3];
+                            if (_Cmd_Loadport.Error == "OK")
+                            {
+                                _Cmd_Loadport.ErrorCode = "";
+                                break;
+                            }
+                            else
+                            {
+                                _Cmd_Loadport.ErrorCode = words[4];
+                            }
+                            break;
+                    }
+                }
+                else if (words[1] == "GetCurrentLPWaferSize")
+                {
+                    switch (words[2])
+                    {
+                        case "Loadport1":
+                            _GetCurrentLPWaferSize.Error = words[3];
+                            if (_GetCurrentLPWaferSize.Error == "OK")
+                            {
+                                _GetCurrentLPWaferSize.ErrorCode = "";
+                                switch (words[4])
+                                {
+                                    case "4":
+                                        _GetCurrentLPWaferSize.Result = "eight";
+                                        break;
+                                    case "6":
+                                        _GetCurrentLPWaferSize.Result = "tweleve";
+                                        break;
+                                }
+
+                                break;
+                            }
+                            else
+                            {
+                                _GetCurrentLPWaferSize.ErrorCode = words[4];
+                            }
+                            break;
+                        case "Loadport2":
+                            _GetCurrentLPWaferSize.Error = words[3];
+                            if (_GetCurrentLPWaferSize.Error == "OK")
+                            {
+                                _GetCurrentLPWaferSize.ErrorCode = "";
+                                switch (words[4])
+                                {
+                                    case "4":
+                                        _GetCurrentLPWaferSize.Result = "eight";
+                                        break;
+                                    case "6":
+                                        _GetCurrentLPWaferSize.Result = "tweleve";
+                                        break;
+                                }
+
+                                break;
+                            }
+                            else
+                            {
+                                _GetCurrentLPWaferSize.ErrorCode = words[4];
+                            }
+                            break;
+                        case "Loadport3":
+                            _GetCurrentLPWaferSize.Error = words[3];
+                            if (_GetCurrentLPWaferSize.Error == "OK")
+                            {
+                                _GetCurrentLPWaferSize.ErrorCode = "";
+                                switch (words[4])
+                                {
+                                    case "4":
+                                        _GetCurrentLPWaferSize.Result = "eight";
+                                        break;
+                                    case "6":
+                                        _GetCurrentLPWaferSize.Result = "tweleve";
+                                        break;
+                                }
+
+                                break;
+                            }
+                            else
+                            {
+                                _GetCurrentLPWaferSize.ErrorCode = words[4];
+                            }
+                            break;
+                    }
+                }
+
 
             }
             catch (Exception ex)
@@ -590,7 +738,7 @@ namespace Wafer_System
                 //throw;
             }
 
-            
+
 
         }
     }

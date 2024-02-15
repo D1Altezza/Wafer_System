@@ -1,0 +1,6905 @@
+
+下午 12:24:36 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:26:29 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 12:26:29 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:26:33 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:26:34 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 12:26:36 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 12:26:38 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:26:46 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:26:48 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:52:58 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 12:52:59 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:53:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:53:01 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 12:53:02 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:53:04 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 12:53:05 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:53:05 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:53:05 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:53:05 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 12:53:05 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:53:14 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:53:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:53:21 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 12:56:18 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 12:56:19 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:56:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:56:21 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 12:56:22 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 12:56:25 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:33 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:56:34 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:56:41 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 12:56:41 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 12:58:00 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 12:58:00 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:58:40 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 12:58:40 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:58:46 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:58:47 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 12:58:48 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 12:58:51 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:58:57 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:58:58 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:59:46 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 12:59:46 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 12:59:46 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:00:03 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:00:03 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:00:07 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:00:08 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:00:09 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:00:11 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:00:20 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:00:21 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:00:22 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:00:32 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:01:18 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:01:19 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:01:36 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:01:36 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:01:40 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:01:41 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:01:42 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:01:45 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:01:52 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:01:55 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:02:04 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:02:19 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:02:26 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:02:26 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:03:11 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:03:12 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:03:12 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:03:14 2024年2月15日
+
+Return Code: 
+-------------------------------
+
+下午 01:03:14 2024年2月15日
+
+Server disconnected
+-------------------------------
+
+下午 01:03:34 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:03:34 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:03:40 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:04:13 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:04:14 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:04:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:04:16 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:04:18 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:04:20 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:04:27 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:04:28 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:04:34 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:04:34 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:04:34 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:04:34 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:04:34 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:04:34 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:05:15 2024年2月15日
+
+Return Code: 
+-------------------------------
+
+下午 01:05:15 2024年2月15日
+
+Server disconnected
+-------------------------------
+
+下午 01:06:51 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:06:51 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:06:54 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:06:55 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:06:57 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:07:00 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:07:07 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:07:08 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:07:17 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:07:17 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:07:17 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:07:17 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:07:17 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:07:17 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:32:08 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:32:09 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:32:10 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:32:11 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:32:13 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:32:15 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:32:24 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:32:25 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:32:26 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:32:30 2024年2月15日
+
+Return Code: GetCurrentLPWaferSize,Loadport1,OK,6
+-------------------------------
+
+下午 01:33:27 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:33:28 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:33:30 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:33:32 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:33:33 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:33:36 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:33:45 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:33:48 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:33:55 2024年2月15日
+
+Return Code: GetCurrentLPWaferSize,Loadport1,OK,6
+-------------------------------
+
+下午 01:36:52 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:36:52 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:36:55 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:36:56 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:36:57 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:37:00 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:37:01 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:37:01 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:37:01 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:37:01 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:37:01 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:37:01 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:37:10 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:37:11 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:37:15 2024年2月15日
+
+Return Code: GetCurrentLPWaferSize,Loadport1,OK,6
+-------------------------------
+
+下午 01:38:15 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:38:17 2024年2月15日
+
+Return Code: GetCurrentLPWaferSize,Loadport2,OK,6
+-------------------------------
+
+下午 01:38:37 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:38:38 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:38:51 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:38:52 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:38:54 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:38:59 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:39:06 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:39:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:39:15 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:39:15 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:39:15 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:39:15 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:39:15 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:39:15 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:39:20 2024年2月15日
+
+Return Code: GetCurrentLPWaferSize,Loadport1,OK,6
+-------------------------------
+
+下午 01:39:26 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:41:28 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:41:28 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:41:30 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:41:31 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:41:32 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:41:35 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:41:44 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:41:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:41:51 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:41:51 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:41:51 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:41:51 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:41:51 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:41:51 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:42:08 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:42:11 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 01:42:36 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:42:36 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:43:00 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:43:31 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:43:31 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:43:45 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:43:46 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:43:47 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:43:50 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:43:58 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:43:59 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:44:07 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 01:46:02 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:46:02 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:46:05 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:46:06 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:46:07 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:46:09 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:46:17 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:46:20 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:46:25 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:46:25 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:46:25 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:46:25 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:46:25 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:46:25 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:46:28 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 01:46:28 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:46:42 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 01:46:42 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport2
+-------------------------------
+
+下午 01:46:49 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport3,OK,6$
+-------------------------------
+
+下午 01:46:51 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport3
+-------------------------------
+
+下午 01:51:05 2024年2月15日
+
+Server connected
+-------------------------------
+
+下午 01:51:05 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,Flash
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:51:09 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:51:10 2024年2月15日
+
+Send Cmd: Home,EFEM
+-------------------------------
+
+下午 01:51:11 2024年2月15日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Absence,Clamp,Open$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: SetSpeed,Robot,20%,20%,20%,20%,20%,20%
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Green,ON
+-------------------------------
+
+下午 01:51:14 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:51:27 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,ALL,OFF
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: SignalTower,EFEM,Blue,ON
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: SetAlignmentAngle,Aligner1,0
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: GetStatus,EFEM
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: ResetError,Loadport1
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: ResetError,Loadport2
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: ResetError,Loadport3
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: ResetError,Aligner1
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: GetStatus,Robot
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #GetStatus,Robot,OK,0000,Absence,Absence$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: GetStatus,Aligner1
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,True$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: GetStatus,Loadport1
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: GetStatus,Loadport2
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Send Cmd: GetStatus,Loadport3
+-------------------------------
+
+下午 01:51:28 2024年2月15日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Send Cmd: Load,Loadport1
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Send Cmd: Load,Loadport2
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Send Cmd: Load,Loadport3
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Return Code: #Load,Loadport3,OK$
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport1
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport2
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Send Cmd:  GetCurrentLPWaferSize,Loadport3
+-------------------------------
+
+下午 01:51:39 2024年2月15日
+
+Return Code: #GetCurrentLPWaferSize,Loadport3,OK,6$
+-------------------------------

@@ -17,27 +17,29 @@ namespace Wafer_System.Log_Fun
 
             if (!Directory.Exists(DIRNAME))
                 Directory.CreateDirectory(DIRNAME);
-
-            //if (!File.Exists(FILENAME))
-            //{
-            //    // The File.Create method creates the file and opens a FileStream on the file. You neeed to close it.
-            //    File.Create(FILENAME).Close();
-            //}
-            using (StreamWriter sw = File.AppendText(FILENAME))
-            {               
+            //檔案路徑
+            using (StreamWriter sw = new StreamWriter(FILENAME, true))
+            {
                 Log(message, sw);
-                sw.Close();
-            }
-
+            } 
         }
 
-        private static void Log(string logMessage, TextWriter w)
+        private static void Log(string logMessage, StreamWriter w)
         {
-            w.Write("\r\n");
-            w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
-            w.WriteLine("");
-            w.WriteLine("{0}", logMessage);
-            w.WriteLine("-------------------------------");           
+            try
+            {
+                w.Write("\r\n");
+                w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+                w.WriteLine("");
+                w.WriteLine("{0}", logMessage);
+                w.WriteLine("-------------------------------");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+       
         }
 
         public static void ReadLog(string Date_yyyyMMdd)
