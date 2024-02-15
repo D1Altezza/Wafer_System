@@ -311,6 +311,11 @@
             this.lblOUT4_mps = new System.Windows.Forms.Label();
             this.lblIN0_mps = new System.Windows.Forms.Label();
             this.lblIN4_mps = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.lblIN8_mps = new System.Windows.Forms.Label();
+            this.lblOUT8_mps = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
+            this.btnSW8_mps = new System.Windows.Forms.Button();
             this.grpMotionTest.SuspendLayout();
             this.grpMst.SuspendLayout();
             this.grpPositions.SuspendLayout();
@@ -2865,6 +2870,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.panel_Header);
             this.panel1.Controls.Add(this.btnHalt);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.lstLog);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnEventProgramEnd);
@@ -2901,6 +2907,7 @@
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.btnSW8_mps);
             this.groupBox14.Controls.Add(this.btnSW7_mps);
             this.groupBox14.Controls.Add(this.btnSW6_mps);
             this.groupBox14.Controls.Add(this.btnSW5_mps);
@@ -2910,8 +2917,11 @@
             this.groupBox14.Controls.Add(this.btnSW0_mps);
             this.groupBox14.Controls.Add(this.btnSW1_mps);
             this.groupBox14.Controls.Add(this.label63);
+            this.groupBox14.Controls.Add(this.label83);
             this.groupBox14.Controls.Add(this.label64);
+            this.groupBox14.Controls.Add(this.lblOUT8_mps);
             this.groupBox14.Controls.Add(this.label65);
+            this.groupBox14.Controls.Add(this.lblIN8_mps);
             this.groupBox14.Controls.Add(this.lblOUT7_mps);
             this.groupBox14.Controls.Add(this.lblIN7_mps);
             this.groupBox14.Controls.Add(this.label82);
@@ -2938,7 +2948,7 @@
             this.groupBox14.Controls.Add(this.lblIN4_mps);
             this.groupBox14.Location = new System.Drawing.Point(605, 38);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(314, 99);
+            this.groupBox14.Size = new System.Drawing.Size(344, 99);
             this.groupBox14.TabIndex = 4;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "General I/O";
@@ -3273,6 +3283,54 @@
             this.lblIN4_mps.Size = new System.Drawing.Size(19, 17);
             this.lblIN4_mps.TabIndex = 5;
             this.lblIN4_mps.Tag = "4";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(792, 285);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(66, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "STOP";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // lblIN8_mps
+            // 
+            this.lblIN8_mps.Image = ((System.Drawing.Image)(resources.GetObject("lblIN8_mps.Image")));
+            this.lblIN8_mps.Location = new System.Drawing.Point(313, 35);
+            this.lblIN8_mps.Name = "lblIN8_mps";
+            this.lblIN8_mps.Size = new System.Drawing.Size(19, 17);
+            this.lblIN8_mps.TabIndex = 5;
+            this.lblIN8_mps.Tag = "7";
+            // 
+            // lblOUT8_mps
+            // 
+            this.lblOUT8_mps.Image = ((System.Drawing.Image)(resources.GetObject("lblOUT8_mps.Image")));
+            this.lblOUT8_mps.Location = new System.Drawing.Point(313, 53);
+            this.lblOUT8_mps.Name = "lblOUT8_mps";
+            this.lblOUT8_mps.Size = new System.Drawing.Size(19, 17);
+            this.lblOUT8_mps.TabIndex = 5;
+            this.lblOUT8_mps.Tag = "7";
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Location = new System.Drawing.Point(317, 19);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(11, 12);
+            this.label83.TabIndex = 5;
+            this.label83.Text = "8";
+            // 
+            // btnSW8_mps
+            // 
+            this.btnSW8_mps.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.btnSW8_mps.Location = new System.Drawing.Point(306, 73);
+            this.btnSW8_mps.Name = "btnSW8_mps";
+            this.btnSW8_mps.Size = new System.Drawing.Size(33, 22);
+            this.btnSW8_mps.TabIndex = 7;
+            this.btnSW8_mps.Text = "OFF";
+            this.btnSW8_mps.UseVisualStyleBackColor = true;
+            this.btnSW8_mps.Click += new System.EventHandler(this.btnSWmps_Click);
             // 
             // ACS_Motion
             // 
@@ -3621,6 +3679,11 @@
         private System.Windows.Forms.TextBox txt_A_JogVel;
         private System.Windows.Forms.CheckBox chk_A_UseVel;
         private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSW8_mps;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.Label lblOUT8_mps;
+        private System.Windows.Forms.Label lblIN8_mps;
     }
 }
 

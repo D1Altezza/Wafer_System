@@ -75,12 +75,15 @@ namespace Cool_Muscle_CML_Example
             //clear the received textbox
             textBox_Received.Text = "";
         }
-       
+
         public void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            var sp = serialPort.ReadExisting().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            if (sp.Count()>1)
+            {
+                recData = sp[1];
+            }
            
-
-            recData = serialPort.ReadExisting();
 
             //Handle cross threads
             if (textBox_Received.InvokeRequired)
@@ -122,6 +125,9 @@ namespace Cool_Muscle_CML_Example
                 case "btn_Emg":
                     Emg();
                     break;
+                case "btn_GetPos":
+                    Query("?96");
+                    break;
             }
         }
         #region Fun
@@ -159,11 +165,11 @@ namespace Cool_Muscle_CML_Example
         }
         public void pin_Up()
         {
-            serialPort.Write("[5.1\r\n");
+            serialPort.Write("[1.1\r\n");
         }
         public void pin_Down()
         {
-            serialPort.Write("[6.1\r\n");
+            serialPort.Write("[2.1\r\n");
         }
         public void Origin()
         {

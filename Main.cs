@@ -26,6 +26,7 @@ using ProgressBar = System.Windows.Forms.ProgressBar;
 using static Wafer_System.Main;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using static Wafer_System.Auto_run_page1;
+using ACS.SPiiPlusNET;
 
 namespace Wafer_System
 {
@@ -88,7 +89,7 @@ namespace Wafer_System
         public int IO_timeout = 3000;
         bool[] home_end_flag = new bool[] { false, false, false };
         public bool pass = false;
-      
+
         public Main()
         {
             InitializeComponent();
@@ -249,20 +250,21 @@ namespace Wafer_System
             var step1 = Task.Run(() =>
             {
                 conn = InitialAllDevice_Conn();
+            })
+            .ContinueWith(task =>
+            {
+                if (conn)
+                    ini = sys_Ini();
+
+            }, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            {
+
+                if (ini && MessageBox.Show("GO Home?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    home = sys_Home();
+                }
             });
-            //.ContinueWith(task =>
-            //{
-            //    if (conn)
-            //        ini = sys_Ini();
-
-            //}, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
-            //{
-
-            //    if (ini && MessageBox.Show("GO Home?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
-            //        home = sys_Home();
-            //    }
-            //}, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            //,TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
             //{
             //    if (home)
             //    {
@@ -326,15 +328,15 @@ namespace Wafer_System
             if (!pass)
             {
 
-                
-                if (configWR.ReadSettings("CL3000_IP") != string.Empty && configWR.ReadSettings("CL3000_Port") != string.Empty) 
+
+                if (configWR.ReadSettings("CL3000_IP") != string.Empty && configWR.ReadSettings("CL3000_Port") != string.Empty)
                 {
                     //this.BeginInvoke(new Action(() => { keyence._OpenEthernetCommunication(); }));
                     keyence._OpenEthernetCommunication();
                     Thread.Sleep(1000);
                 }
-               
-              
+
+
                 var key_con_status = keyence.Get_Connection_status();
 
                 if (key_con_status != "No connection")
@@ -344,14 +346,14 @@ namespace Wafer_System
             }
 
 
-           
+
             Cognex.Connect();
             this.BeginInvoke(new Action(() => { c.Text += "Wafer ID Reader...\r\n"; }));
             if (Cognex.client.IsConnected)
             {
                 this.BeginInvoke(new Action(() => { c.Text += ("connection successful!\r\n"); }));
                 Cognex.client.Events.DataReceived += Diameter_Monitor.Events_DataReceived;
-            } 
+            }
             else
                 this.BeginInvoke(new Action(() => { c.Text += ("connection failed!\r\n"); }));
 
@@ -416,19 +418,19 @@ namespace Wafer_System
             Wait_eFEM_Received_Update(efem_timeout);
             if (eFEM._Paser._EFEM_Status.Cmd_Error != "OK")
             {
-                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 MessageBox.Show("E001\r\n" + "GetStatus,EFEM\r\n", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             //IO MPS Red Light ON out7
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Stop_LG_C3"; }));
-            aCS_Motion._ACS.SetOutput(1, 1, 1);
+            aCS_Motion._ACS.SetOutput(1, 7, 1);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "SignalTower,EFEM,ALL,OFF"; }));
-            if (!EFEM_Light_Control("ALL", 0, "Initial Home"))
+            if (!EFEM_Light_Control("All", 0, "Initial Home"))
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
@@ -556,11 +558,11 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport1"; }));
-            Get_EFEM_LoadPort_Status(1, "Initial Home"  );
+            Get_EFEM_LoadPort_Status(1, "Initial Home");
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport2"; }));
-            Get_EFEM_LoadPort_Status(2, "Initial Home"  );
+            Get_EFEM_LoadPort_Status(2, "Initial Home");
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport3"; }));
-            Get_EFEM_LoadPort_Status(3, "Initial Home"  );
+            Get_EFEM_LoadPort_Status(3, "Initial Home");
 
             if (eFEM._Paser._Loadport1_Status.Cmd_Error != "OK"
                 || eFEM._Paser._Loadport2_Status.Cmd_Error != "OK"
@@ -587,14 +589,20 @@ namespace Wafer_System
             //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
             this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
             aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(10);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
             //----pass
-            if (!pass && (!DMWAFER(ref d_Param.D110) || d_Param.D110 != 0))
+            if (!pass && (!DMWAFER(ref d_Param.D110)))
             {
-                this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                MessageBox.Show("E056", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Thread.Sleep(5);
+                if (d_Param.D110 != 0 || d_Param.D110 != 4)
+                {
+                    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                    MessageBox.Show("E056", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
@@ -666,7 +674,8 @@ namespace Wafer_System
             cML.Query("?99");
             Wait_Cm1_Received_Update();
             var cm1_en = false;
-            if (cML.recData != "8")
+
+            if (cML.recData != "Ux.1=8")
             {
                 cm1_en = false;
             }
@@ -701,7 +710,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
             //IN5---->pass
-            if (!pass && !Wait_IO_Check(0, 0, 5, 1, 120000))
+            if (!pass && !Wait_IO_Check(0, 0, 5, 1, 300000))
             {
                 MessageBox.Show("E165\r\n" + "Z_ULS OFF\r\n", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
@@ -714,17 +723,21 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-X Home...\r\n" + "TN-Y Home..."; }));
             //X軸歸Home
-            aCS_Motion._ACS.Command("#0X");
-            Thread.Sleep(100);
-            //Y軸歸Home
-            aCS_Motion._ACS.Command("#1X");
-            Thread.Sleep(100);
-            //A軸歸Home
-            aCS_Motion._ACS.Command("#2X");
-            Thread.Sleep(100);
-            Wait_XYA_Home_End("", 120000);
-            Thread.Sleep(100);
+            aCS_Motion._ACS.Command("#3X");
+            //this.BeginInvoke(new Action(() => { aCS_Motion._ACS.Command("#1X"); }));
+            //aCS_Motion._ACS.RunBuffer((ProgramBuffer)1, "");
+            Thread.Sleep(1000);
 
+            //Y軸歸Home
+            aCS_Motion._ACS.Command("#2X");
+            //aCS_Motion._ACS.RunBuffer((ProgramBuffer)2, "");
+            Thread.Sleep(1000);
+            //A軸歸Home
+            aCS_Motion._ACS.Command("#1X");
+            //aCS_Motion._ACS.RunBuffer((ProgramBuffer)3, "");
+            Thread.Sleep(1000);
+            Wait_XYA_Home_End("", 120000);
+            Thread.Sleep(5000);
             if (!home_end_flag[0] || !home_end_flag[1] || !home_end_flag[2] ||
                 aCS_Motion.m_X_lfFPos != 0 || aCS_Motion.m_Y_lfFPos != 0 || aCS_Motion.m_A_lfFPos != 0 ||
                 !aCS_Motion.x_Inp || !aCS_Motion.y_Inp || !aCS_Motion.a_Inp)
@@ -733,7 +746,8 @@ namespace Wafer_System
                     msg += "E164\r\n" + "TN-XY Home Error\r\n";
                 if (!home_end_flag[2])
                     msg += "E166\r\n" + "DM - DD Home Error\r\n";
-                MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() => { MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error); }));
+                //MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
@@ -747,10 +761,49 @@ namespace Wafer_System
             wait_axis_Inp("y", 100000);
             this.BeginInvoke(new Action(() => { progresBar.Increment(2); }));
 
+
+
             this.BeginInvoke(new Action(() => { lb_progress.Text = "XN1_ON..."; }));
             //OUT8
-            aCS_Motion._ACS.SetOutput(1, 8, 1);
+            aCS_Motion._ACS.SetOutput(1, 8, 0);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check X_LS..."; }));
+            if (!Wait_IO_Check(0, 0, 0, 1, 10000))
+            {
+                MessageBox.Show("X_LS IN0 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+
+            if (!Wait_IO_Check(0, 0, 1, 1, 10000))
+            {
+                MessageBox.Show("Y_LS IN1 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+
+                return false;
+            }
+
+            //this.BeginInvoke(new Action(() => { lb_progress.Text = "Pin UP..."; }));
+            //cML.pin_Up();
+            //if (!Wait_IO_Check(0, 0, 2, 1, 300000))
+            //{
+            //    MessageBox.Show("Z_LS IN2 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    this.BeginInvoke(new Action(() =>
+            //    {
+            //        Progres_update(false);
+            //    }));
+
+            //    return false;
+            //}
+            //this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
             //-------pass
@@ -853,7 +906,7 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
 
-            eFEM.EFEM_Cmd = "SetSpeed,Robot,20%,20%,20%,20%,20%,20%";
+            eFEM.EFEM_Cmd = "SetSpeed,Robot,20%,20%,20%,20%,20%";
             eFEM._Paser._RobotSpeed_Set_Cmd.Error = "";
             eFEM._Paser._RobotSpeed_Set_Cmd.ErrorCode = "";
             eFEM.EFEM_Send();
@@ -871,8 +924,8 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
 
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "SignalTower,EFEM,ALL,OFF"; }));
-            if (!EFEM_Light_Control("ALL", 0, "Home"))
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SignalTower,EFEM,All,Off"; }));
+            if (!EFEM_Light_Control("All", 0, "Home"))
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
@@ -967,7 +1020,7 @@ namespace Wafer_System
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -982,17 +1035,17 @@ namespace Wafer_System
             try
             {
                 var OUT8 = aCS_Motion._ACS.GetOutput(1, 8);
-                var IN0 = aCS_Motion._ACS.GetInput(1, 0);
+                var IN0 = aCS_Motion._ACS.GetInput(0, 0);
                 var IN1 = aCS_Motion._ACS.GetInput(1, 1);
-                var IN2 = aCS_Motion._ACS.GetInput(1, 2);
+                var IN2 = aCS_Motion._ACS.GetInput(0, 2);
                 var IN6 = aCS_Motion._ACS.GetInput(1, 6);
-                var xy_in_load_pos = (aCS_Motion.m_X_lfFPos == Convert.ToDouble(configWR.ReadSettings("XL")) &&
-                    aCS_Motion.m_Y_lfFPos == Convert.ToDouble(configWR.ReadSettings("YL")));
-                cML.Query("?69");
+                var xy_in_load_pos = (Math.Round(aCS_Motion.m_X_lfFPos, 1) == Convert.ToDouble(configWR.ReadSettings("XL")) &&
+                    Math.Round(aCS_Motion.m_Y_lfFPos,1) == Convert.ToDouble(configWR.ReadSettings("YL")));
+                cML.Query("?96");
                 Wait_Cm1_Received_Update();
                 //當前位置回傳格式未檢查----待修正                
-                var z_in_load_pos = (cML.recData == configWR.ReadSettings("ZL"));
-                if (OUT8 == 1 && IN0 == 1 && IN1 == 1 && xy_in_load_pos)
+                var z_in_load_pos = (cML.recData == "Px.1=" + configWR.ReadSettings("ZL"));
+                if (OUT8 == 0 && IN0 == 1 && IN1 == 1 && xy_in_load_pos)
                 {
                     switch (IN6)
                     {
@@ -1078,10 +1131,10 @@ namespace Wafer_System
                 switch (mode)
                 {
                     case 0:
-                        eFEM.EFEM_Cmd = "SignalTower,EFEM," + color + ",OFF";
+                        eFEM.EFEM_Cmd = "SignalTower,EFEM," + color + ",Off";
                         break;
                     case 1:
-                        eFEM.EFEM_Cmd = "SignalTower,EFEM," + color + ",ON";
+                        eFEM.EFEM_Cmd = "SignalTower,EFEM," + color + ",On";
                         break;
                     case 2:
                         eFEM.EFEM_Cmd = "SignalTower,EFEM," + color + ",Flash";
@@ -1138,7 +1191,7 @@ namespace Wafer_System
                             MessageBox.Show("E037\r\n" + "_Loadport1_Status\r\n" + eFEM._Paser._Loadport1_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
-                    
+
                         break;
                     case 2:
                         eFEM.EFEM_Cmd = "GetStatus,Loadport2";
@@ -1158,7 +1211,7 @@ namespace Wafer_System
                             MessageBox.Show("E038\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport2_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
-                     
+
                         break;
                     case 3:
                         eFEM.EFEM_Cmd = "GetStatus,Loadport3";
@@ -1178,7 +1231,7 @@ namespace Wafer_System
                             MessageBox.Show("E039\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport3_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
-                    
+
                         break;
                 }
                 return true;
@@ -1565,11 +1618,11 @@ namespace Wafer_System
                 }
                 bit = bit << 1;
             }
-            if (end_bufferNo == 0)
-                home_end_flag[0] = true;
             if (end_bufferNo == 1)
-                home_end_flag[1] = true;
+                home_end_flag[0] = true;
             if (end_bufferNo == 2)
+                home_end_flag[1] = true;
+            if (end_bufferNo == 3)
                 home_end_flag[2] = true;
             PROGRAMEND_Status_Update = true;
         }
@@ -1668,7 +1721,7 @@ namespace Wafer_System
                 }
 
             });
-            if (!t.Wait(IO_timeout))
+            if (!t.Wait(timeout))
             {
                 MessageBox.Show("Timeout", "IO MPS");
                 return false;

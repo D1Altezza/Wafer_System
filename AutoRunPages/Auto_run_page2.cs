@@ -439,7 +439,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "XN2_ON ON..."; }));
             //OUT9 打開雷射
-            main.aCS_Motion._ACS.SetOutput(1, 9, 1);
+            main.aCS_Motion._ACS.SetOutput(1, 9, 0);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Pin not exist..."; }));
@@ -524,9 +524,9 @@ namespace Wafer_System
                 return false;
             }
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z_LS..."; }));
-            if (!main.Wait_IO_Check(0, 0, 0, 1, 10000))
+            if (!main.Wait_IO_Check(0, 0, 2, 1, 10000))
             {
-                MessageBox.Show("Z_LS IN0 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Z_LS IN2 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
                 {
                     Progres_update(false);

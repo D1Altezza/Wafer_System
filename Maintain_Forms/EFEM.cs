@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wafer_System.Config_Fun;
@@ -105,16 +106,27 @@ namespace Wafer_System
         private void Events_DataReceived(object sender, DataReceivedEventArgs e)
         {
             var str = System.Text.Encoding.UTF8.GetString(e.Data.ToArray());
-           
-            _Paser._Paser(str);
-            logRW.WriteLog("Return Code: " + System.Text.Encoding.UTF8.GetString(e.Data.ToArray()), "EFEM");
-            receive_update(this, e);
-            this.BeginInvoke(new Action(() =>
+
+            string[] return_code = str.Split('#', '$');
+            return_code = return_code.Where(val => val != string.Empty).ToArray();
+            foreach (var val in return_code) 
             {
-                txt_Info.Text += System.Text.Encoding.UTF8.GetString(e.Data.ToArray()) + "\r\n";
-                txt_Info.SelectionStart = txt_Info.TextLength;
-                txt_Info.ScrollToCaret();
-            }));
+                if (val.Split(',')[0] != "Event")
+                {
+                    _Paser._Paser(val);
+                    receive_update(this, e);
+                }
+                
+                logRW.WriteLog("Return Code: " + System.Text.Encoding.UTF8.GetString(e.Data.ToArray()), "EFEM");
+                
+                this.BeginInvoke(new Action(() =>
+                {
+                    txt_Info.Text += System.Text.Encoding.UTF8.GetString(e.Data.ToArray()) + "\r\n";
+                    txt_Info.SelectionStart = txt_Info.TextLength;
+                    txt_Info.ScrollToCaret();
+                }));
+            }
+            
         }
 
         private void Events_Connected(object sender, ConnectionEventArgs e)
@@ -208,6 +220,7 @@ namespace Wafer_System
                         logRW.WriteLog("Send Cmd: " + EFEM_Cmd, "EFEM");
                     }));
                 }
+                Thread.Sleep(500);
             }
         }
 

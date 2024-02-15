@@ -3,6 +3,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Policy;
 using System.Text;
@@ -337,27 +338,29 @@ namespace Wafer_System
         };
         public void _Paser(string returnCode)
         {
-            string[] words = returnCode.Split('#', ',', '$');
+            
+            string[] words = returnCode.Split(',');
+
             try
             {
-                if (words[1] == "GetStatus")
+                if (words[0] == "GetStatus")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "EFEM":
-                            _EFEM_Status.Cmd_Error = words[3];
+                            _EFEM_Status.Cmd_Error = words[2];
                             if (_EFEM_Status.Cmd_Error == "OK")
                             {
-                                _EFEM_Status.EMG = Convert.ToInt32(words[4]);
-                                _EFEM_Status.FFU_Pressure = Convert.ToInt32(words[5]);
-                                _EFEM_Status.EFEM_PositivePressure = Convert.ToInt32(words[6]);
-                                _EFEM_Status.EFEM_NegativePressure = Convert.ToInt32(words[7]);
-                                _EFEM_Status.Ionizer = Convert.ToInt32(words[8]);
-                                _EFEM_Status.Light_Curtain = Convert.ToInt32(words[9]);
-                                _EFEM_Status.FFU = Convert.ToInt32(words[10]);
-                                _EFEM_Status.OperationMode = Convert.ToInt32(words[11]);
-                                _EFEM_Status.RobotEnable = Convert.ToInt32(words[12]);
-                                _EFEM_Status.Door = Convert.ToInt32(words[13]);
+                                _EFEM_Status.EMG = Convert.ToInt32(words[3]);
+                                _EFEM_Status.FFU_Pressure = Convert.ToInt32(words[4]);
+                                _EFEM_Status.EFEM_PositivePressure = Convert.ToInt32(words[5]);
+                                _EFEM_Status.EFEM_NegativePressure = Convert.ToInt32(words[6]);
+                                _EFEM_Status.Ionizer = Convert.ToInt32(words[7]);
+                                _EFEM_Status.Light_Curtain = Convert.ToInt32(words[8]);
+                                _EFEM_Status.FFU = Convert.ToInt32(words[9]);
+                                _EFEM_Status.OperationMode = Convert.ToInt32(words[10]);
+                                _EFEM_Status.RobotEnable = Convert.ToInt32(words[11]);
+                                _EFEM_Status.Door = Convert.ToInt32(words[12]);
 
                             }
                             else
@@ -367,80 +370,80 @@ namespace Wafer_System
 
                             break;
                         case "Robot":
-                            _Robot_Status.Cmd_Error = words[3];
-                            _Robot_Status.Controller_State = _Robot_Controller_State[Convert.ToInt32(words[4], 2)];
-                            _Robot_Status.UpPresence = words[5];
-                            _Robot_Status.LowPresence = words[6];
+                            _Robot_Status.Cmd_Error = words[2];
+                            //_Robot_Status.Controller_State = _Robot_Controller_State[Convert.ToInt32(words[3], 2)];
+                            _Robot_Status.UpPresence = words[4];
+                            _Robot_Status.LowPresence = words[5];
                             break;
                         case "Aligner1":
-                            _Aligner1_Status.Cmd_Error = words[3];
+                            _Aligner1_Status.Cmd_Error = words[2];
                             if (_Aligner1_Status.Cmd_Error == "OK")
                             {
-                                _Aligner1_Status.Mode = words[4];
-                                _Aligner1_Status.WaferPresence = words[5];
-                                _Aligner1_Status.Vacuum = words[6];
+                                _Aligner1_Status.Mode = words[3];
+                                _Aligner1_Status.WaferPresence = words[4];
+                                _Aligner1_Status.Vacuum = words[5];
                             }
                             else
                             {
-                                _Aligner1_Status.ErrorCode = words[4];
+                                _Aligner1_Status.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport1":
-                            _Loadport1_Status.Cmd_Error = words[3];
+                            _Loadport1_Status.Cmd_Error = words[2];
                             if (_Loadport1_Status.Cmd_Error == "OK")
                             {
-                                _Loadport1_Status.Cmd_Error = words[3];
-                                _Loadport1_Status.Mode = words[4];
-                                _Loadport1_Status.Error = words[5];
-                                _Loadport1_Status.Foup = words[6];
-                                _Loadport1_Status.Clamp = words[7];
-                                _Loadport1_Status.Door = words[8];
+                                _Loadport1_Status.Cmd_Error = words[2];
+                                _Loadport1_Status.Mode = words[3];
+                                _Loadport1_Status.Error = words[4];
+                                _Loadport1_Status.Foup = words[5];
+                                _Loadport1_Status.Clamp = words[6];
+                                _Loadport1_Status.Door = words[7];
                             }
                             else
                             {
-                                _Loadport1_Status.ErrorCode = words[4];
+                                _Loadport1_Status.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport2":
-                            _Loadport2_Status.Cmd_Error = words[3];
+                            _Loadport2_Status.Cmd_Error = words[2];
                             if (_Loadport2_Status.Cmd_Error == "OK")
                             {
-                                _Loadport2_Status.Cmd_Error = words[3];
-                                _Loadport2_Status.Mode = words[4];
-                                _Loadport2_Status.Error = words[5];
-                                _Loadport2_Status.Foup = words[6];
-                                _Loadport2_Status.Clamp = words[7];
-                                _Loadport2_Status.Door = words[8];
+                                _Loadport2_Status.Cmd_Error = words[2];
+                                _Loadport2_Status.Mode = words[3];
+                                _Loadport2_Status.Error = words[4];
+                                _Loadport2_Status.Foup = words[5];
+                                _Loadport2_Status.Clamp = words[6];
+                                _Loadport2_Status.Door = words[7];
                             }
                             else
                             {
-                                _Loadport2_Status.ErrorCode = words[4];
+                                _Loadport2_Status.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport3":
-                            _Loadport3_Status.Cmd_Error = words[3];
+                            _Loadport3_Status.Cmd_Error = words[2];
                             if (_Loadport3_Status.Cmd_Error == "OK")
                             {
-                                _Loadport3_Status.Cmd_Error = words[3];
-                                _Loadport3_Status.Mode = words[4];
-                                _Loadport3_Status.Error = words[5];
-                                _Loadport3_Status.Foup = words[6];
-                                _Loadport3_Status.Clamp = words[7];
-                                _Loadport3_Status.Door = words[8];
+                                _Loadport3_Status.Cmd_Error = words[2];
+                                _Loadport3_Status.Mode = words[3];
+                                _Loadport3_Status.Error = words[4];
+                                _Loadport3_Status.Foup = words[5];
+                                _Loadport3_Status.Clamp = words[6];
+                                _Loadport3_Status.Door = words[7];
                             }
                             else
                             {
-                                _Loadport3_Status.ErrorCode = words[4];
+                                _Loadport3_Status.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "SignalTower")
+                else if (words[0] == "SignalTower")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "EFEM":
-                            _SignalTower_Status.Error = words[3];
+                            _SignalTower_Status.Error = words[2];
                             if (_SignalTower_Status.Error == "OK")
                             {
                                 _SignalTower_Status.ErrorCode = "";
@@ -448,68 +451,68 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _SignalTower_Status.ErrorCode = words[4];
+                                _SignalTower_Status.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "ResetError")
+                else if (words[0] == "ResetError")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Loadport1":
-                            _Reset_Error_LoadPort1.Error = words[3];
+                            _Reset_Error_LoadPort1.Error = words[2];
                             if (_Reset_Error_LoadPort1.Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_LoadPort1.Error = words[4];
+                                _Reset_Error_LoadPort1.Error = words[3];
                             }
                             break;
                         case "Loadport2":
-                            _Reset_Error_LoadPort2.Error = words[3];
+                            _Reset_Error_LoadPort2.Error = words[2];
                             if (_Reset_Error_LoadPort2.Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_LoadPort2.Error = words[4];
+                                _Reset_Error_LoadPort2.Error = words[3];
                             }
                             break;
                         case "Loadport3":
-                            _Reset_Error_LoadPort3.Error = words[3];
+                            _Reset_Error_LoadPort3.Error = words[2];
                             if (_Reset_Error_LoadPort3.Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_LoadPort3.Error = words[4];
+                                _Reset_Error_LoadPort3.Error = words[3];
                             }
                             break;
                         case "Aligner1":
-                            _Reset_Error_Aligner1.Error = words[3];
+                            _Reset_Error_Aligner1.Error = words[2];
                             if (_Reset_Error_Aligner1.Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_Aligner1.Error = words[4];
+                                _Reset_Error_Aligner1.Error = words[3];
                             }
                             break;
 
                     }
                 }
-                else if (words[1] == "Home")
+                else if (words[0] == "Home")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "EFEM":
-                            _Home_Cmd.Error = words[3];
+                            _Home_Cmd.Error = words[2];
                             if (_Home_Cmd.Error == "OK")
                             {
                                 _Home_Cmd.ErrorCode = "";
@@ -517,17 +520,17 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _Home_Cmd.ErrorCode = words[4];
+                                _Home_Cmd.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "SetSpeed")
+                else if (words[0] == "SetSpeed")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Robot":
-                            _RobotSpeed_Set_Cmd.Error = words[3];
+                            _RobotSpeed_Set_Cmd.Error = words[2];
                             if (_RobotSpeed_Set_Cmd.Error == "OK")
                             {
                                 _RobotSpeed_Set_Cmd.ErrorCode = "";
@@ -535,17 +538,17 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _RobotSpeed_Set_Cmd.ErrorCode = words[4];
+                                _RobotSpeed_Set_Cmd.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "SetAlignmentAngle")
+                else if (words[0] == "SetAlignmentAngle")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Aligner1":
-                            _AlignmentAngle_Set_Cmd.Error = words[3];
+                            _AlignmentAngle_Set_Cmd.Error = words[2];
                             if (_AlignmentAngle_Set_Cmd.Error == "OK")
                             {
                                 _AlignmentAngle_Set_Cmd.ErrorCode = "";
@@ -553,17 +556,17 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _AlignmentAngle_Set_Cmd.ErrorCode = words[4];
+                                _AlignmentAngle_Set_Cmd.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "SetWaferType")
+                else if (words[0] == "SetWaferType")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Aligner1":
-                            _WaferType_Set_Cmd.Error = words[3];
+                            _WaferType_Set_Cmd.Error = words[2];
                             if (_WaferType_Set_Cmd.Error == "OK")
                             {
                                 _WaferType_Set_Cmd.ErrorCode = "";
@@ -571,17 +574,17 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _WaferType_Set_Cmd.ErrorCode = words[4];
+                                _WaferType_Set_Cmd.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "SetWaferMode")
+                else if (words[0] == "SetWaferMode")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Aligner1":
-                            _WaferMode_Set_Cmd.Error = words[3];
+                            _WaferMode_Set_Cmd.Error = words[2];
                             if (_WaferMode_Set_Cmd.Error == "OK")
                             {
                                 _WaferMode_Set_Cmd.ErrorCode = "";
@@ -589,17 +592,17 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _WaferMode_Set_Cmd.ErrorCode = words[4];
+                                _WaferMode_Set_Cmd.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "SetWaferSize")
+                else if (words[0] == "SetWaferSize")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Aligner1":
-                            _WaferSize_Set_Cmd.Error = words[3];
+                            _WaferSize_Set_Cmd.Error = words[2];
                             if (_WaferSize_Set_Cmd.Error == "OK")
                             {
                                 _WaferSize_Set_Cmd.ErrorCode = "";
@@ -607,20 +610,20 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _WaferSize_Set_Cmd.ErrorCode = words[4];
+                                _WaferSize_Set_Cmd.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "Home" || words[1] == "Load" ||
-                    words[1] == "Unload" || words[1] == "Clamp" ||
-                    words[1] == "Unclamp" || words[1] == "HoldPlate" ||
-                    words[1] == "Unholdplate" || words[1] == "Map")
+                else if (words[0] == "Home" || words[0] == "Load" ||
+                    words[0] == "Unload" || words[0] == "Clamp" ||
+                    words[0] == "Unclamp" || words[0] == "HoldPlate" ||
+                    words[0] == "Unholdplate" || words[0] == "Map")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Loadport1":
-                            _Cmd_Loadport.Error = words[3];
+                            _Cmd_Loadport.Error = words[2];
                             if (_Cmd_Loadport.Error == "OK")
                             {
                                 _Cmd_Loadport.ErrorCode = "";
@@ -628,11 +631,11 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _Cmd_Loadport.ErrorCode = words[4];
+                                _Cmd_Loadport.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport2":
-                            _Cmd_Loadport.Error = words[3];
+                            _Cmd_Loadport.Error = words[2];
                             if (_Cmd_Loadport.Error == "OK")
                             {
                                 _Cmd_Loadport.ErrorCode = "";
@@ -640,11 +643,11 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _Cmd_Loadport.ErrorCode = words[4];
+                                _Cmd_Loadport.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport3":
-                            _Cmd_Loadport.Error = words[3];
+                            _Cmd_Loadport.Error = words[2];
                             if (_Cmd_Loadport.Error == "OK")
                             {
                                 _Cmd_Loadport.ErrorCode = "";
@@ -652,21 +655,21 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _Cmd_Loadport.ErrorCode = words[4];
+                                _Cmd_Loadport.ErrorCode = words[3];
                             }
                             break;
                     }
                 }
-                else if (words[1] == "GetCurrentLPWaferSize")
+                else if (words[0] == "GetCurrentLPWaferSize")
                 {
-                    switch (words[2])
+                    switch (words[1])
                     {
                         case "Loadport1":
-                            _GetCurrentLPWaferSize.Error = words[3];
+                            _GetCurrentLPWaferSize.Error = words[2];
                             if (_GetCurrentLPWaferSize.Error == "OK")
                             {
                                 _GetCurrentLPWaferSize.ErrorCode = "";
-                                switch (words[4])
+                                switch (words[3])
                                 {
                                     case "4":
                                         _GetCurrentLPWaferSize.Result = "eight";
@@ -680,15 +683,15 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _GetCurrentLPWaferSize.ErrorCode = words[4];
+                                _GetCurrentLPWaferSize.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport2":
-                            _GetCurrentLPWaferSize.Error = words[3];
+                            _GetCurrentLPWaferSize.Error = words[2];
                             if (_GetCurrentLPWaferSize.Error == "OK")
                             {
                                 _GetCurrentLPWaferSize.ErrorCode = "";
-                                switch (words[4])
+                                switch (words[3])
                                 {
                                     case "4":
                                         _GetCurrentLPWaferSize.Result = "eight";
@@ -702,15 +705,15 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _GetCurrentLPWaferSize.ErrorCode = words[4];
+                                _GetCurrentLPWaferSize.ErrorCode = words[3];
                             }
                             break;
                         case "Loadport3":
-                            _GetCurrentLPWaferSize.Error = words[3];
+                            _GetCurrentLPWaferSize.Error = words[2];
                             if (_GetCurrentLPWaferSize.Error == "OK")
                             {
                                 _GetCurrentLPWaferSize.ErrorCode = "";
-                                switch (words[4])
+                                switch (words[3])
                                 {
                                     case "4":
                                         _GetCurrentLPWaferSize.Result = "eight";
@@ -724,7 +727,7 @@ namespace Wafer_System
                             }
                             else
                             {
-                                _GetCurrentLPWaferSize.ErrorCode = words[4];
+                                _GetCurrentLPWaferSize.ErrorCode = words[3];
                             }
                             break;
                     }
@@ -737,6 +740,7 @@ namespace Wafer_System
                 //werite error 
                 //throw;
             }
+
 
 
 

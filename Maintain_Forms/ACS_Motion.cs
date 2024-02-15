@@ -101,7 +101,7 @@ namespace ACS_DotNET_Library_Advanced_Demo
             // Register Event
             _ACS.PHYSICALMOTIONEND += _ACS_PHYSICALMOTIONEND;
             //_ACS.PROGRAMEND += _ACS_PROGRAMEND;
-            _ACS.PROGRAMEND += _ACS_Buffer_PROGRAMEND;
+            //_ACS.PROGRAMEND += _ACS_Buffer_PROGRAMEND;
 
 
         }
@@ -179,6 +179,7 @@ namespace ACS_DotNET_Library_Advanced_Demo
             m_lblInput_mps[5] = lblIN5_mps;
             m_lblInput_mps[6] = lblIN6_mps;
             m_lblInput_mps[7] = lblIN7_mps;
+            //m_lblInput_mps[8] = lblIN8_mps;
 
             m_lblOutput_mps = new Label[MAX_UI_IO_CNT];
             m_lblOutput_mps[0] = lblOUT0_mps;
@@ -774,6 +775,11 @@ namespace ACS_DotNET_Library_Advanced_Demo
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _ACS.Command("#1X");
+        }
         #endregion
 
         #region Move to relative position (from current position)
@@ -1351,29 +1357,29 @@ namespace ACS_DotNET_Library_Advanced_Demo
             lstLog.Items.Add("PROGRAM_END event enabled");
         }
 
-        void _ACS_Buffer_PROGRAMEND(BufferMasks buffer)
-        {
-            int bit = 0x01;
-            int bufferNo = 0;
-            // Param value is bit number 
-            // Bit Number = Axis Number
-            for (int i = 0; i < 32; i++)
-            {
-                if ((int)buffer == bit)
-                {
-                    bufferNo = i;
-                    break;
-                }
-                bit = bit << 1;
-            }
+        //void _ACS_Buffer_PROGRAMEND(BufferMasks buffer)
+        //{
+        //    int bit = 0x01;
+        //    int bufferNo = 0;
+        //    // Param value is bit number 
+        //    // Bit Number = Axis Number
+        //    for (int i = 0; i < 32; i++)
+        //    {
+        //        if ((int)buffer == bit)
+        //        {
+        //            bufferNo = i;
+        //            break;
+        //        }
+        //        bit = bit << 1;
+        //    }
 
-            // Add log to ListBox
-            this.Invoke((MethodInvoker)delegate
-            {
-                lstLog.Items.Add(String.Format(" - Buffer {0}, Stoppped", bufferNo));
-                lstLog.SelectedIndex = lstLog.Items.Count - 1;
-            });
-        }
+        //    // Add log to ListBox
+        //    this.Invoke((MethodInvoker)delegate
+        //    {
+        //        lstLog.Items.Add(String.Format(" - Buffer {0}, Stoppped", bufferNo));
+        //        lstLog.SelectedIndex = lstLog.Items.Count - 1;
+        //    });
+        //}
 
         //void _ACS_Buffer_PROGRAMEND(BufferMasks buffer)
         //{

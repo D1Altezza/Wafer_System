@@ -55,6 +55,7 @@
             this.btn_Emg = new System.Windows.Forms.Button();
             this.btn_Enable = new System.Windows.Forms.Button();
             this.btn_Origin = new System.Windows.Forms.Button();
+            this.btn_GetPos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -260,6 +261,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btn_Down);
+            this.groupBox4.Controls.Add(this.btn_GetPos);
             this.groupBox4.Controls.Add(this.btn_Up);
             this.groupBox4.Controls.Add(this.btn_Disable);
             this.groupBox4.Controls.Add(this.btn_Reset);
@@ -268,7 +270,7 @@
             this.groupBox4.Controls.Add(this.btn_Origin);
             this.groupBox4.Location = new System.Drawing.Point(347, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(248, 298);
+            this.groupBox4.Size = new System.Drawing.Size(248, 448);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Function";
@@ -333,6 +335,16 @@
             this.btn_Origin.UseVisualStyleBackColor = true;
             this.btn_Origin.Click += new System.EventHandler(this.btn_Fun_Click);
             // 
+            // btn_GetPos
+            // 
+            this.btn_GetPos.Location = new System.Drawing.Point(14, 283);
+            this.btn_GetPos.Name = "btn_GetPos";
+            this.btn_GetPos.Size = new System.Drawing.Size(105, 44);
+            this.btn_GetPos.TabIndex = 8;
+            this.btn_GetPos.Text = "Get Pos";
+            this.btn_GetPos.UseVisualStyleBackColor = true;
+            this.btn_GetPos.Click += new System.EventHandler(this.btn_Fun_Click);
+            // 
             // CML
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -383,6 +395,7 @@
         private System.Windows.Forms.Button btn_Disable;
         private System.Windows.Forms.Button btn_Enable;
         private System.Windows.Forms.Button btn_Emg;
+        private System.Windows.Forms.Button btn_GetPos;
     }
 }
 
