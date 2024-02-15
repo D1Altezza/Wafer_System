@@ -87,7 +87,7 @@ namespace Wafer_System
         public int efem_timeout = 100000;
         public int IO_timeout = 3000;
         bool[] home_end_flag = new bool[] { false, false, false };
-        public bool pass = true;
+        public bool pass = false;
       
         public Main()
         {
@@ -249,31 +249,31 @@ namespace Wafer_System
             var step1 = Task.Run(() =>
             {
                 conn = InitialAllDevice_Conn();
-            })
-            .ContinueWith(task =>
-            {
-                if (conn)
-                    ini = sys_Ini();
-
-            }, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
-            {
-
-                if (ini && MessageBox.Show("GO Home?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    home = sys_Home();
-                }
-            }, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
-            {
-                if (home)
-                {
-                    this.BeginInvoke(new Action(() =>
-                    {
-                        btn_System_Initial.Hide();
-                        Auto_Run_Page0.Hide();
-                        Auto_Run_Page1.Show();
-                    }));
-                }
             });
+            //.ContinueWith(task =>
+            //{
+            //    if (conn)
+            //        ini = sys_Ini();
+
+            //}, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            //{
+
+            //    if (ini && MessageBox.Show("GO Home?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
+            //        home = sys_Home();
+            //    }
+            //}, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            //{
+            //    if (home)
+            //    {
+            //        this.BeginInvoke(new Action(() =>
+            //        {
+            //            btn_System_Initial.Hide();
+            //            Auto_Run_Page0.Hide();
+            //            Auto_Run_Page1.Show();
+            //        }));
+            //    }
+            //});
         }
 
         private void Btn_System_Initial_Click(object sender, EventArgs e)
@@ -355,7 +355,7 @@ namespace Wafer_System
             else
                 this.BeginInvoke(new Action(() => { c.Text += ("connection failed!\r\n"); }));
 
-
+            mutiCam.UpdateDeviceList();
             var cma_con_status = mutiCam.OpenAllCam();
             if (cma_con_status[2])
                 this.BeginInvoke(new Action(() => { c.Text += ("Light Controller...\r\n" + "connection successful!\r\n"); }));

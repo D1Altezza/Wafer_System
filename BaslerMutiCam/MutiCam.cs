@@ -399,7 +399,7 @@ namespace Wafer_System.BaslerMutiCam
             {
                 if (cameraSelectionComboBox.Items.Count > 1)
                 {
-                    selectedCameraInfo = ((KeyValuePair<ICameraInfo, string>)cameraSelectionComboBox.Items[0]).Key;
+                    selectedCameraInfo = ((KeyValuePair<ICameraInfo, string>)cameraSelectionComboBox.Items[1]).Key;
                     //Note: The following calls trigger event handlers that update the GUI.
                     settingsPanel2.GetGuiCamera().CreateByCameraInfo(selectedCameraInfo);
                     settingsPanel2.GetGuiCamera().OpenCamera();

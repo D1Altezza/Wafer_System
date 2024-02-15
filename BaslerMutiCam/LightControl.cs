@@ -36,8 +36,13 @@ namespace Wafer_System.BaslerMutiCam
                 serialPort.DataBits = 8;
                 serialPort.StopBits = StopBits.One;
                 serialPort.Open();
-                LightValueLabel.Text = configWR.ReadSettings("Light_Value");
-                trackBar_Light.Value = Convert.ToInt32(configWR.ReadSettings("Light_Value"));
+               
+                this.BeginInvoke(new Action(() => 
+                {
+                    LightValueLabel.Text = configWR.ReadSettings("Light_Value");
+                    trackBar_Light.Value = Convert.ToInt32(configWR.ReadSettings("Light_Value"));
+                }));
+              
                 return true;
             }
             catch

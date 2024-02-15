@@ -3368,7 +3368,7 @@
             this._textBoxFourthSegment.Name = "_textBoxFourthSegment";
             this._textBoxFourthSegment.Size = new System.Drawing.Size(28, 22);
             this._textBoxFourthSegment.TabIndex = 5;
-            this._textBoxFourthSegment.Text = "1";
+            this._textBoxFourthSegment.Text = "7";
             this._textBoxFourthSegment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // _textBoxThirdSegment

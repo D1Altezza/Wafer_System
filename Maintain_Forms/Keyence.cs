@@ -150,15 +150,6 @@ namespace CL3_IF_DllSample
         }
         public void _OpenEthernetCommunication()
         {
-            //string[] subs = configWR.ReadSettings("CL3000_IP").Split(',');
-            //this.BeginInvoke(new Action(() => 
-            //{
-            //    _textBoxFirstSegment.Text = subs[0];
-            //    _textBoxSecondSegment.Text = subs[1];
-            //    _textBoxThirdSegment.Text = subs[2];
-            //    _textBoxFourthSegment.Text = subs[3];
-            //    _textBoxPortNo.Text = configWR.ReadSettings("CL3000_Port");
-            //}));
           
 
             CL3IF_ETHERNET_SETTING ethernetSetting = new CL3IF_ETHERNET_SETTING();
@@ -198,7 +189,10 @@ namespace CL3_IF_DllSample
 
             SetDeviceStatement(returnCode, DeviceStatus.Ethernet);
             _deviceData[CurrentDeviceId].EthernetSetting = ethernetSetting;
-            _deviceStatusLabels[CurrentDeviceId].Text = _deviceData[CurrentDeviceId].GetStatusString();
+            this.BeginInvoke(new Action(() =>
+            {
+                _deviceStatusLabels[CurrentDeviceId].Text = _deviceData[CurrentDeviceId].GetStatusString();
+            }));
         }
        
 
