@@ -32,6 +32,7 @@ namespace Wafer_System
 {
     public partial class Main : Form
     {
+        public bool pass = true;
         LogRW logRW = new LogRW();
         ConfigWR configWR;
 
@@ -88,7 +89,7 @@ namespace Wafer_System
         public int efem_timeout = 100000;
         public int IO_timeout = 3000;
         bool[] home_end_flag = new bool[] { false, false, false };
-        public bool pass = false;
+
 
         public Main()
         {
@@ -263,19 +264,19 @@ namespace Wafer_System
                 {
                     home = sys_Home();
                 }
+            }
+            , TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
+            {
+                if (home)
+                {
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        btn_System_Initial.Hide();
+                        Auto_Run_Page0.Hide();
+                        Auto_Run_Page1.Show();
+                    }));
+                }
             });
-            //,TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(task =>
-            //{
-            //    if (home)
-            //    {
-            //        this.BeginInvoke(new Action(() =>
-            //        {
-            //            btn_System_Initial.Hide();
-            //            Auto_Run_Page0.Hide();
-            //            Auto_Run_Page1.Show();
-            //        }));
-            //    }
-            //});
         }
 
         private void Btn_System_Initial_Click(object sender, EventArgs e)
@@ -558,22 +559,39 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport1"; }));
-            Get_EFEM_LoadPort_Status(1, "Initial Home");
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport2"; }));
-            Get_EFEM_LoadPort_Status(2, "Initial Home");
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport3"; }));
-            Get_EFEM_LoadPort_Status(3, "Initial Home");
-
-            if (eFEM._Paser._Loadport1_Status.Cmd_Error != "OK"
-                || eFEM._Paser._Loadport2_Status.Cmd_Error != "OK"
-                || eFEM._Paser._Loadport3_Status.Cmd_Error != "OK"
-                || eFEM._Paser._Loadport1_Status.Error != "NoError"
-                || eFEM._Paser._Loadport2_Status.Error != "NoError"
-                || eFEM._Paser._Loadport3_Status.Error != "NoError")
+           
+            if (!Get_EFEM_LoadPort_Status(1, "Initial Home"))
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport2"; }));
+           
+            if (!Get_EFEM_LoadPort_Status(2, "Initial Home"))
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport3"; }));
+           
+            if (!Get_EFEM_LoadPort_Status(3, "Initial Home"))
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                return false;
+            }
+
+           
+
+            //if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK"
+            //    || eFEM._Paser._Loadport2_Status.Cmd_Error != "OK"
+            //    || eFEM._Paser._Loadport3_Status.Cmd_Error != "OK"
+            //    || eFEM._Paser._Loadport_Status.Error != "NoError"
+            //    || eFEM._Paser._Loadport2_Status.Error != "NoError"
+            //    || eFEM._Paser._Loadport3_Status.Error != "NoError")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    return false;
+            //}
             this.BeginInvoke(new Action(() => { progresBar.Increment(3); }));
 
             //IO MPS IN10=ON (PG3-VS)----pass
@@ -720,22 +738,24 @@ namespace Wafer_System
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-X Home...\r\n" + "TN-Y Home..."; }));
+            home_end_flag[0] = false;
+            home_end_flag[1] = false;
+            home_end_flag[2] = false;
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-X Home...\r\n" + "TN-Y Home...\r\n" + "DM-DD Home..."; }));
             //X軸歸Home
-            aCS_Motion._ACS.Command("#3X");
+            aCS_Motion._ACS.Command("#1X");
             //this.BeginInvoke(new Action(() => { aCS_Motion._ACS.Command("#1X"); }));
             //aCS_Motion._ACS.RunBuffer((ProgramBuffer)1, "");
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             //Y軸歸Home
             aCS_Motion._ACS.Command("#2X");
             //aCS_Motion._ACS.RunBuffer((ProgramBuffer)2, "");
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             //A軸歸Home
-            aCS_Motion._ACS.Command("#1X");
+            aCS_Motion._ACS.Command("#3X");
             //aCS_Motion._ACS.RunBuffer((ProgramBuffer)3, "");
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             Wait_XYA_Home_End("", 120000);
             Thread.Sleep(5000);
             if (!home_end_flag[0] || !home_end_flag[1] || !home_end_flag[2] ||
@@ -745,8 +765,12 @@ namespace Wafer_System
                 if (!home_end_flag[0] || !home_end_flag[1])
                     msg += "E164\r\n" + "TN-XY Home Error\r\n";
                 if (!home_end_flag[2])
-                    msg += "E166\r\n" + "DM - DD Home Error\r\n";
-                this.BeginInvoke(new Action(() => { MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error); }));
+                    msg += "E166\r\n" + "DM-DD Home Error\r\n";
+                else msg += "E166\r\n" + "Exception\r\n";
+                this.BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
                 //MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
@@ -871,21 +895,36 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport1"; }));
             Get_EFEM_LoadPort_Status(1, "Home");
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport2"; }));
-            Get_EFEM_LoadPort_Status(2, "Home");
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport3"; }));
-            Get_EFEM_LoadPort_Status(3, "Home");
-
-            if (eFEM._Paser._Loadport1_Status.Cmd_Error != "OK"
-                || eFEM._Paser._Loadport2_Status.Cmd_Error != "OK"
-                || eFEM._Paser._Loadport3_Status.Cmd_Error != "OK"
-                || eFEM._Paser._Loadport1_Status.Error != "NoError"
-                || eFEM._Paser._Loadport2_Status.Error != "NoError"
-                || eFEM._Paser._Loadport3_Status.Error != "NoError")
+            if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK" || eFEM._Paser._Loadport_Status.Error != "NoError")
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport2"; }));
+            Get_EFEM_LoadPort_Status(2, "Home");
+            if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK" || eFEM._Paser._Loadport_Status.Error != "NoError")
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Loadport3"; }));
+            Get_EFEM_LoadPort_Status(3, "Home");
+            if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK" || eFEM._Paser._Loadport_Status.Error != "NoError")
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                return false;
+            }
+
+            //if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK"
+            //    || eFEM._Paser._Loadport2_Status.Cmd_Error != "OK"
+            //    || eFEM._Paser._Loadport3_Status.Cmd_Error != "OK"
+            //    || eFEM._Paser._Loadport_Status.Error != "NoError"
+            //    || eFEM._Paser._Loadport2_Status.Error != "NoError"
+            //    || eFEM._Paser._Loadport3_Status.Error != "NoError")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    return false;
+            //}
             this.BeginInvoke(new Action(() => { progresBar.Increment(3); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Aligner1"; }));
@@ -1040,7 +1079,7 @@ namespace Wafer_System
                 var IN2 = aCS_Motion._ACS.GetInput(0, 2);
                 var IN6 = aCS_Motion._ACS.GetInput(1, 6);
                 var xy_in_load_pos = (Math.Round(aCS_Motion.m_X_lfFPos, 1) == Convert.ToDouble(configWR.ReadSettings("XL")) &&
-                    Math.Round(aCS_Motion.m_Y_lfFPos,1) == Convert.ToDouble(configWR.ReadSettings("YL")));
+                    Math.Round(aCS_Motion.m_Y_lfFPos, 1) == Convert.ToDouble(configWR.ReadSettings("YL")));
                 cML.Query("?96");
                 Wait_Cm1_Received_Update();
                 //當前位置回傳格式未檢查----待修正                
@@ -1175,60 +1214,60 @@ namespace Wafer_System
                 {
                     case 1:
                         eFEM.EFEM_Cmd = "GetStatus,Loadport1";
-                        eFEM._Paser._Loadport1_Status.Cmd_Error = "";
-                        eFEM._Paser._Loadport1_Status.Mode = "";
-                        eFEM._Paser._Loadport1_Status.Error = "";
-                        eFEM._Paser._Loadport1_Status.ErrorCode = "";
+                        eFEM._Paser._Loadport_Status.Cmd_Error = "";
+                        eFEM._Paser._Loadport_Status.Mode = "";
+                        eFEM._Paser._Loadport_Status.Error = "";
+                        eFEM._Paser._Loadport_Status.ErrorCode = "";
                         eFEM.EFEM_Send();
                         Wait_eFEM_Received_Update(efem_timeout);
-                        if (eFEM._Paser._Loadport1_Status.Cmd_Error != "OK")
+                        if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK")
                         {
-                            MessageBox.Show("E015\r\n" + "_Loadport1_Status\r\n" + eFEM._Paser._Loadport1_Status.Cmd_Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("E015\r\n" + "_Loadport1_Status\r\n" + eFEM._Paser._Loadport_Status.Cmd_Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
-                        if (eFEM._Paser._Loadport1_Status.Error != "NoError")
+                        if (eFEM._Paser._Loadport_Status.Error != "NoError")
                         {
-                            MessageBox.Show("E037\r\n" + "_Loadport1_Status\r\n" + eFEM._Paser._Loadport1_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("E037\r\n" + "_Loadport1_Status\r\n" + eFEM._Paser._Loadport_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
 
                         break;
                     case 2:
                         eFEM.EFEM_Cmd = "GetStatus,Loadport2";
-                        eFEM._Paser._Loadport2_Status.Cmd_Error = "";
-                        eFEM._Paser._Loadport2_Status.Mode = "";
-                        eFEM._Paser._Loadport2_Status.Error = "";
-                        eFEM._Paser._Loadport2_Status.ErrorCode = "";
+                        eFEM._Paser._Loadport_Status.Cmd_Error = "";
+                        eFEM._Paser._Loadport_Status.Mode = "";
+                        eFEM._Paser._Loadport_Status.Error = "";
+                        eFEM._Paser._Loadport_Status.ErrorCode = "";
                         eFEM.EFEM_Send();
                         Wait_eFEM_Received_Update(efem_timeout);
-                        if (eFEM._Paser._Loadport2_Status.Cmd_Error != "OK")
+                        if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK")
                         {
-                            MessageBox.Show("E016\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport2_Status.Cmd_Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("E016\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport_Status.Cmd_Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
-                        if (eFEM._Paser._Loadport2_Status.Error != "NoError")
+                        if (eFEM._Paser._Loadport_Status.Error != "NoError")
                         {
-                            MessageBox.Show("E038\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport2_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("E038\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
 
                         break;
                     case 3:
                         eFEM.EFEM_Cmd = "GetStatus,Loadport3";
-                        eFEM._Paser._Loadport3_Status.Cmd_Error = "";
-                        eFEM._Paser._Loadport3_Status.Mode = "";
-                        eFEM._Paser._Loadport3_Status.Error = "";
-                        eFEM._Paser._Loadport3_Status.ErrorCode = "";
+                        eFEM._Paser._Loadport_Status.Cmd_Error = "";
+                        eFEM._Paser._Loadport_Status.Mode = "";
+                        eFEM._Paser._Loadport_Status.Error = "";
+                        eFEM._Paser._Loadport_Status.ErrorCode = "";
                         eFEM.EFEM_Send();
                         Wait_eFEM_Received_Update(efem_timeout);
-                        if (eFEM._Paser._Loadport3_Status.Cmd_Error != "OK")
+                        if (eFEM._Paser._Loadport_Status.Cmd_Error != "OK")
                         {
-                            MessageBox.Show("E017\r\n" + "_Loadport3_Status\r\n" + eFEM._Paser._Loadport3_Status.Cmd_Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("E017\r\n" + "_Loadport3_Status\r\n" + eFEM._Paser._Loadport_Status.Cmd_Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
-                        if (eFEM._Paser._Loadport3_Status.Error != "NoError")
+                        if (eFEM._Paser._Loadport_Status.Error != "NoError")
                         {
-                            MessageBox.Show("E039\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport3_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("E039\r\n" + "_Loadport2_Status\r\n" + eFEM._Paser._Loadport_Status.Error, "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
 
@@ -1356,6 +1395,45 @@ namespace Wafer_System
                             return false;
                         }
                         break;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+
+
+
+
+        }
+
+        public bool UnLoad_EFEM_LoadPort(int Loadport, string ex_title)
+        {
+            try
+            {
+                switch (Loadport)
+                {
+                    case 1:
+                        eFEM.EFEM_Cmd = "Unload,Loadport1";
+                        break;
+                    case 2:
+                        eFEM.EFEM_Cmd = "Unload,Loadport2";
+                        break;
+                    case 3:
+                        eFEM.EFEM_Cmd = "Unload,Loadport3";
+                        break;
+                }
+                eFEM._Paser._Cmd_Loadport.Error = "";
+                eFEM.EFEM_Send();
+                Wait_eFEM_Received_Update(efem_timeout);
+                if (eFEM._Paser._Cmd_Loadport.Error != "OK")
+                {
+                    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                    MessageBox.Show(eFEM.EFEM_Cmd + "\r\n" + eFEM._Paser._Cmd_Loadport.Error, ex_title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
                 return true;
             }

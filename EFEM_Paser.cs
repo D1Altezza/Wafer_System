@@ -295,14 +295,43 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
+
+    enum map_result_state
+    {
+        Absence,
+        Presence, 
+        Tilted , 
+        Overlapping ,
+        Thin , 
+        UpDown, 
+        tile ,
+        Unknown
+
+    }
+    public struct _GetMapResult
+    {
+
+        /// <summary>
+        /// Slot1~Slot25
+        /// 0: Absence 1: Presence 2: Tilted 3: Overlapping 4: Thin 5: Up/Down tile 9:Unknown
+        /// </summary>
+        public string[] Result;
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+
     public class EFEM_Paser
     {
         public _EFEM_Status _EFEM_Status = new _EFEM_Status();
         public _Robot_Status _Robot_Status = new _Robot_Status();
         public _Aligner_Status _Aligner1_Status = new _Aligner_Status();
-        public _Loadport_Status _Loadport1_Status = new _Loadport_Status();
-        public _Loadport_Status _Loadport2_Status = new _Loadport_Status();
-        public _Loadport_Status _Loadport3_Status = new _Loadport_Status();
+        public _Loadport_Status _Loadport_Status = new _Loadport_Status();       
         public _SignalTower_Status _SignalTower_Status = new _SignalTower_Status();
         public _Home_Cmd _Home_Cmd = new _Home_Cmd();
         public _RobotSpeed_Set_Cmd _RobotSpeed_Set_Cmd = new _RobotSpeed_Set_Cmd();
@@ -316,6 +345,7 @@ namespace Wafer_System
         public _Reset_Error_Aligner _Reset_Error_Aligner1 = new _Reset_Error_Aligner();
         public _Cmd_Loadport _Cmd_Loadport = new _Cmd_Loadport();
         public _GetCurrentLPWaferSize _GetCurrentLPWaferSize = new _GetCurrentLPWaferSize();
+        public _GetMapResult _GetMapResult = new _GetMapResult();
 
         string[] _Robot_Controller_State = new string[16]
         {
@@ -338,7 +368,7 @@ namespace Wafer_System
         };
         public void _Paser(string returnCode)
         {
-            
+            _GetMapResult.Result = new string[25];
             string[] words = returnCode.Split(',');
 
             try
@@ -388,54 +418,22 @@ namespace Wafer_System
                                 _Aligner1_Status.ErrorCode = words[3];
                             }
                             break;
-                        case "Loadport1":
-                            _Loadport1_Status.Cmd_Error = words[2];
-                            if (_Loadport1_Status.Cmd_Error == "OK")
+                        case string s when s.Substring(0, s.Length - 1) == "Loadport":
+                            _Loadport_Status.Cmd_Error = words[2];
+                            if (_Loadport_Status.Cmd_Error == "OK")
                             {
-                                _Loadport1_Status.Cmd_Error = words[2];
-                                _Loadport1_Status.Mode = words[3];
-                                _Loadport1_Status.Error = words[4];
-                                _Loadport1_Status.Foup = words[5];
-                                _Loadport1_Status.Clamp = words[6];
-                                _Loadport1_Status.Door = words[7];
+                                _Loadport_Status.Cmd_Error = words[2];
+                                _Loadport_Status.Mode = words[3];
+                                _Loadport_Status.Error = words[4];
+                                _Loadport_Status.Foup = words[5];
+                                _Loadport_Status.Clamp = words[6];
+                                _Loadport_Status.Door = words[7];
                             }
                             else
                             {
-                                _Loadport1_Status.ErrorCode = words[3];
+                                _Loadport_Status.ErrorCode = words[3];
                             }
-                            break;
-                        case "Loadport2":
-                            _Loadport2_Status.Cmd_Error = words[2];
-                            if (_Loadport2_Status.Cmd_Error == "OK")
-                            {
-                                _Loadport2_Status.Cmd_Error = words[2];
-                                _Loadport2_Status.Mode = words[3];
-                                _Loadport2_Status.Error = words[4];
-                                _Loadport2_Status.Foup = words[5];
-                                _Loadport2_Status.Clamp = words[6];
-                                _Loadport2_Status.Door = words[7];
-                            }
-                            else
-                            {
-                                _Loadport2_Status.ErrorCode = words[3];
-                            }
-                            break;
-                        case "Loadport3":
-                            _Loadport3_Status.Cmd_Error = words[2];
-                            if (_Loadport3_Status.Cmd_Error == "OK")
-                            {
-                                _Loadport3_Status.Cmd_Error = words[2];
-                                _Loadport3_Status.Mode = words[3];
-                                _Loadport3_Status.Error = words[4];
-                                _Loadport3_Status.Foup = words[5];
-                                _Loadport3_Status.Clamp = words[6];
-                                _Loadport3_Status.Door = words[7];
-                            }
-                            else
-                            {
-                                _Loadport3_Status.ErrorCode = words[3];
-                            }
-                            break;
+                            break;                      
                     }
                 }
                 else if (words[0] == "SignalTower")
@@ -732,9 +730,26 @@ namespace Wafer_System
                             break;
                     }
                 }
+                else if (words[0] == "GetMapResult")
+                {
+                    _GetMapResult.Error = words[2];
+                    if (_GetMapResult.Error == "OK")
+                    {
+                        _GetMapResult.ErrorCode = "";
+                        for (int i = 3; i < words.Count(); i++)
+                        {
 
+                            _GetMapResult.Result[i-3]=( ((map_result_state)Convert.ToInt32(words[i])).ToString());
+                        }
 
-            }
+                    }
+                    else
+                    {
+                        _GetMapResult.ErrorCode = words[3];
+                    }
+                }
+
+                }
             catch (Exception ex)
             {
                 //werite error 

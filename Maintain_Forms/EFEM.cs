@@ -220,7 +220,7 @@ namespace Wafer_System
                         logRW.WriteLog("Send Cmd: " + EFEM_Cmd, "EFEM");
                     }));
                 }
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
             }
         }
 
