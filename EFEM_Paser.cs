@@ -299,12 +299,12 @@ namespace Wafer_System
     enum map_result_state
     {
         Absence,
-        Presence, 
-        Tilted , 
-        Overlapping ,
-        Thin , 
-        UpDown, 
-        tile ,
+        Presence,
+        Tilted,
+        Overlapping,
+        Thin,
+        UpDown,
+        tile,
         Unknown
 
     }
@@ -326,12 +326,24 @@ namespace Wafer_System
         public string ErrorCode;
     }
 
+    public struct _SmartGet_Robot
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+
     public class EFEM_Paser
     {
         public _EFEM_Status _EFEM_Status = new _EFEM_Status();
         public _Robot_Status _Robot_Status = new _Robot_Status();
-        public _Aligner_Status _Aligner1_Status = new _Aligner_Status();
-        public _Loadport_Status _Loadport_Status = new _Loadport_Status();       
+        public _Aligner_Status _Aligner_Status = new _Aligner_Status();
+        public _Loadport_Status _Loadport_Status = new _Loadport_Status();
         public _SignalTower_Status _SignalTower_Status = new _SignalTower_Status();
         public _Home_Cmd _Home_Cmd = new _Home_Cmd();
         public _RobotSpeed_Set_Cmd _RobotSpeed_Set_Cmd = new _RobotSpeed_Set_Cmd();
@@ -339,13 +351,12 @@ namespace Wafer_System
         public _WaferType_Set_Cmd _WaferType_Set_Cmd = new _WaferType_Set_Cmd();
         public _WaferMode_Set_Cmd _WaferMode_Set_Cmd = new _WaferMode_Set_Cmd();
         public _WaferSize_Set_Cmd _WaferSize_Set_Cmd = new _WaferSize_Set_Cmd();
-        public _Reset_Error_LoadPort _Reset_Error_LoadPort1 = new _Reset_Error_LoadPort();
-        public _Reset_Error_LoadPort _Reset_Error_LoadPort2 = new _Reset_Error_LoadPort();
-        public _Reset_Error_LoadPort _Reset_Error_LoadPort3 = new _Reset_Error_LoadPort();
-        public _Reset_Error_Aligner _Reset_Error_Aligner1 = new _Reset_Error_Aligner();
+        public _Reset_Error_LoadPort _Reset_Error_LoadPort = new _Reset_Error_LoadPort();
+        public _Reset_Error_Aligner _Reset_Error_Aligner = new _Reset_Error_Aligner();
         public _Cmd_Loadport _Cmd_Loadport = new _Cmd_Loadport();
         public _GetCurrentLPWaferSize _GetCurrentLPWaferSize = new _GetCurrentLPWaferSize();
         public _GetMapResult _GetMapResult = new _GetMapResult();
+        public _SmartGet_Robot _SmartGet_Robot = new _SmartGet_Robot();
 
         string[] _Robot_Controller_State = new string[16]
         {
@@ -405,17 +416,17 @@ namespace Wafer_System
                             _Robot_Status.UpPresence = words[4];
                             _Robot_Status.LowPresence = words[5];
                             break;
-                        case "Aligner1":
-                            _Aligner1_Status.Cmd_Error = words[2];
-                            if (_Aligner1_Status.Cmd_Error == "OK")
+                        case string s when s.Substring(0, s.Length - 1) == "Aligner":
+                            _Aligner_Status.Cmd_Error = words[2];
+                            if (_Aligner_Status.Cmd_Error == "OK")
                             {
-                                _Aligner1_Status.Mode = words[3];
-                                _Aligner1_Status.WaferPresence = words[4];
-                                _Aligner1_Status.Vacuum = words[5];
+                                _Aligner_Status.Mode = words[3];
+                                _Aligner_Status.WaferPresence = words[4];
+                                _Aligner_Status.Vacuum = words[5];
                             }
                             else
                             {
-                                _Aligner1_Status.ErrorCode = words[3];
+                                _Aligner_Status.ErrorCode = words[3];
                             }
                             break;
                         case string s when s.Substring(0, s.Length - 1) == "Loadport":
@@ -433,7 +444,7 @@ namespace Wafer_System
                             {
                                 _Loadport_Status.ErrorCode = words[3];
                             }
-                            break;                      
+                            break;
                     }
                 }
                 else if (words[0] == "SignalTower")
@@ -458,48 +469,26 @@ namespace Wafer_System
                 {
                     switch (words[1])
                     {
-                        case "Loadport1":
-                            _Reset_Error_LoadPort1.Error = words[2];
-                            if (_Reset_Error_LoadPort1.Error == "OK")
+                        case string s when s.Substring(0, s.Length - 1) == "Loadport":
+                            _Reset_Error_LoadPort.Error = words[2];
+                            if (_Reset_Error_LoadPort.Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_LoadPort1.Error = words[3];
+                                _Reset_Error_LoadPort.Error = words[3];
                             }
                             break;
-                        case "Loadport2":
-                            _Reset_Error_LoadPort2.Error = words[2];
-                            if (_Reset_Error_LoadPort2.Error == "OK")
+                        case string s when s.Substring(0, s.Length - 1) == "Aligner":
+                            _Reset_Error_Aligner.Error = words[2];
+                            if (_Reset_Error_Aligner.Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_LoadPort2.Error = words[3];
-                            }
-                            break;
-                        case "Loadport3":
-                            _Reset_Error_LoadPort3.Error = words[2];
-                            if (_Reset_Error_LoadPort3.Error == "OK")
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                _Reset_Error_LoadPort3.Error = words[3];
-                            }
-                            break;
-                        case "Aligner1":
-                            _Reset_Error_Aligner1.Error = words[2];
-                            if (_Reset_Error_Aligner1.Error == "OK")
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                _Reset_Error_Aligner1.Error = words[3];
+                                _Reset_Error_Aligner.Error = words[3];
                             }
                             break;
 
@@ -739,7 +728,7 @@ namespace Wafer_System
                         for (int i = 3; i < words.Count(); i++)
                         {
 
-                            _GetMapResult.Result[i-3]=( ((map_result_state)Convert.ToInt32(words[i])).ToString());
+                            _GetMapResult.Result[i - 3] = (((map_result_state)Convert.ToInt32(words[i])).ToString());
                         }
 
                     }
@@ -748,8 +737,23 @@ namespace Wafer_System
                         _GetMapResult.ErrorCode = words[3];
                     }
                 }
-
+                else if (words[0] == "SmartGet")
+                {
+                    if (words[1]=="Robot")
+                    {
+                       _SmartGet_Robot.Error = words[2];
+                        if (_SignalTower_Status.Error == "OK")
+                        {
+                            _SignalTower_Status.ErrorCode = "";                          
+                        }
+                        else
+                        {
+                            _SignalTower_Status.ErrorCode = words[3];
+                        }
+                    }
+                    
                 }
+            }
             catch (Exception ex)
             {
                 //werite error 
