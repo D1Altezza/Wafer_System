@@ -78,12 +78,20 @@ namespace Cool_Muscle_CML_Example
 
         public void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            
             var sp = serialPort.ReadExisting().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-            if (sp.Count()>1)
+            for (int i = 0; i < sp.Count(); i++)
             {
-                recData = sp[1];
-                
-            }
+                if (sp[i].StartsWith("Ux.1=")|| sp[i].StartsWith("Px.1="))
+                {
+                    recData = sp[i];
+                    receive_update?.Invoke(this, e);
+                }
+                else 
+                {
+                    recData = string.Empty;
+                }              
+            }          
            
 
             //Handle cross threads
@@ -148,6 +156,7 @@ namespace Cool_Muscle_CML_Example
                 serialPort.DataBits = 8;
                 serialPort.StopBits = StopBits.One;
                 serialPort.RtsEnable = true;
+                serialPort.DtrEnable = true;              
                 serialPort.Open();
                 if (serialPort.IsOpen)
                 {
@@ -166,14 +175,17 @@ namespace Cool_Muscle_CML_Example
         }
         public void pin_Up()
         {
+            serialPort.DiscardInBuffer();
             serialPort.Write("[1.1\r\n");
         }
         public void pin_Down()
         {
+            serialPort.DiscardInBuffer();
             serialPort.Write("[2.1\r\n");
         }
         public void Origin()
         {
+            serialPort.DiscardInBuffer();
             serialPort.Write("|.0\r\n");
         }
         /// <summary>
@@ -194,6 +206,7 @@ namespace Cool_Muscle_CML_Example
         ///
         public void Query(string query)
         {
+            serialPort.DiscardInBuffer();
             serialPort.Write(query + "\r\n");
         }
         public void Reset()
@@ -220,7 +233,9 @@ namespace Cool_Muscle_CML_Example
             serialPort.Write("*\r\n");
         }
         #endregion
-
+        #region cml receive update
+        public event EventHandler receive_update;
+        #endregion
         #region Close
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

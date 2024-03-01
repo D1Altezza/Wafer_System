@@ -337,7 +337,28 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-
+    public struct _SmartPut_Robot
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+    public struct _Alignment_Aligner
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
     public class EFEM_Paser
     {
         public _EFEM_Status _EFEM_Status = new _EFEM_Status();
@@ -357,6 +378,8 @@ namespace Wafer_System
         public _GetCurrentLPWaferSize _GetCurrentLPWaferSize = new _GetCurrentLPWaferSize();
         public _GetMapResult _GetMapResult = new _GetMapResult();
         public _SmartGet_Robot _SmartGet_Robot = new _SmartGet_Robot();
+        public _SmartPut_Robot _SmartPut_Robot = new _SmartPut_Robot();
+        public _Alignment_Aligner _Alignment_Aligner = new _Alignment_Aligner();
 
         string[] _Robot_Controller_State = new string[16]
         {
@@ -742,16 +765,49 @@ namespace Wafer_System
                     if (words[1]=="Robot")
                     {
                        _SmartGet_Robot.Error = words[2];
-                        if (_SignalTower_Status.Error == "OK")
+                        if (_SmartGet_Robot.Error == "OK")
                         {
-                            _SignalTower_Status.ErrorCode = "";                          
+                            _SmartGet_Robot.ErrorCode = "";                          
                         }
                         else
                         {
-                            _SignalTower_Status.ErrorCode = words[3];
+                            _SmartGet_Robot.ErrorCode = words[3];
                         }
                     }
                     
+                }
+                else if (words[0] == "SmartPut")
+                {
+                    if (words[1] == "Robot")
+                    {
+                        _SmartPut_Robot.Error = words[2];
+                        if (_SmartPut_Robot.Error == "OK")
+                        {
+                            _SmartPut_Robot.ErrorCode = "";
+                        }
+                        else
+                        {
+                            _SmartPut_Robot.ErrorCode = words[3];
+                        }
+                    }
+
+                }
+                else if (words[0] == "Alignment")
+                {
+                    //string s when s.Substring(0, s.Length - 1) == "Loadport":
+                    if (words[1].Substring(0, words[1].Length - 1) == "Aligner")
+                    {
+                        _Alignment_Aligner.Error = words[2];
+                        if (_Alignment_Aligner.Error == "OK")
+                        {
+                            _Alignment_Aligner.ErrorCode = "";
+                        }
+                        else
+                        {
+                            _Alignment_Aligner.ErrorCode = words[3];
+                        }
+                    }
+
                 }
             }
             catch (Exception ex)

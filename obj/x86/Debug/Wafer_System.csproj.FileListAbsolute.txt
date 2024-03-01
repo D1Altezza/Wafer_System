@@ -188,3 +188,4 @@ C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\obj\x86\Debug\Wafer_System.c
 C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\obj\x86\Debug\Wafer_System.exe
 C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\obj\x86\Debug\Wafer_System.pdb
 C:\Users\User\Documents\Project\Wafer_System\bin\Debug\x86\MessageBoxManager.dll
+C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\bin\Debug\x86\MessageBoxManager.dll

@@ -67,7 +67,7 @@ namespace Wafer_System
         {
             public int D100, D101, D102;
             public int D110, D111, D131;
-            public int D122, D123, D133;
+            public int D122, D123, D124,D133;
             public int D200, D201;
             public int D300;
             public int D400;
@@ -318,7 +318,7 @@ namespace Wafer_System
             cML.Connect();
             this.BeginInvoke(new Action(() => { c.Text += "Electric Cylinder...\r\n"; }));
             var cml_con_status = cML.Connect();
-            cML.serialPort.DataReceived += SerialPort_DataReceived;
+            cML.receive_update += CML_receive_update;
             if (cml_con_status)
                 this.BeginInvoke(new Action(() => { c.Text += ("connection successful!\r\n"); }));
             else
@@ -406,6 +406,8 @@ namespace Wafer_System
             }
 
         }
+
+      
 
         bool sys_Ini()
         {
@@ -750,21 +752,16 @@ namespace Wafer_System
             home_end_flag[2] = false;
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-X Home...\r\n" + "TN-Y Home...\r\n" + "DM-DD Home..."; }));
             //X軸歸Home
-            aCS_Motion._ACS.Command("#1X");
-            //this.BeginInvoke(new Action(() => { aCS_Motion._ACS.Command("#1X"); }));
-            //aCS_Motion._ACS.RunBuffer((ProgramBuffer)1, "");
-            Thread.Sleep(100);
-
+            aCS_Motion._ACS.Command("#3X");
+            Thread.Sleep(3000);
             //Y軸歸Home
             aCS_Motion._ACS.Command("#2X");
-            //aCS_Motion._ACS.RunBuffer((ProgramBuffer)2, "");
-            Thread.Sleep(100);
+            Thread.Sleep(3000);
             //A軸歸Home
-            aCS_Motion._ACS.Command("#3X");
-            //aCS_Motion._ACS.RunBuffer((ProgramBuffer)3, "");
-            Thread.Sleep(100);
+            aCS_Motion._ACS.Command("#1X");
+            Thread.Sleep(3000);
             Wait_XYA_Home_End("", 120000);
-            Thread.Sleep(1000);
+            //Thread.Sleep(3000);
             if (!home_end_flag[0] || !home_end_flag[1] || !home_end_flag[2] ||
                 Math.Round(aCS_Motion.m_X_lfFPos, 1) != 0.0 || Math.Round(aCS_Motion.m_Y_lfFPos, 1) != 0.0 || Math.Round(aCS_Motion.m_A_lfFPos, 1) != 0.0 ||
                 !aCS_Motion.x_Inp || !aCS_Motion.y_Inp || !aCS_Motion.a_Inp)
@@ -835,6 +832,7 @@ namespace Wafer_System
             //    return false;
             //}
             //this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+           
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
             //-------pass
@@ -848,6 +846,11 @@ namespace Wafer_System
 
                 return false;
             }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "XN1_ON OFF..."; }));
+            //OUT8
+            aCS_Motion._ACS.SetOutput(1, 8, 0);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,EFEM"; }));
@@ -1080,6 +1083,10 @@ namespace Wafer_System
         {
             try
             {
+                this.BeginInvoke(new Action(() => { lb_progress.Text = "XN1_ON ON..."; }));
+                //OUT8
+                aCS_Motion._ACS.SetOutput(1, 8, 1);
+
                 var OUT8 = aCS_Motion._ACS.GetOutput(1, 8);
                 var IN0 = aCS_Motion._ACS.GetInput(0, 0);
                 var IN1 = aCS_Motion._ACS.GetInput(1, 1);
@@ -1091,7 +1098,7 @@ namespace Wafer_System
                 Wait_Cm1_Received_Update();
                 //當前位置回傳格式未檢查----待修正                
                 var z_in_load_pos = (cML.recData == "Px.1=" + configWR.ReadSettings("ZL"));
-                if (OUT8 == 0 && IN0 == 1 && IN1 == 1 && xy_in_load_pos)
+                if (OUT8 == 1 && IN0 == 1 && IN1 == 1 && xy_in_load_pos)
                 {
                     switch (IN6)
                     {
@@ -1674,11 +1681,11 @@ namespace Wafer_System
                 return;
             }
         }
-
-        private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        
+        private void CML_receive_update(object sender, EventArgs e)
         {
             cm1_Received_Update = true;
-        }
+        }      
         int end_bufferNo = 0;
         private void _ACS_PROGRAMEND(ACS.SPiiPlusNET.BufferMasks buffer)
         {

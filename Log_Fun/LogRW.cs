@@ -21,6 +21,7 @@ namespace Wafer_System.Log_Fun
             using (StreamWriter sw = new StreamWriter(FILENAME, true))
             {
                 Log(message, sw);
+                sw.Close();
             } 
         }
 
