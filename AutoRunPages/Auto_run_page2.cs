@@ -103,7 +103,7 @@ namespace Wafer_System
             if (!main.EFEM_Light_Control("All", 0, "Autorun Check"))
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                return false;
+
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
@@ -111,7 +111,7 @@ namespace Wafer_System
             if (!main.EFEM_Light_Control("Blue", 1, "Autorun Check"))
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                return false;
+
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
             main.d_Param.D300 = 4;
@@ -208,6 +208,7 @@ namespace Wafer_System
                 main.eFEM._Paser._EFEM_Status.Door != 1)
             {
                 MessageBox.Show(msg);
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
@@ -216,6 +217,7 @@ namespace Wafer_System
             main.Reset_EFEM_LoadPort(1, "AutoRun Check");
             if (main.eFEM._Paser._Reset_Error_LoadPort.Error != "OK")
             {
+                MessageBox.Show("ResetError,Loadport1 Fail", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
@@ -225,6 +227,7 @@ namespace Wafer_System
             main.Reset_EFEM_LoadPort(2, "AutoRun Check");
             if (main.eFEM._Paser._Reset_Error_LoadPort.Error != "OK")
             {
+                MessageBox.Show("ResetError,Loadport2 Fail", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
@@ -234,6 +237,7 @@ namespace Wafer_System
             main.Reset_EFEM_LoadPort(3, "AutoRun Check");
             if (main.eFEM._Paser._Reset_Error_LoadPort.Error != "OK")
             {
+                MessageBox.Show("ResetError,Loadport3 Fail", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
@@ -270,6 +274,7 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Robot"; }));
             if (!main.Get_Robot_Status("AutoRun Check"))
             {
+                MessageBox.Show("GetStatus,Robot Fail", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
@@ -423,11 +428,7 @@ namespace Wafer_System
             if (!z_in_zero_pos)
             {
                 MessageBox.Show("E175\r\n" + "Z not in org pos", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
@@ -446,11 +447,7 @@ namespace Wafer_System
             if (!main.pass && (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 4))
             {
                 MessageBox.Show("E058", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));        
@@ -469,11 +466,7 @@ namespace Wafer_System
             if (!main.pass && !Chek_XY_pin_status())
             {
                 MessageBox.Show("E049", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
 
@@ -491,33 +484,21 @@ namespace Wafer_System
             if (!xy_in_load_pos)
             {
                 MessageBox.Show("E173\r\n" + "X,Y not in load postion", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check X_LS ON..."; }));
             if (!main.Wait_IO_Check(0, 0, 0, 1, 10000))
             {
                 MessageBox.Show("E173\r\n" + "X_LS CMnT_IN0 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Y_LS ON..."; }));
             if (!main.Wait_IO_Check(0, 0, 1, 1, 10000))
             {
                 MessageBox.Show("E173" + "Y_LS CMnT_IN1 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
                 return false;
             }
             
@@ -525,12 +506,17 @@ namespace Wafer_System
             main.cML.pin_Up();
             if (!main.Wait_IO_Check(0, 0, 2, 1, 300000))
             {
+<<<<<<< HEAD
                 MessageBox.Show("Z_LS IN2 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
                 {
                     Progres_update(false);
                 }));
 
+=======
+                MessageBox.Show("IN2 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>{Progres_update(false);}));
+>>>>>>> feature/Local_Test
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
@@ -543,13 +529,10 @@ namespace Wafer_System
             if (!z_in_load_pos)
             {
                 MessageBox.Show("E175\r\n" + "Z not in looad pos", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() =>{Progres_update(false);}));
                 return false;
             }
+<<<<<<< HEAD
             //this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z_LS..."; }));
             //if (!main.Wait_IO_Check(0, 0, 2, 1, 10000))
             //{
@@ -562,17 +545,22 @@ namespace Wafer_System
             //    return false;
             //}
            
+=======
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z_LS..."; }));
+            if (!main.Wait_IO_Check(0, 0, 2, 1, 10000))
+            {
+                MessageBox.Show("Z_LS IN2 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>{Progres_update(false);}));
+                return false;
+            }
+>>>>>>> feature/Local_Test
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
             //-------pass
             if (!main.pass && (!main.TNWAFER(ref main.d_Param.D111))&& main.d_Param.D111!=0)
             {
                 MessageBox.Show("E058", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new Action(() =>
-                {
-                    Progres_update(false);
-                }));
-
+                this.BeginInvoke(new Action(() =>{Progres_update(false);}));
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
@@ -731,7 +719,7 @@ namespace Wafer_System
                         {
                             MessageBox.Show("Step 6 Fail", "Error");
                             return false;
-                           
+
                         }
                         else
                         {
@@ -856,7 +844,7 @@ namespace Wafer_System
                     MessageBox.Show("E031\r\nUALAWAFER Fail\r\nManual remove robot wafer then manual reset home", "UAputAN Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-                main.d_Param.D123=0;
+                main.d_Param.D123 = 0;
                 return true;
             }
         }
