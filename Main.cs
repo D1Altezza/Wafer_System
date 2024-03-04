@@ -32,7 +32,7 @@ namespace Wafer_System
 {
     public partial class Main : Form
     {
-        public bool pass = false;
+        public bool pass = true;
         LogRW logRW = new LogRW();
         ConfigWR configWR;
 
