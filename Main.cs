@@ -71,6 +71,8 @@ namespace Wafer_System
             public int D200, D201;
             public int D300;
             public int D400;
+            internal int D132;
+            internal int D125;
         }
         public D_param d_Param;
         #endregion
