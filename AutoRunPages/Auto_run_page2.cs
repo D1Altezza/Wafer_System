@@ -758,6 +758,25 @@ namespace Wafer_System
                                 return false;
                             }
                         }
+                        //Step8
+                        main.d_Param.D300 = 8;
+                        if (main.d_Param.D100 != 0 || main.d_Param.D400 != 0)
+                        {
+                            MessageBox.Show("Step8 Fail", "Error");
+                            return false;
+                        }
+                        if (!UAgetLP1() || main.d_Param.D100 != 1)
+                        {
+                            MessageBox.Show("UAgetLP1 Fail");
+                            return false;
+                        }
+                        //Step9
+                        main.d_Param.D300 = 9;
+                        if (main.d_Param.D131 != 0 || main.d_Param.D102 != 1 || main.d_Param.D101 != 0 || main.d_Param.D131 != 0)
+                        {
+                            MessageBox.Show("Step9 Fail", "Error");
+                            return false;
+                        }
                         return true;
                     }
                 }
