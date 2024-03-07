@@ -804,60 +804,52 @@ namespace Wafer_System
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "LAgetAN..."; }));
             main.d_Param.D124 = 1;
+
             if (!ANWAFER() || main.d_Param.D102 != 1)
             {
-                MessageBox.Show("E055\r\nD102!=1", "ANRUN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("E055\r\nD102!=1", "LAgetAN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
 
-            if (!UALAWAFER() && main.d_Param.D101 != 0)
+            if (!UALAWAFER() || main.d_Param.D101 != 0 || main.d_Param.D102 != 1)
             {
                 MessageBox.Show("E032\r\nUALAWAFER Fail\r\nManual remove robot wafer then manual reset home", "LAgetAN Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else
             {
-                if (!MappingCassette(1, out cassett1_status))
+                this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartGet,Robot..."; }));
+                var get_index = Array.FindIndex(cassett1_status, x => x == "Presence");
+                if (get_index == -1)
                 {
-                    MessageBox.Show("Cassette Mapping Fail", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                main.eFEM.EFEM_Cmd = "SmartGet,Robot,LowArm,Loadport1," + (Convert.ToInt32(get_index) + 1);//取有片的位置
+                main.eFEM._Paser._SmartGet_Robot.Error = "";
+                main.eFEM._Paser._SmartGet_Robot.ErrorCode = "";
+                main.eFEM.EFEM_Send();
+                main.Wait_eFEM_Received_Update(main.efem_timeout);
+                if (main.eFEM._Paser._SmartGet_Robot.Error != "OK")
+                {
+                    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                    MessageBox.Show("SmartGet,Robot$\r\n" + main.eFEM._Paser._SmartGet_Robot.Error +
+                        "\r\n" + main.eFEM._Paser._SmartGet_Robot.ErrorCode, "LAgetAN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 else
                 {
-                    this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartGet,Robot..."; }));
-                    var get_index = Array.FindIndex(cassett1_status, x => x == "Presence");
-                    if (get_index == -1)
+                    if (!UALAWAFER() && main.d_Param.D101 != 1)
                     {
+                        MessageBox.Show("E054\r\nUALAWAFER Fail\r\nRobot get wafer fail manual reset error reset home", "LAgetAN Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
-                    }
-                    main.eFEM.EFEM_Cmd = "SmartGet,Robot,UpArm,Loadport1," + (Convert.ToInt32(get_index) + 1);//取有片的位置
-                    main.eFEM._Paser._SmartGet_Robot.Error = "";
-                    main.eFEM._Paser._SmartGet_Robot.ErrorCode = "";
-                    main.eFEM.EFEM_Send();
-                    main.Wait_eFEM_Received_Update(main.efem_timeout);
-                    if (main.eFEM._Paser._SmartGet_Robot.Error != "OK")
-                    {
-                        this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                        MessageBox.Show("SmartGet,Robot$\r\n" + main.eFEM._Paser._SmartGet_Robot.Error +
-                            "\r\n" + main.eFEM._Paser._SmartGet_Robot.ErrorCode, "UAgetLP1 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
+
                     }
                     else
                     {
-                        if (!UALAWAFER() && main.d_Param.D100 != 1)
-                        {
-                            MessageBox.Show("E053\r\nUALAWAFER Fail\r\nRobot get wafer fail manual reset error reset home", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-
-                        }
-                        else
-                        {
-                            main.d_Param.D122 = 0;
-                            return true;
-                        }
+                        main.d_Param.D124 = 0;
+                        return true;
                     }
-
                 }
             }
         }
@@ -1165,7 +1157,7 @@ namespace Wafer_System
                 return false;
             }
             string[] _map_status = new string[25];
-            _map_status = main.eFEM._Paser._GetMapResult.Result.Reverse().ToArray();       
+            _map_status = main.eFEM._Paser._GetMapResult.Result.Reverse().ToArray();
             map_status = _map_status;
             return true;
         }
