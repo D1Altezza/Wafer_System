@@ -819,6 +819,28 @@ namespace Wafer_System
                             MessageBox.Show("LAputDM Fail", "Error");
                             return false;
                         }
+                        switch (autorun_Prarm.wafer_Size)
+                        {
+                            case Wafer_Size.eight:
+                                if (DMRUN(8))
+                                {
+
+                                }
+                                break;
+                            case Wafer_Size.tweleve:
+                                if (DMRUN(12))
+                                {
+
+                                }
+                                break;
+                            case Wafer_Size.unknow:
+                                MessageBox.Show("Wafer size error");
+                                return false;
+                            default:
+                                MessageBox.Show("Wafer size error");
+                                return false;
+                        }
+                     
                         return true;
                     }
                 }
@@ -837,6 +859,19 @@ namespace Wafer_System
 
         }
 
+        private bool DMRUN(int wafer_size)
+        {
+            switch (wafer_size)
+            {
+                case 8:
+                    if (DMRUN_1(8))
+                    break;
+                case 12:
+                    break;
+            }
+            return true;
+        }
+        
         private bool LAputDM()
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "LAputDM..."; }));
