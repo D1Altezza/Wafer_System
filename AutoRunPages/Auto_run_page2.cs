@@ -864,14 +864,59 @@ namespace Wafer_System
             switch (wafer_size)
             {
                 case 8:
-                    if (DMRUN_1(8))
+                    DMRUN_1(8);
                     break;
                 case 12:
                     break;
             }
             return true;
         }
-        
+
+        private bool DMRUN_1(int wafer_size)
+        {
+            //IO MPS IN10=ON (PG3-VS)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
+            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
+            {
+                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(10);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
+            //----pass
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
+            {
+                if (main.d_Param.D110 != 1 )
+                {
+                    MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            //IO MPS OUT5=OFF (VC_ON_C1 ON)
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 0);
+
+            switch (wafer_size)
+            {
+                case 8:
+                    break;
+                case 12:
+                    main.aCS_Motion._ACS.Command("PTP/v 0," + Convert.ToDouble(configWR.ReadSettings("Aocr") + ",1000"));
+                    main.wait_axis_Inp("a", 120000);
+                    //OCR 字元辨識
+                    
+                    break;
+            }
+
+            return true;
+        }
+
         private bool LAputDM()
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "LAputDM..."; }));
