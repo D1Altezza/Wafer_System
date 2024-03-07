@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wafer_System.Config_Fun;
+using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Wafer_System.Auto_run_page1;
 using static Wafer_System.Main;
@@ -782,6 +783,42 @@ namespace Wafer_System
                             MessageBox.Show("LAgetAN Fail", "Error");
                             return false;
                         }
+                        //Step10
+                        main.d_Param.D300 = 10;
+                        if (main.d_Param.D100 != 1 || main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
+                        {
+                            MessageBox.Show("Step10 Fail", "Error");
+                            return false;
+                        }
+                        if (!UAputAN() || main.d_Param.D123 != 0 || main.d_Param.D100 != 0 || main.d_Param.D102 != 1)
+                        {
+                            MessageBox.Show("LAgetAN Fail", "Error");
+                            return false;
+                        }
+                        //Step11
+                        main.d_Param.D300 = 11;
+                        if (main.d_Param.D102 != 1 || main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
+                        {
+                            MessageBox.Show("Step11 Fail", "Error");
+                            return false;
+                        }
+                        if (!ANRUN())
+                        {
+                            MessageBox.Show("ANRUN Fail", "Error");
+                            return false;
+                        }
+                        //Step12
+                        main.d_Param.D300 = 12;
+                        if (main.d_Param.D101 != 1 || main.d_Param.D110 != 0 || main.d_Param.D132 != 0)
+                        {
+                            MessageBox.Show("Step12 Fail", "Error");
+                            return false;
+                        }
+                        if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
+                        {
+                            MessageBox.Show("LAputDM Fail", "Error");
+                            return false;
+                        }
                         return true;
                     }
                 }
@@ -798,6 +835,125 @@ namespace Wafer_System
                 return false;
             }
 
+        }
+
+        private bool LAputDM()
+        {
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "LAputDM..."; }));
+            main.d_Param.D125 = 1;
+            var a_in_load_pos = (Math.Round(main.aCS_Motion.m_A_lfFPos,2) == Convert.ToDouble(configWR.ReadSettings("AL")));
+            var IN3 = main.aCS_Motion._ACS.GetInput(1, 3);
+            var IN1 = main.aCS_Motion._ACS.GetInput(1, 1);
+            //chaeck DD motor in loadposition
+            if (!a_in_load_pos || IN3 != 1)
+            {
+                //DD motor move to loadposition
+                if (IN1!=1)
+                {
+                    MessageBox.Show("Robot in DM station");
+                    return false;
+                }
+                main.aCS_Motion._ACS.Command("PTP/v 0," + Convert.ToDouble(configWR.ReadSettings("AL") + ",1000"));
+                main.wait_axis_Inp("a", 120000);
+            }
+            //IO MPS IN10=ON (PG3-VS)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
+            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
+            {
+                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(10);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
+            //----pass
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
+            {
+                if (main.d_Param.D110 != 0 || main.d_Param.D110 != 4)
+                {
+                    MessageBox.Show("E056", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            //IO MPS OUT5=OFF (VC_ON_C1 ON)
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 0);
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "UALAWAFER"; }));
+            if (!UALAWAFER() || main.d_Param.D101 != 1 )
+            {
+                MessageBox.Show("E054\r\nUALAWAFER Fail\r\nManual remove robot wafer then manual reset home", "LAputDM Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (main.d_Param.D110!=0)
+            {
+                MessageBox.Show("D110!=0");
+                return false;
+            }
+            else
+            {
+                main.aCS_Motion._ACS.SetOutput(1, 1, 1);
+            }
+            if (main.d_Param.D110!=0 ||main.d_Param.D101!=1)
+            {
+                MessageBox.Show("D110!=0 OR D101!=1");
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartPut,Robot..."; }));
+            main.eFEM.EFEM_Cmd = "SmartPut,Robot,LowArm,Stage2,1";
+            main.eFEM._Paser._SmartPut_Robot.Error = "";
+            main.eFEM._Paser._SmartPut_Robot.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            if (main.eFEM._Paser._SmartPut_Robot.Error != "OK")
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("SmartPut,Robot\r\n" + main.eFEM._Paser._SmartPut_Robot.Error +
+                    "\r\n" + main.eFEM._Paser._SmartPut_Robot.ErrorCode, "LAputDM Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!main.Wait_IO_Check(0, 1, 1, 1, 120000))
+            {
+                MessageBox.Show("SmartPut,Robot Fail", "LAputDM Error");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 1, 0);
+            //IO MPS IN10=ON (PG3-VS)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
+            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
+            {
+                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(10);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
+            //----pass
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
+            {
+                if (main.d_Param.D110 != 1)
+                {
+                    MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "UALAWAFER"; }));
+            if (!UALAWAFER() || main.d_Param.D101 != 0)
+            {
+                MessageBox.Show("E032\r\nUALAWAFER Fail\r\nManual remove robot wafer then manual reset home", "LAputDM Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            main.d_Param.D125 = 0;
+            return true;
         }
 
         private bool LAgetAN()
