@@ -27,6 +27,7 @@ namespace Wafer_System
     public partial class Auto_run_page2 : Form
     {
         Main main;
+        private Cognex cognex;
         ProgressBar progresBar = new ProgressBar();
         Label lb_progress = new Label();
         Label lb_progress_Title = new Label();
@@ -36,16 +37,20 @@ namespace Wafer_System
         int DM_recID = 0, TN_recID = 0;
         private Auto_run_page1.Autorun_Prarm autorun_Prarm;
         Bitmap[] eight_bp = new Bitmap[3];
-        Bitmap[] tweleve_bp = new Bitmap[3];
+        Bitmap[] tweleve_bp = new Bitmap[3];  
 
-        public Auto_run_page2(Main main, MutiCam mutiCam, Autorun_Prarm autorun_Prarm, ConfigWR configWR)
+        public Auto_run_page2(Main main, MutiCam mutiCam, Cognex cognex, Autorun_Prarm autorun_Prarm, ConfigWR configWR)
         {
             InitializeComponent();
             this.main = main;
             this.mutiCam = mutiCam;
+            this.cognex = cognex;
             this.autorun_Prarm = autorun_Prarm;
             this.configWR = configWR;
+            cognex.receive_update += Cognex_receive_update;
         }
+
+        
 
         private void Auto_run_page2_Load(object sender, EventArgs e)
         {
@@ -933,12 +938,26 @@ namespace Wafer_System
                     main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",1000");
                     main.wait_axis_Inp("a", 120000);
                     //OCR 字元辨識
-
+                    cognex.ReadData(0);
+                    if (!RetryUntilSuccessOrTimeout(IsOcrUpdate, timeout))
+                    {
+                        MessageBox.Show("OCR TimeOut");
+                        return false;
+                    }
+                    
+                    
                     //寫入資料庫
                     col = main.db.GetCollection<RecData>("RecData");
                     recdata = new RecData();
                     recdata.FileName = autorun_Prarm.file_name;
-                    recdata.WaferID = "12345";
+                    if (String.IsNullOrEmpty( cognex.data))
+                    {
+                        recdata.WaferID = "N/A";
+                    }
+                    else
+                    {
+                        recdata.WaferID = cognex.data;
+                    }                    
                     col.EnsureIndex(x => x.Id, true);
                     col.Insert(recdata);
                     DM_recID = recdata.Id;
@@ -1032,7 +1051,24 @@ namespace Wafer_System
 
             return true;
         }
-
+        bool ocr_read_update=false;
+        private void Cognex_receive_update(object sender, EventArgs e)
+        {
+            ocr_read_update=true;   
+        }
+        bool IsOcrUpdate()
+        {
+            if (ocr_read_update)
+            {
+                ocr_read_update = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         private bool LAputDM()
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "LAputDM..."; }));
@@ -1515,7 +1551,7 @@ namespace Wafer_System
         }
 
         CancellationTokenSource tokenSource = new CancellationTokenSource();
-
+       
 
         private bool Cassette_Change(int loadport)
         {
@@ -1763,6 +1799,21 @@ namespace Wafer_System
             col.Insert(recdata);
             var t = recdata.Id;
 
+        }
+        TimeSpan timeout = TimeSpan.FromSeconds(10);
+        public static bool RetryUntilSuccessOrTimeout(Func<bool> task, TimeSpan timeout)
+        {
+            bool success = false;
+            int elapsed = 0;
+
+            while ((!success) && (elapsed < timeout.TotalMilliseconds))
+            {
+                Thread.Sleep(1000); // 等待 1 秒
+                elapsed += 1000;
+                success = task();
+            }
+
+            return success;
         }
     }
 }

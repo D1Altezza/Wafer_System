@@ -113,7 +113,7 @@ namespace Wafer_System
             Diameter_Monitor = new Diameter_Monitor(logRW, configWR, aCS_Motion, eFEM, mutiCam, Cognex);
             Auto_Run_Page0 = new Auto_run_page0();
             Auto_Run_Page1 = new Auto_run_page1(System_Setting_Form.config);
-            Auto_Run_Page2 = new Auto_run_page2(this, mutiCam, Auto_Run_Page1.autorun_Prarm, configWR);
+            Auto_Run_Page2 = new Auto_run_page2(this, mutiCam,Cognex, Auto_Run_Page1.autorun_Prarm, configWR);
         }
         private void Main_Load(object sender, EventArgs e)
         {

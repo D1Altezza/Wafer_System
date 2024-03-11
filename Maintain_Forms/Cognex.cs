@@ -88,10 +88,11 @@ namespace Wafer_System
             }));
 
         }
-
+        public event EventHandler receive_update;
         public void ReadData(int config)
         {
             client.Send("READ(" + config + ")\r\n");
+            
         }
 
 
@@ -109,6 +110,7 @@ namespace Wafer_System
         {
             data = Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count);
             logRW.WriteLog($"[{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}", "System");
+            receive_update?.Invoke(this, e);
         }
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
