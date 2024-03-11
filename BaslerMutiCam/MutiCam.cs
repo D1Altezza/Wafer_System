@@ -450,9 +450,9 @@ namespace Wafer_System.BaslerMutiCam
             {
                 return null;
             }
-            if (settingsPanel2.GetGuiCamera().bitmap_Current2 != null)
+            if (settingsPanel2.GetGuiCamera().bitmap_Current1 != null)
             {
-                return settingsPanel2.GetGuiCamera().bitmap_Current2;
+                return settingsPanel2.GetGuiCamera().bitmap_Current1;
             }
             else
             {

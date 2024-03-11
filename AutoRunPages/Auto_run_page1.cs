@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -185,6 +186,7 @@ namespace Wafer_System
             autorun_Prarm.cassette1_number = txt_cassette1_number.Text;
             autorun_Prarm.cassette2_number = txt_cassette2_number.Text;
             autorun_Prarm.cassette3_number = txt_cassette3_number.Text;
+          
             this.Hide();
 
         }

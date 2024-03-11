@@ -101,16 +101,18 @@ namespace Wafer_System.BaslerMutiCam
         {
             SingleShot();
         }
-        public void SingleShot() 
+        public bool SingleShot() 
         {
             try
             {
-                guiCamera.StartSingleShotGrabbing();              
+                guiCamera.StartSingleShotGrabbing();     
+                return true;
             }
             catch (Exception ex)
             {
                 Helper.ShowException(ex);
                 pictureWindow.Clear();
+                return false;
             }
         }      
         // Event handler for the Stop button.

@@ -1,5 +1,6 @@
 ﻿using ACS_DotNET_Library_Advanced_Demo;
 using Cool_Muscle_CML_Example;
+using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Wafer_System.BaslerMutiCam;
 using Wafer_System.Config_Fun;
 using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -29,16 +31,21 @@ namespace Wafer_System
         Label lb_progress = new Label();
         Label lb_progress_Title = new Label();
         ConfigWR configWR;
+        private MutiCam mutiCam;
+        //IF DM done TN_recID=DM_recID
+        int DM_recID = 0, TN_recID = 0;
         private Auto_run_page1.Autorun_Prarm autorun_Prarm;
+        Bitmap[] eight_bp = new Bitmap[3];
+        Bitmap[] tweleve_bp = new Bitmap[3];
 
-        public Auto_run_page2(Main main, Auto_run_page1.Autorun_Prarm autorun_Prarm, ConfigWR configWR)
+        public Auto_run_page2(Main main, MutiCam mutiCam, Autorun_Prarm autorun_Prarm, ConfigWR configWR)
         {
             InitializeComponent();
             this.main = main;
+            this.mutiCam = mutiCam;
             this.autorun_Prarm = autorun_Prarm;
             this.configWR = configWR;
         }
-
 
         private void Auto_run_page2_Load(object sender, EventArgs e)
         {
@@ -819,19 +826,28 @@ namespace Wafer_System
                             MessageBox.Show("LAputDM Fail", "Error");
                             return false;
                         }
+                        //Step13
+                        main.d_Param.D300 = 13;
+                        if (main.d_Param.D110 != 1 || main.d_Param.D125 != 0 || main.d_Param.D126 != 0)
+                        {
+                            MessageBox.Show("Step13 Fail", "Error");
+                            return false;
+                        }
+                        //執行外徑量測
                         switch (autorun_Prarm.wafer_Size)
                         {
                             case Wafer_Size.eight:
-                                if (DMRUN(8))
+                                Task.Run(() =>
                                 {
+                                    DMRUN(8);
+                                });
 
-                                }
                                 break;
                             case Wafer_Size.tweleve:
-                                if (DMRUN(12))
+                                Task.Run(() =>
                                 {
-
-                                }
+                                    DMRUN(12);
+                                });
                                 break;
                             case Wafer_Size.unknow:
                                 MessageBox.Show("Wafer size error");
@@ -840,7 +856,7 @@ namespace Wafer_System
                                 MessageBox.Show("Wafer size error");
                                 return false;
                         }
-                     
+
                         return true;
                     }
                 }
@@ -867,11 +883,12 @@ namespace Wafer_System
                     DMRUN_1(8);
                     break;
                 case 12:
+                    DMRUN_1(12);
                     break;
             }
             return true;
         }
-
+        bool ccd_enable = false;
         private bool DMRUN_1(int wafer_size)
         {
             //IO MPS IN10=ON (PG3-VS)----pass
@@ -892,7 +909,116 @@ namespace Wafer_System
             //----pass
             if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
             {
-                if (main.d_Param.D110 != 1 )
+                if (main.d_Param.D110 != 1)
+                {
+                    MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+
+            var col = main.db.GetCollection<RecData>("RecData");
+            var recdata = new RecData();
+            switch (wafer_size)
+            {
+                case 8:
+                    col = main.db.GetCollection<RecData>("RecData");
+                    recdata = new RecData();
+                    recdata.FileName = autorun_Prarm.file_name;
+                    recdata.WaferID = "N/A";
+                    col.EnsureIndex(x => x.Id, true);
+                    col.Insert(recdata);
+                    DM_recID = recdata.Id;
+                    break;
+                case 12:
+                    main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",1000");
+                    main.wait_axis_Inp("a", 120000);
+                    //OCR 字元辨識
+
+                    //寫入資料庫
+                    col = main.db.GetCollection<RecData>("RecData");
+                    recdata = new RecData();
+                    recdata.FileName = autorun_Prarm.file_name;
+                    recdata.WaferID = "12345";
+                    col.EnsureIndex(x => x.Id, true);
+                    col.Insert(recdata);
+                    DM_recID = recdata.Id;
+                    break;
+            }
+
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A1") + ",1000");
+            main.wait_axis_Inp("a", 120000);
+            switch (wafer_size)
+            {
+                case 8:
+                    if (ccd_enable)
+                        eight_bp[0] = mutiCam.Cam1_OneShot();
+                    break;
+                case 12:
+                    if (ccd_enable)
+                        tweleve_bp[0] = mutiCam.Cam2_OneShot();
+                    break;
+            }
+
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A2") + ",1000");
+            main.wait_axis_Inp("a", 120000);
+            switch (wafer_size)
+            {
+                case 8:
+                    if (ccd_enable)
+                        eight_bp[1] = mutiCam.Cam1_OneShot();
+                    break;
+                case 12:
+                    if (ccd_enable)
+                        tweleve_bp[1] = mutiCam.Cam2_OneShot();
+                    break;
+            }
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A3") + ",1000");
+            main.wait_axis_Inp("a", 120000);
+            switch (wafer_size)
+            {
+                case 8:
+                    if (ccd_enable)
+                        eight_bp[2] = mutiCam.Cam1_OneShot();
+                    break;
+                case 12:
+                    if (ccd_enable)
+                        tweleve_bp[2] = mutiCam.Cam2_OneShot();
+                    break;
+            }
+            //影像處理計算分級寫入資料庫
+
+
+
+
+
+
+
+
+
+
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",1000");
+            main.wait_axis_Inp("a", 120000);
+
+
+            //IO MPS IN10=ON (PG3-VS)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
+            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
+            {
+                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(10);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
+            //----pass
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
+            {
+                if (main.d_Param.D110 != 1)
                 {
                     MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -901,18 +1027,8 @@ namespace Wafer_System
             //IO MPS OUT5=OFF (VC_ON_C1 ON)
             this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
             main.aCS_Motion._ACS.SetOutput(1, 5, 0);
+            main.d_Param.D132 = 0;
 
-            switch (wafer_size)
-            {
-                case 8:
-                    break;
-                case 12:
-                    main.aCS_Motion._ACS.Command("PTP/v 0," + Convert.ToDouble(configWR.ReadSettings("Aocr") + ",1000"));
-                    main.wait_axis_Inp("a", 120000);
-                    //OCR 字元辨識
-                    
-                    break;
-            }
 
             return true;
         }
@@ -921,14 +1037,14 @@ namespace Wafer_System
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "LAputDM..."; }));
             main.d_Param.D125 = 1;
-            var a_in_load_pos = (Math.Round(main.aCS_Motion.m_A_lfFPos,2) == Convert.ToDouble(configWR.ReadSettings("AL")));
+            var a_in_load_pos = (Math.Round(main.aCS_Motion.m_A_lfFPos, 2) == Convert.ToDouble(configWR.ReadSettings("AL")));
             var IN3 = main.aCS_Motion._ACS.GetInput(1, 3);
             var IN1 = main.aCS_Motion._ACS.GetInput(1, 1);
             //chaeck DD motor in loadposition
             if (!a_in_load_pos || IN3 != 1)
             {
                 //DD motor move to loadposition
-                if (IN1!=1)
+                if (IN1 != 1)
                 {
                     MessageBox.Show("Robot in DM station");
                     return false;
@@ -964,12 +1080,12 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
             main.aCS_Motion._ACS.SetOutput(1, 5, 0);
             this.BeginInvoke(new Action(() => { lb_progress.Text = "UALAWAFER"; }));
-            if (!UALAWAFER() || main.d_Param.D101 != 1 )
+            if (!UALAWAFER() || main.d_Param.D101 != 1)
             {
                 MessageBox.Show("E054\r\nUALAWAFER Fail\r\nManual remove robot wafer then manual reset home", "LAputDM Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (main.d_Param.D110!=0)
+            if (main.d_Param.D110 != 0)
             {
                 MessageBox.Show("D110!=0");
                 return false;
@@ -978,7 +1094,7 @@ namespace Wafer_System
             {
                 main.aCS_Motion._ACS.SetOutput(1, 1, 1);
             }
-            if (main.d_Param.D110!=0 ||main.d_Param.D101!=1)
+            if (main.d_Param.D110 != 0 || main.d_Param.D101 != 1)
             {
                 MessageBox.Show("D110!=0 OR D101!=1");
                 return false;
@@ -1400,6 +1516,7 @@ namespace Wafer_System
 
         CancellationTokenSource tokenSource = new CancellationTokenSource();
 
+
         private bool Cassette_Change(int loadport)
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "SignalTower,EFEM,ALL,OFF"; }));
@@ -1630,6 +1747,22 @@ namespace Wafer_System
             lb_progress.SendToBack();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
 
+            var bp = mutiCam.Cam1_OneShot();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var col = main.db.GetCollection<RecData>("RecData");
+            var recdata = new RecData();
+            recdata.FileName = autorun_Prarm.file_name;
+            recdata.WaferID = "12345";
+            col.EnsureIndex(x => x.Id, true);
+            col.Insert(recdata);
+            var t = recdata.Id;
+
+        }
     }
 }

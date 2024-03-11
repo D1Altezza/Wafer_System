@@ -46,7 +46,7 @@ namespace Wafer_System.BaslerMutiCam
         public event EventHandler GuiCameraConnectionToCameraLost;
         public event EventHandler GuiCameraFrameReadyForDisplay;
         //
-        public Bitmap bitmap_Current1, bitmap_Current2;
+        public Bitmap bitmap_Current1;
         // Create the GUI camera object.
         public GUICamera()
         {
