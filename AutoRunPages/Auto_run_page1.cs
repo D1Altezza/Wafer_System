@@ -45,8 +45,9 @@ namespace Wafer_System
         }
         public enum Wafer_Notch
         {
-            yes,
-            no,
+            notch,
+            flat,
+            neither,
             unknow
         }
         public Autorun_Prarm autorun_Prarm;
@@ -115,7 +116,7 @@ namespace Wafer_System
         {
             var type = radio_type_Si.Checked | radio_type_Glass.Checked;
             var size = radio_size_8inch.Checked | radio_size_12inch.Checked;
-            var notch = radio_notch_v.Checked | radio_notch_non.Checked;
+            var notch = radio_notch_v.Checked | radio_notch_flat.Checked | radio_notch_non.Checked;
             var classify = !string.IsNullOrEmpty(combo_Classify.Text);
             var txt = !string.IsNullOrEmpty(txt_cassette1_number.Text) & !string.IsNullOrEmpty(txt_cassette2_number.Text) &
                 !string.IsNullOrEmpty(txt_cassette3_number.Text) & !string.IsNullOrEmpty(txt_file_name.Text);
@@ -159,11 +160,15 @@ namespace Wafer_System
             }
             if (radio_notch_v.Checked)
             {
-                autorun_Prarm.wafer_Notch = Wafer_Notch.yes;
+                autorun_Prarm.wafer_Notch = Wafer_Notch.notch;
+            }
+            else if (radio_notch_flat.Checked)
+            {
+                autorun_Prarm.wafer_Notch = Wafer_Notch.flat;
             }
             else if (radio_notch_non.Checked)
             {
-                autorun_Prarm.wafer_Notch = Wafer_Notch.no;
+                autorun_Prarm.wafer_Notch = Wafer_Notch.neither;
             }
             else
             {
@@ -186,11 +191,9 @@ namespace Wafer_System
             autorun_Prarm.cassette1_number = txt_cassette1_number.Text;
             autorun_Prarm.cassette2_number = txt_cassette2_number.Text;
             autorun_Prarm.cassette3_number = txt_cassette3_number.Text;
-          
+
             this.Hide();
 
         }
-
-
     }
 }

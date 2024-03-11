@@ -37,7 +37,7 @@
             this.radio_size_12inch = new System.Windows.Forms.RadioButton();
             this.radio_size_8inch = new System.Windows.Forms.RadioButton();
             this.groupBox_WaferNotch = new System.Windows.Forms.GroupBox();
-            this.radio_notch_non = new System.Windows.Forms.RadioButton();
+            this.radio_notch_flat = new System.Windows.Forms.RadioButton();
             this.radio_notch_v = new System.Windows.Forms.RadioButton();
             this.groupBox_Classify = new System.Windows.Forms.GroupBox();
             this.combo_Classify = new System.Windows.Forms.ComboBox();
@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tmr_check = new System.Windows.Forms.Timer(this.components);
+            this.radio_notch_non = new System.Windows.Forms.RadioButton();
             this.groupBox_WaferType.SuspendLayout();
             this.groupBox_WaferSize.SuspendLayout();
             this.groupBox_WaferNotch.SuspendLayout();
@@ -139,6 +140,7 @@
             // 
             this.groupBox_WaferNotch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox_WaferNotch.Controls.Add(this.radio_notch_non);
+            this.groupBox_WaferNotch.Controls.Add(this.radio_notch_flat);
             this.groupBox_WaferNotch.Controls.Add(this.radio_notch_v);
             this.groupBox_WaferNotch.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox_WaferNotch.Location = new System.Drawing.Point(342, 190);
@@ -148,15 +150,15 @@
             this.groupBox_WaferNotch.TabStop = false;
             this.groupBox_WaferNotch.Text = "缺口形式";
             // 
-            // radio_notch_non
+            // radio_notch_flat
             // 
-            this.radio_notch_non.AutoSize = true;
-            this.radio_notch_non.Location = new System.Drawing.Point(149, 34);
-            this.radio_notch_non.Name = "radio_notch_non";
-            this.radio_notch_non.Size = new System.Drawing.Size(68, 26);
-            this.radio_notch_non.TabIndex = 0;
-            this.radio_notch_non.Text = "平邊";
-            this.radio_notch_non.UseVisualStyleBackColor = true;
+            this.radio_notch_flat.AutoSize = true;
+            this.radio_notch_flat.Location = new System.Drawing.Point(120, 34);
+            this.radio_notch_flat.Name = "radio_notch_flat";
+            this.radio_notch_flat.Size = new System.Drawing.Size(68, 26);
+            this.radio_notch_flat.TabIndex = 0;
+            this.radio_notch_flat.Text = "平邊";
+            this.radio_notch_flat.UseVisualStyleBackColor = true;
             // 
             // radio_notch_v
             // 
@@ -276,6 +278,16 @@
             // 
             this.tmr_check.Tick += new System.EventHandler(this.tmr_check_Tick);
             // 
+            // radio_notch_non
+            // 
+            this.radio_notch_non.AutoSize = true;
+            this.radio_notch_non.Location = new System.Drawing.Point(244, 34);
+            this.radio_notch_non.Name = "radio_notch_non";
+            this.radio_notch_non.Size = new System.Drawing.Size(48, 26);
+            this.radio_notch_non.TabIndex = 0;
+            this.radio_notch_non.Text = "無";
+            this.radio_notch_non.UseVisualStyleBackColor = true;
+            // 
             // Auto_run_page1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -313,7 +325,7 @@
         private System.Windows.Forms.RadioButton radio_size_12inch;
         private System.Windows.Forms.RadioButton radio_size_8inch;
         private System.Windows.Forms.GroupBox groupBox_WaferNotch;
-        private System.Windows.Forms.RadioButton radio_notch_non;
+        private System.Windows.Forms.RadioButton radio_notch_flat;
         private System.Windows.Forms.RadioButton radio_notch_v;
         private System.Windows.Forms.GroupBox groupBox_Classify;
         private System.Windows.Forms.ComboBox combo_Classify;
@@ -327,5 +339,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer tmr_check;
+        private System.Windows.Forms.RadioButton radio_notch_non;
     }
 }

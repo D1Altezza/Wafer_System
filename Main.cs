@@ -69,7 +69,7 @@ namespace Wafer_System
         {
             public int D100, D101, D102;
             public int D110, D111, D131;
-            public int D122, D123, D124,D133;
+            public int D122, D123, D124, D133;
             public int D200, D201;
             public int D300;
             public int D400;
@@ -113,7 +113,7 @@ namespace Wafer_System
             Diameter_Monitor = new Diameter_Monitor(logRW, configWR, aCS_Motion, eFEM, mutiCam, Cognex);
             Auto_Run_Page0 = new Auto_run_page0();
             Auto_Run_Page1 = new Auto_run_page1(System_Setting_Form.config);
-            Auto_Run_Page2 = new Auto_run_page2(this, mutiCam,Cognex, Auto_Run_Page1.autorun_Prarm, configWR);
+            Auto_Run_Page2 = new Auto_run_page2(this, mutiCam, Cognex, Auto_Run_Page1.autorun_Prarm, configWR);
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -379,10 +379,10 @@ namespace Wafer_System
                 this.BeginInvoke(new Action(() => { c.Text += ("Cam2...\r\n" + "connection failed!\r\n"); }));
 
             db = new LiteDatabase(@"RecData.db");
-           
+
             #endregion
             //什麼條件可以進行系統初始化?
-            if (acs_con_ststus >= 1 && cml_con_status == true && efem_con_status == true)
+            if (acs_con_ststus >= 1 && cml_con_status == true && efem_con_status == true && cma_con_status[0] == true && cma_con_status[1] == true)
             {
                 this.BeginInvoke(new Action(() =>
                 {
@@ -415,7 +415,7 @@ namespace Wafer_System
 
         }
 
-      
+
 
         bool sys_Ini()
         {
@@ -791,7 +791,7 @@ namespace Wafer_System
             d_Param.D110 = 4;
             this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
             //TN-XY move to XL,YL
-            aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL"));
+            aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL") + ",100");
             Thread.Sleep(1000);
             wait_axis_Inp("x", 100000);
             wait_axis_Inp("y", 100000);
@@ -840,7 +840,7 @@ namespace Wafer_System
             //    return false;
             //}
             //this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-           
+
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TNWAFER..."; }));
             //-------pass
@@ -963,7 +963,7 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
 
-            eFEM.EFEM_Cmd = "SetSpeed,Robot,20%,20%,20%,20%,20%";
+            eFEM.EFEM_Cmd = "SetSpeed,Robot,20%,20%,20%,20%,80%";
             eFEM._Paser._RobotSpeed_Set_Cmd.Error = "";
             eFEM._Paser._RobotSpeed_Set_Cmd.ErrorCode = "";
             eFEM.EFEM_Send();
@@ -1307,6 +1307,15 @@ namespace Wafer_System
                 return false;
             }
         }
+        bool Aligner_Status()
+        {
+            if (eFEM._Paser._Aligner_Status.Cmd_Error != "OK")
+            {
+                return false;
+            }
+            return true;
+
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -1322,6 +1331,7 @@ namespace Wafer_System
                 eFEM._Paser._Aligner_Status.WaferPresence = "";
                 eFEM.EFEM_Send();
                 Wait_eFEM_Received_Update(efem_timeout);
+                //RetryUntilSuccessOrTimeout(Aligner_Status, TimeSpan.FromSeconds(10000));
                 if (eFEM._Paser._Aligner_Status.Cmd_Error != "OK" || eFEM._Paser._Aligner_Status.Mode != "Online")
                 {
 
@@ -1650,7 +1660,7 @@ namespace Wafer_System
             {
                 while (!eFEM_Received_Update)
                 {
-
+                   
                     if (eFEM_Received_Update_tokenSource.IsCancellationRequested)
                     {
                         break;
@@ -1689,11 +1699,11 @@ namespace Wafer_System
                 return;
             }
         }
-        
+
         private void CML_receive_update(object sender, EventArgs e)
         {
             cm1_Received_Update = true;
-        }      
+        }
         int end_bufferNo = 0;
         private void _ACS_PROGRAMEND(ACS.SPiiPlusNET.BufferMasks buffer)
         {
@@ -1921,8 +1931,7 @@ namespace Wafer_System
         private void button1_Click(object sender, EventArgs e)
         {
             configWR.WriteSettings("K1", "KK");
-        }
-
+        }     
 
     }
 }

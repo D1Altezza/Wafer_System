@@ -67,7 +67,7 @@ namespace Wafer_System.BaslerMutiCam
                         cameraSelectionComboBox.DataSource = new BindingSource(foundCameraInfos, null);
                         cameraSelectionComboBox.DisplayMember = "Value";
                         openSelectedButton1.Enabled = !settingsPanel1.GetGuiCamera().IsCreated;
-                        openSelectedButton2.Enabled = !settingsPanel1.GetGuiCamera().IsCreated;
+                        openSelectedButton2.Enabled = !settingsPanel2.GetGuiCamera().IsCreated;
                     }));
                 }
                 else

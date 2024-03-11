@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AutoRunPages",
+    "\\Maintain_Forms"
   ],
-  "SelectedNode": "\\Wafer_System.sln",
+  "SelectedNode": "\\AutoRunPages\\Auto_run_page2.cs",
   "PreviewInSolutionExplorer": false
 }

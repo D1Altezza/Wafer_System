@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Wafer_System
 {
 
-    public struct _EFEM_Status
+    public class _EFEM_Status
     {
         /// <summary>
         /// Command error
@@ -98,7 +98,7 @@ namespace Wafer_System
         /// </summary>
         public int Door;
     }
-    public struct _Robot_Status
+    public class _Robot_Status
     {
         /// <summary>
         /// Command error
@@ -121,7 +121,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _Aligner_Status
+    public class _Aligner_Status
     {
         /// <summary>
         /// Command error
@@ -144,7 +144,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _Loadport_Status
+    public class _Loadport_Status
     {
         /// <summary>
         /// Command error
@@ -175,7 +175,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _SignalTower_Status
+    public class _SignalTower_Status
     {
         /// <summary>
         /// OK/Error
@@ -186,7 +186,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _Home_Cmd
+    public class _Home_Cmd
     {
         /// <summary>
         /// OK/Error
@@ -197,7 +197,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _RobotSpeed_Set_Cmd
+    public class _RobotSpeed_Set_Cmd
     {
         /// <summary>
         /// OK/Error
@@ -208,41 +208,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _AlignmentAngle_Set_Cmd
-    {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
-    }
-
-    public struct _WaferType_Set_Cmd
-    {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
-    }
-    public struct _WaferMode_Set_Cmd
-    {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
-    }
-    public struct _WaferSize_Set_Cmd
+    public class _AlignmentAngle_Set_Cmd
     {
         /// <summary>
         /// OK/Error
@@ -254,21 +220,55 @@ namespace Wafer_System
         public string ErrorCode;
     }
 
-    public struct _Reset_Error_LoadPort
+    public class _WaferType_Set_Cmd
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+    public class _WaferMode_Set_Cmd
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+    public class _WaferSize_Set_Cmd
+    {
+        /// <summary>
+        /// OK/Error
+        /// </summary>
+        public string Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+    }
+
+    public class _Reset_Error_LoadPort
     {
         /// <summary>
         /// OK/Error ErrorCode
         /// </summary>
         public string Error;
     }
-    public struct _Reset_Error_Aligner
+    public class _Reset_Error_Aligner
     {
         /// <summary>
         /// OK/Error ErrorCode
         /// </summary>
         public string Error;
     }
-    public struct _Cmd_Loadport
+    public class _Cmd_Loadport
     {
         /// <summary>
         /// OK/Error
@@ -280,7 +280,7 @@ namespace Wafer_System
         public string ErrorCode;
     }
 
-    public struct _GetCurrentLPWaferSize
+    public class _GetCurrentLPWaferSize
     {
         /// <summary>
         /// 4: 8inch,6: 12inch
@@ -308,7 +308,7 @@ namespace Wafer_System
         Unknown
 
     }
-    public struct _GetMapResult
+    public class _GetMapResult
     {
 
         /// <summary>
@@ -326,7 +326,7 @@ namespace Wafer_System
         public string ErrorCode;
     }
 
-    public struct _SmartGet_Robot
+    public class _SmartGet_Robot
     {
         /// <summary>
         /// OK/Error
@@ -337,7 +337,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _SmartPut_Robot
+    public class _SmartPut_Robot
     {
         /// <summary>
         /// OK/Error
@@ -348,7 +348,7 @@ namespace Wafer_System
         /// </summary>
         public string ErrorCode;
     }
-    public struct _Alignment_Aligner
+    public class _Alignment_Aligner
     {
         /// <summary>
         /// OK/Error

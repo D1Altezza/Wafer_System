@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -37,7 +38,7 @@ namespace Wafer_System
         int DM_recID = 0, TN_recID = 0;
         private Auto_run_page1.Autorun_Prarm autorun_Prarm;
         Bitmap[] eight_bp = new Bitmap[3];
-        Bitmap[] tweleve_bp = new Bitmap[3];  
+        Bitmap[] tweleve_bp = new Bitmap[3];
 
         public Auto_run_page2(Main main, MutiCam mutiCam, Cognex cognex, Autorun_Prarm autorun_Prarm, ConfigWR configWR)
         {
@@ -50,7 +51,7 @@ namespace Wafer_System
             cognex.receive_update += Cognex_receive_update;
         }
 
-        
+
 
         private void Auto_run_page2_Load(object sender, EventArgs e)
         {
@@ -91,7 +92,12 @@ namespace Wafer_System
                 ini = Auto_run_chk();
             }).ContinueWith(task =>
             {
-                if (ini && MessageBox.Show("Run?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                //if (ini && MessageBox.Show("Run?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                //{
+                //    Auto_run();
+                //    //home = sys_Home();
+                //}
+                if (ini)
                 {
                     Auto_run();
                     //home = sys_Home();
@@ -370,7 +376,7 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO AL..."; }));
             //DM-DD move to A0
             //PTP/V 2,500,1000
-            main.aCS_Motion._ACS.Command("PTP/V 2," + configWR.ReadSettings("AL") + "," + configWR.ReadSettings("DD_Vel"));
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("AL") + "," + configWR.ReadSettings("DD_Vel"));
             Thread.Sleep(1000);
             main.wait_axis_Inp("z", 100000);
 
@@ -430,7 +436,7 @@ namespace Wafer_System
             }
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z in orgin"; }));
             //當前位置回傳格式未檢查----待修正       
-            main.cML.Query("?96");
+            main.cML.Query("?96.1");
             main.Wait_Cm1_Received_Update();
             var z_in_zero_pos = (main.cML.recData == "Px.1=" + configWR.ReadSettings("Z0"));
             if (!z_in_zero_pos)
@@ -447,7 +453,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
             //TN-XY move to XL,YL
-            main.aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL"));
+            main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL") + ",100");
             Thread.Sleep(1000);
             main.wait_axis_Inp("x", 100000);
             main.wait_axis_Inp("y", 100000);
@@ -492,13 +498,14 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
             //TN-XY move to XL,YL
-            main.aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL"));
+            main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL") + ",100");
             Thread.Sleep(1000);
             main.wait_axis_Inp("x", 100000);
             main.wait_axis_Inp("y", 100000);
             this.BeginInvoke(new Action(() => { progresBar.Increment(2); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check XY in load position..."; }));
+            Thread.Sleep(1000);
             var xy_in_load_pos = (Math.Round(main.aCS_Motion.m_X_lfFPos, 2) == Convert.ToDouble(configWR.ReadSettings("XL")) &&
                    Math.Round(main.aCS_Motion.m_Y_lfFPos, 2) == Convert.ToDouble(configWR.ReadSettings("YL")));
             if (!xy_in_load_pos)
@@ -548,10 +555,13 @@ namespace Wafer_System
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z in load pos..."; }));
-            Thread.Sleep(500);
-            main.cML.Query("?96");
+            Thread.Sleep(1000);
+            main.cML.Query("?96.1");
             main.Wait_Cm1_Received_Update();
-            //當前位置回傳格式未檢查----待修正              
+            Thread.Sleep(1000);
+            main.cML.Query("?96.1");
+            main.Wait_Cm1_Received_Update();
+            //當前位置回傳格式未檢查----待修正                                   
             var z_in_load_pos = (main.cML.recData == "Px.1=" + configWR.ReadSettings("ZL"));
             if (!z_in_load_pos)
             {
@@ -686,8 +696,6 @@ namespace Wafer_System
         }
 
 
-
-
         public string[] cassett1_status = new string[25];
         public string[] cassett2_status = new string[25];
         public string[] cassett3_status = new string[25];
@@ -764,12 +772,13 @@ namespace Wafer_System
                         }
                         else
                         {
-                            this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
+                            this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));                            
                             if (!ANRUN())
                             {
                                 MessageBox.Show("ANRUN Fail", "Error");
                                 return false;
                             }
+
                         }
                         //Step8
                         main.d_Param.D300 = 8;
@@ -804,7 +813,7 @@ namespace Wafer_System
                         }
                         if (!UAputAN() || main.d_Param.D123 != 0 || main.d_Param.D100 != 0 || main.d_Param.D102 != 1)
                         {
-                            MessageBox.Show("LAgetAN Fail", "Error");
+                            MessageBox.Show("UAputAN Fail", "Error");
                             return false;
                         }
                         //Step11
@@ -813,7 +822,7 @@ namespace Wafer_System
                         {
                             MessageBox.Show("Step11 Fail", "Error");
                             return false;
-                        }
+                        }                      
                         if (!ANRUN())
                         {
                             MessageBox.Show("ANRUN Fail", "Error");
@@ -893,7 +902,7 @@ namespace Wafer_System
             }
             return true;
         }
-        bool ccd_enable = false;
+        bool ccd_enable = true;
         private bool DMRUN_1(int wafer_size)
         {
             //IO MPS IN10=ON (PG3-VS)----pass
@@ -935,7 +944,7 @@ namespace Wafer_System
                     DM_recID = recdata.Id;
                     break;
                 case 12:
-                    main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",1000");
+                    main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",100");
                     main.wait_axis_Inp("a", 120000);
                     //OCR 字元辨識
                     cognex.ReadData(0);
@@ -944,65 +953,80 @@ namespace Wafer_System
                         MessageBox.Show("OCR TimeOut");
                         return false;
                     }
-                                        
+
                     //寫入資料庫
                     col = main.db.GetCollection<RecData>("RecData");
                     recdata = new RecData();
                     recdata.FileName = autorun_Prarm.file_name;
-                    if (String.IsNullOrEmpty( cognex.data))
+                    if (cognex.data == "************\r\n")
                     {
                         recdata.WaferID = "N/A";
                     }
                     else
                     {
                         recdata.WaferID = cognex.data;
-                    }                    
+                    }
                     col.EnsureIndex(x => x.Id, true);
                     col.Insert(recdata);
                     DM_recID = recdata.Id;
                     break;
             }
-
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A1") + ",1000");
+            mutiCam.lightControl.ON();
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A1") + ",100");
             main.wait_axis_Inp("a", 120000);
             switch (wafer_size)
             {
                 case 8:
                     if (ccd_enable)
-                        eight_bp[0] = mutiCam.Cam1_OneShot();
+                        eight_bp[0] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
                     break;
                 case 12:
                     if (ccd_enable)
-                        tweleve_bp[0] = mutiCam.Cam2_OneShot();
+                        tweleve_bp[0] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
                     break;
             }
 
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A2") + ",1000");
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A2") + ",100");
             main.wait_axis_Inp("a", 120000);
             switch (wafer_size)
             {
                 case 8:
                     if (ccd_enable)
-                        eight_bp[1] = mutiCam.Cam1_OneShot();
+                        eight_bp[1] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
                     break;
                 case 12:
                     if (ccd_enable)
-                        tweleve_bp[1] = mutiCam.Cam2_OneShot();
+                        tweleve_bp[1] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
                     break;
             }
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A3") + ",1000");
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A3") + ",100");
             main.wait_axis_Inp("a", 120000);
             switch (wafer_size)
             {
                 case 8:
                     if (ccd_enable)
-                        eight_bp[2] = mutiCam.Cam1_OneShot();
+                        eight_bp[2] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
                     break;
                 case 12:
                     if (ccd_enable)
-                        tweleve_bp[2] = mutiCam.Cam2_OneShot();
+                        tweleve_bp[2] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
                     break;
             }
+            mutiCam.lightControl.OFF();
+            Task.Run(() =>
+            {
+                var c = 0;
+                foreach (var item in tweleve_bp)
+                {
+                    this.BeginInvoke(new Action(() => { lb_progress.Text = "Save "; }));
+                    item.Save("C:\\Users\\MyUser\\Desktop\\12_INCH_" + c + ".bmp", ImageFormat.Bmp);
+
+                    c++;
+                }
+                c = 0;
+            });
+
+
             //影像處理計算分級寫入資料庫
 
 
@@ -1014,7 +1038,7 @@ namespace Wafer_System
 
 
 
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",1000");
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("AL") + ",100");
             main.wait_axis_Inp("a", 120000);
 
 
@@ -1050,10 +1074,10 @@ namespace Wafer_System
 
             return true;
         }
-        bool ocr_read_update=false;
+        bool ocr_read_update = false;
         private void Cognex_receive_update(object sender, EventArgs e)
         {
-            ocr_read_update=true;   
+            ocr_read_update = true;
         }
         bool IsOcrUpdate()
         {
@@ -1066,7 +1090,7 @@ namespace Wafer_System
             {
                 return false;
             }
-            
+
         }
         private bool LAputDM()
         {
@@ -1084,7 +1108,7 @@ namespace Wafer_System
                     MessageBox.Show("Robot in DM station");
                     return false;
                 }
-                main.aCS_Motion._ACS.Command("PTP/v 0," + Convert.ToDouble(configWR.ReadSettings("AL") + ",1000"));
+                main.aCS_Motion._ACS.Command("PTP/v 0," + Convert.ToDouble(configWR.ReadSettings("AL") + ",100"));
                 main.wait_axis_Inp("a", 120000);
             }
             //IO MPS IN10=ON (PG3-VS)----pass
@@ -1165,7 +1189,7 @@ namespace Wafer_System
             //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
             this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
             main.aCS_Motion._ACS.SetOutput(1, 5, 1);
-            Thread.Sleep(10);
+            Thread.Sleep(1000);
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
             //----pass
@@ -1207,12 +1231,7 @@ namespace Wafer_System
             else
             {
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartGet,Robot..."; }));
-                var get_index = Array.FindIndex(cassett1_status, x => x == "Presence");
-                if (get_index == -1)
-                {
-                    return false;
-                }
-                main.eFEM.EFEM_Cmd = "SmartGet,Robot,LowArm,Loadport1," + (Convert.ToInt32(get_index) + 1);//取有片的位置
+                main.eFEM.EFEM_Cmd = "SmartGet,Robot,LowArm,Aligner1,1";//取有片的位置
                 main.eFEM._Paser._SmartGet_Robot.Error = "";
                 main.eFEM._Paser._SmartGet_Robot.ErrorCode = "";
                 main.eFEM.EFEM_Send();
@@ -1234,6 +1253,11 @@ namespace Wafer_System
                     }
                     else
                     {
+                        if (!ANWAFER() || main.d_Param.D102 != 0)
+                        {
+                            MessageBox.Show("E055\r\nD102!=1", "LAgetAN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
                         main.d_Param.D124 = 0;
                         return true;
                     }
@@ -1254,20 +1278,127 @@ namespace Wafer_System
                 MessageBox.Show("E055\r\nD102!=1", "ANRUN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            var angle = 0;
+            var type = "non";
+            var mode = "non";
+            var size = 0;
+            switch (autorun_Prarm.wafer_Material)
+            {
+                case Wafer_Material.Si:
+                    mode = "Nontransparent";
+                    break;
+                case Wafer_Material.Glass:
+                    mode = "Transparent";
+                    break;
+                case Wafer_Material.unknow:
+                    return false;
+                default:
+                    return false;
+            }
+            switch (autorun_Prarm.wafer_Size)
+            {
+                case Wafer_Size.eight:
+                    size = 8;
+                    angle = 0;
+                    break;
+                case Wafer_Size.tweleve:
+                    size = 12;
+                    angle = 1800;
+                    break;
+                case Wafer_Size.unknow:
+                    return false;
+                default:
+                    return false;
+            }
+            switch (autorun_Prarm.wafer_Notch)
+            {
+                case Wafer_Notch.notch:
+                    type = "Notch";
+                    break;
+                case Wafer_Notch.flat:
+                    type = "Flat";
+                    break;
+                case Wafer_Notch.neither:
+                    type = "Neither";
+                    break;
+                case Wafer_Notch.unknow:
+                    return false;
+                default:
+                    return false;
+
+            }
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SetWaferMode..."; }));
+            main.eFEM.EFEM_Cmd = "SetWaferMode,Aligner1," + mode;
+            main.eFEM._Paser._WaferMode_Set_Cmd.Error = "";
+            main.eFEM._Paser._WaferMode_Set_Cmd.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            //main.Wait_eFEM_Received_Update(main.efem_timeout);
+            //if (main.eFEM._Paser._WaferMode_Set_Cmd.Error != "OK")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    MessageBox.Show("SetWaferMode\r\n" + main.eFEM._Paser._WaferMode_Set_Cmd.Error +
+            //        "\r\n" + main.eFEM._Paser._WaferMode_Set_Cmd.ErrorCode, "Alignment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SetWaferSize..."; }));
+            main.eFEM.EFEM_Cmd = "SetWaferSize,Aligner1," + size;
+            main.eFEM._Paser._WaferSize_Set_Cmd.Error = "";
+            main.eFEM._Paser._WaferSize_Set_Cmd.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            //main.Wait_eFEM_Received_Update(main.efem_timeout);
+            //if (main.eFEM._Paser._WaferSize_Set_Cmd.Error != "OK")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    MessageBox.Show("SetWaferSize\r\n" + main.eFEM._Paser._WaferSize_Set_Cmd.Error +
+            //        "\r\n" + main.eFEM._Paser._WaferSize_Set_Cmd.ErrorCode, "Alignment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SetWaferType..."; }));
+            main.eFEM.EFEM_Cmd = "SetWaferType,Aligner1," + type;
+            main.eFEM._Paser._WaferType_Set_Cmd.Error = "";
+            main.eFEM._Paser._WaferType_Set_Cmd.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            //main.Wait_eFEM_Received_Update(main.efem_timeout);
+            //if (main.eFEM._Paser._WaferType_Set_Cmd.Error != "OK")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    MessageBox.Show("SetWaferType\r\n" + main.eFEM._Paser._WaferType_Set_Cmd.Error +
+            //        "\r\n" + main.eFEM._Paser._WaferType_Set_Cmd.ErrorCode, "Alignment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SetAlignmentAngle..."; }));
+            main.eFEM.EFEM_Cmd = "SetAlignmentAngle,Aligner1," + angle;
+            main.eFEM._Paser._AlignmentAngle_Set_Cmd.Error = "";
+            main.eFEM._Paser._AlignmentAngle_Set_Cmd.ErrorCode = "";
+            main.eFEM.EFEM_Send();
+            //main.Wait_eFEM_Received_Update(main.efem_timeout);
+            //if (main.eFEM._Paser._AlignmentAngle_Set_Cmd.Error != "OK")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    MessageBox.Show("SetAlignmentAngle\r\n" + main.eFEM._Paser._AlignmentAngle_Set_Cmd.Error +
+            //        "\r\n" + main.eFEM._Paser._AlignmentAngle_Set_Cmd.ErrorCode, "Alignment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Alignment,Aligner1..."; }));
             main.eFEM.EFEM_Cmd = "Alignment,Aligner1";
             main.eFEM._Paser._Alignment_Aligner.Error = "";
             main.eFEM._Paser._Alignment_Aligner.ErrorCode = "";
             main.eFEM.EFEM_Send();
-            main.Wait_eFEM_Received_Update(main.efem_timeout);
-            if (main.eFEM._Paser._Alignment_Aligner.Error != "OK")
-            {
-                this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                MessageBox.Show("Alignment,Aligner1\r\n" + main.eFEM._Paser._Alignment_Aligner.Error +
-                    "\r\n" + main.eFEM._Paser._Alignment_Aligner.ErrorCode, "Alignment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            main.d_Param.D131 = 1;
+            //main.Wait_eFEM_Received_Update(main.efem_timeout);
+            //if (main.eFEM._Paser._Alignment_Aligner.Error != "OK")
+            //{
+            //    this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            //    MessageBox.Show("Alignment,Aligner1\r\n" + main.eFEM._Paser._Alignment_Aligner.Error +
+            //        "\r\n" + main.eFEM._Paser._Alignment_Aligner.ErrorCode, "Alignment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+            main.d_Param.D131 = 0;
             return true;
         }
         public bool UAputAN()
@@ -1338,7 +1469,7 @@ namespace Wafer_System
                 return false;
             }
             else
-            {
+            {             
                 if (!MappingCassette(1, out cassett1_status))
                 {
                     MessageBox.Show("Cassette Mapping Fail", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1365,6 +1496,7 @@ namespace Wafer_System
                         main.eFEM._Paser._SmartGet_Robot.ErrorCode = "";
                         main.eFEM.EFEM_Send();
                         main.Wait_eFEM_Received_Update(main.efem_timeout);
+                        Thread.Sleep(3000);
                         if (main.eFEM._Paser._SmartGet_Robot.Error != "OK")
                         {
                             this.BeginInvoke(new Action(() => { Progres_update(false); }));
@@ -1392,6 +1524,12 @@ namespace Wafer_System
                 }
             }
         }
+
+
+
+
+      
+
         /// <summary>
         /// 
         /// </summary>
@@ -1422,6 +1560,22 @@ namespace Wafer_System
                 }
             }
         }
+
+
+
+
+
+
+        bool Isrobot_Get()
+        {
+            if (main.eFEM._Paser._Robot_Status.Cmd_Error != "OK")
+            {
+                return false;
+            }
+            return true;
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -1429,6 +1583,7 @@ namespace Wafer_System
         /// D100是上手臂有沒有料、D101是下手臂有沒有料
         /// D100,D101 對應 UpPresence,LowPresence
         /// </returns>
+        /// 
         public bool UALAWAFER()
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "GetStatus,Robot..."; }));
@@ -1438,7 +1593,8 @@ namespace Wafer_System
             main.eFEM._Paser._Robot_Status.UpPresence = "";
             main.eFEM._Paser._Robot_Status.LowPresence = "";
             main.eFEM.EFEM_Send();
-            main.Wait_eFEM_Received_Update(main.efem_timeout);
+            main.Wait_eFEM_Received_Update(main.efem_timeout);      
+            Thread.Sleep(1000);
             if (main.eFEM._Paser._Robot_Status.Cmd_Error != "OK")
             {
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
@@ -1544,13 +1700,18 @@ namespace Wafer_System
                 return false;
             }
             string[] _map_status = new string[25];
+
+            if (Array.FindIndex(main.eFEM._Paser._GetMapResult.Result, x => x == null) != -1)
+            {
+                goto Cssette_Mapping;
+            }
             _map_status = main.eFEM._Paser._GetMapResult.Result.Reverse().ToArray();
             map_status = _map_status;
             return true;
         }
 
         CancellationTokenSource tokenSource = new CancellationTokenSource();
-       
+
 
         private bool Cassette_Change(int loadport)
         {
@@ -1704,14 +1865,14 @@ namespace Wafer_System
             //TN-XY move to Xp1,Yp1~Xp4,Yp4
             for (int i = 1; i < 4; i++)
             {
-                main.aCS_Motion._ACS.Command("PTP(0,1)," + configWR.ReadSettings("Xp" + i) + "," + configWR.ReadSettings("Yp" + i));
+                main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("Xp" + i) + "," + configWR.ReadSettings("Yp" + i) + ",100");
                 Thread.Sleep(1000);
                 main.wait_axis_Inp("x", 100000);
                 main.wait_axis_Inp("y", 100000);
                 switch (i)
                 {
                     case 1:
-                        if (main.Wait_IO_Check(0, 1, 7, 0, 120000))
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 120000))
                         {
                             pin1 = false;
                         }
@@ -1721,7 +1882,7 @@ namespace Wafer_System
                         }
                         break;
                     case 2:
-                        if (main.Wait_IO_Check(0, 1, 7, 0, 120000))
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 120000))
                         {
                             pin2 = false;
                         }
@@ -1731,7 +1892,7 @@ namespace Wafer_System
                         }
                         break;
                     case 3:
-                        if (main.Wait_IO_Check(0, 1, 7, 0, 120000))
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 120000))
                         {
                             pin3 = false;
                         }
@@ -1741,7 +1902,7 @@ namespace Wafer_System
                         }
                         break;
                     case 4:
-                        if (main.Wait_IO_Check(0, 1, 7, 0, 120000))
+                        if (main.Wait_IO_Check(0, 1, 7, 1, 120000))
                         {
                             pin4 = false;
                         }
@@ -1798,6 +1959,17 @@ namespace Wafer_System
             col.Insert(recdata);
             var t = recdata.Id;
 
+        }
+        bool IsCmlReadpx()
+        {
+            if (main.cML.recData == "Px.1=" + configWR.ReadSettings("ZL"))
+            {             
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         TimeSpan timeout = TimeSpan.FromSeconds(10);
         public static bool RetryUntilSuccessOrTimeout(Func<bool> task, TimeSpan timeout)

@@ -89,7 +89,7 @@ namespace Cool_Muscle_CML_Example
                 }
                 else 
                 {
-                    recData = string.Empty;
+                    //recData = string.Empty;
                 }              
             }          
            

@@ -45,10 +45,10 @@
             this.panelDeviceOpenCloseButtons = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel_Light_Control = new System.Windows.Forms.Panel();
             this.settingsPanel1 = new Wafer_System.BaslerMutiCam.SettingsPanel();
             this.settingsPanel2 = new Wafer_System.BaslerMutiCam.SettingsPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel_Light_Control = new System.Windows.Forms.Panel();
             this.panelDeviceOpenCloseButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -231,8 +231,8 @@
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.settingsPanel2);
             this.splitContainer.Panel2.Controls.Add(this.panel2);
+            this.splitContainer.Panel2.Controls.Add(this.settingsPanel2);
             this.splitContainer.Size = new System.Drawing.Size(698, 449);
             this.splitContainer.SplitterDistance = 346;
             this.splitContainer.TabIndex = 18;
@@ -250,6 +250,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(346, 51);
             this.panel1.TabIndex = 0;
+            // 
+            // settingsPanel1
+            // 
+            this.settingsPanel1.AutoSize = true;
+            this.settingsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.settingsPanel1.Location = new System.Drawing.Point(0, 0);
+            this.settingsPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.settingsPanel1.Name = "settingsPanel1";
+            this.settingsPanel1.Size = new System.Drawing.Size(346, 449);
+            this.settingsPanel1.TabIndex = 1;
+            // 
+            // settingsPanel2
+            // 
+            this.settingsPanel2.AutoSize = true;
+            this.settingsPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.settingsPanel2.Location = new System.Drawing.Point(0, 0);
+            this.settingsPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.settingsPanel2.Name = "settingsPanel2";
+            this.settingsPanel2.Size = new System.Drawing.Size(348, 449);
+            this.settingsPanel2.TabIndex = 1;
             // 
             // panel2
             // 
@@ -272,26 +292,6 @@
             this.panel_Light_Control.Name = "panel_Light_Control";
             this.panel_Light_Control.Size = new System.Drawing.Size(698, 34);
             this.panel_Light_Control.TabIndex = 19;
-            // 
-            // settingsPanel1
-            // 
-            this.settingsPanel1.AutoSize = true;
-            this.settingsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settingsPanel1.Location = new System.Drawing.Point(0, 0);
-            this.settingsPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.settingsPanel1.Name = "settingsPanel1";
-            this.settingsPanel1.Size = new System.Drawing.Size(346, 449);
-            this.settingsPanel1.TabIndex = 1;
-            // 
-            // settingsPanel2
-            // 
-            this.settingsPanel2.AutoSize = true;
-            this.settingsPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settingsPanel2.Location = new System.Drawing.Point(0, 51);
-            this.settingsPanel2.Margin = new System.Windows.Forms.Padding(2);
-            this.settingsPanel2.Name = "settingsPanel2";
-            this.settingsPanel2.Size = new System.Drawing.Size(348, 398);
-            this.settingsPanel2.TabIndex = 1;
             // 
             // MutiCam
             // 
