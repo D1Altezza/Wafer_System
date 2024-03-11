@@ -191,3 +191,5 @@ C:\Users\User\Documents\Project\Wafer_System\bin\Debug\x86\MessageBoxManager.dll
 C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\bin\Debug\x86\MessageBoxManager.dll
 C:\Users\User\Documents\Project\Wafer_System\bin\Debug\x86\LiteDB.dll
 C:\Users\User\Documents\Project\Wafer_System\bin\Debug\x86\LiteDB.xml
+C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\bin\Debug\x86\LiteDB.dll
+C:\Users\MyUser\Source\Repos\D1Altezza\Wafer_System\bin\Debug\x86\LiteDB.xml
