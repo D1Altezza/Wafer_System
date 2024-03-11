@@ -944,8 +944,7 @@ namespace Wafer_System
                         MessageBox.Show("OCR TimeOut");
                         return false;
                     }
-                    
-                    
+                                        
                     //寫入資料庫
                     col = main.db.GetCollection<RecData>("RecData");
                     recdata = new RecData();
