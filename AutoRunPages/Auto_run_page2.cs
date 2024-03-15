@@ -1579,7 +1579,7 @@ namespace Wafer_System
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>很煩...變數已經夠多了...一直重複定義...複雜化大師....
+        /// <returns>
         /// D100是上手臂有沒有料、D101是下手臂有沒有料
         /// D100,D101 對應 UpPresence,LowPresence
         /// </returns>

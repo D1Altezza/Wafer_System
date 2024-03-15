@@ -1675,7 +1675,7 @@ namespace Wafer_System
                 eFEM_Received_Update = false;
                 return;
             }
-        }
+        }       
 
         private void EFEM_receive_update(object sender, EventArgs e)
         {
@@ -1699,6 +1699,28 @@ namespace Wafer_System
                 return;
             }
         }
+
+        public void _EFMM_SendChk(string cmd)
+        {
+            switch (cmd)
+            {
+                case "":
+                    break;
+            }
+            var t = Task.Run(() =>
+            {
+             
+
+            });
+            if (!t.Wait(efem_timeout))
+            {
+                MessageBox.Show("Timeout", "EFEM");
+                
+                return;
+            }
+        }
+
+
 
         private void CML_receive_update(object sender, EventArgs e)
         {
@@ -1831,23 +1853,6 @@ namespace Wafer_System
             return true;
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
