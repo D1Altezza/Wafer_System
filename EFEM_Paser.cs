@@ -68,7 +68,7 @@ namespace Wafer_System
             {
                 while (this.Cmd_Error != "OK")
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
                 }
                 this.Cmd_Error = "";
                 this.ErrorCode = "";
@@ -203,7 +203,7 @@ namespace Wafer_System
         public string Vacuum;
 
 
-        private string cmd = "GetStatus,Aligner";
+        private string cmd = "GetStatus,Aligner1";
 
         public override string Cmd { get => cmd; set => Cmd = cmd; }
     }
@@ -288,14 +288,14 @@ namespace Wafer_System
     public class _WaferMode_Set_Cmd : _EFEM_Cmd
     {
         
-        private string cmd = "SetWaferMode,Aligner1";
+        private string cmd = "SetWaferMode,Aligner1,";
         public WaferMode waferMode { get; set; }
         public override string Cmd { get => cmd + waferMode.ToString(); set => Cmd = cmd + waferMode.ToString(); }
     }
     public class _WaferSize_Set_Cmd : _EFEM_Cmd
     {
 
-        private string cmd = "SetWaferSize,Aligner1,8";
+        private string cmd = "SetWaferSize,Aligner1,";
         public string Size { get; set; }
         public override string Cmd { get => cmd + Size; set => Cmd = cmd + Size; }
     }
