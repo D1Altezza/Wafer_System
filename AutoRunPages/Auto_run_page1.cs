@@ -22,34 +22,21 @@ namespace Wafer_System
         Systematics config;
         public class Autorun_Prarm
         {
-            public Wafer_Material wafer_Material;
+            public WaferMode waferMode;
             public Wafer_Size wafer_Size;
-            public Wafer_Notch wafer_Notch;
+            public WaferType waferType;
             public string classify_mode;
             public string file_name;
             public string cassette1_number;
             public string cassette2_number;
             public string cassette3_number;
-        }
-        public enum Wafer_Material
-        {
-            Si,
-            Glass,
-            unknow
-        }
+        }      
         public enum Wafer_Size
         {
             eight,
             tweleve,
             unknow
-        }
-        public enum Wafer_Notch
-        {
-            notch,
-            flat,
-            neither,
-            unknow
-        }
+        }  
         public Autorun_Prarm autorun_Prarm;
         public Auto_run_page1(Systematics config)
         {
@@ -148,31 +135,29 @@ namespace Wafer_System
         {
             if (radio_type_Si.Checked)
             {
-                autorun_Prarm.wafer_Material = Wafer_Material.Si;
+                autorun_Prarm.waferMode = WaferMode.Nontransparent;
             }
             else if (radio_type_Glass.Checked)
             {
-                autorun_Prarm.wafer_Material = Wafer_Material.Glass;
+                autorun_Prarm.waferMode = WaferMode.Transparent;
             }
             else
-            {
-                autorun_Prarm.wafer_Material = Wafer_Material.unknow;
+            {                
             }
             if (radio_notch_v.Checked)
             {
-                autorun_Prarm.wafer_Notch = Wafer_Notch.notch;
+                autorun_Prarm.waferType = WaferType.Notch;
             }
             else if (radio_notch_flat.Checked)
             {
-                autorun_Prarm.wafer_Notch = Wafer_Notch.flat;
+                autorun_Prarm.waferType = WaferType.Flat;
             }
             else if (radio_notch_non.Checked)
             {
-                autorun_Prarm.wafer_Notch = Wafer_Notch.neither;
+                autorun_Prarm.waferType = WaferType.Neither;
             }
             else
-            {
-                autorun_Prarm.wafer_Notch = Wafer_Notch.unknow;
+            {                
             }
             if (radio_size_8inch.Checked)
             {

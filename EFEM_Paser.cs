@@ -1,24 +1,91 @@
 ﻿using ACS.SPiiPlusNET;
+using SuperSimpleTcp;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Wafer_System.Log_Fun;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Wafer_System
 {
-
-    public class _EFEM_Status
+    public enum SignalTower_Color
+    {
+        Red,
+        Yellow,
+        Green,
+        Blue,
+        All
+    }
+    public enum SignalTower_State
+    {
+        On,
+        Off,
+        Flash
+    }
+    public enum WaferType
+    {
+        Notch,
+        Flat,
+        Neither
+    }
+    abstract public class _EFEM_Cmd
     {
         /// <summary>
-        /// Command error
+        /// OK/Error
         /// </summary>
         public string Cmd_Error;
+        /// <summary>
+        /// ErrorCode
+        /// </summary>
+        public string ErrorCode;
+        /// <summary>
+        /// 
+        /// </summary>
+        abstract public string Cmd { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool Send_Cmd(SimpleTcpClient tcpClient)
+        {
+            if (tcpClient != null && tcpClient.IsConnected)
+            {
+                tcpClient.Send(String.Format("{0}{1}{2}", "#", Cmd, "$"));
+            }
+            var t = Task.Run(() =>
+            {
+                while (this.Cmd_Error != "OK")
+                {
+                    Thread.Sleep(500);
+                }
+                this.Cmd_Error = "";
+                this.ErrorCode = "";
+            });
+            if (!t.Wait(120000))
+            {
+                MessageBox.Show("Timeout", "EFEM");
+
+                return false;
+            }
+            return true;
+        }
+    }
+
+    public class _EFEM_Status : _EFEM_Cmd
+    {
+
         /// <summary>
         /// Emergency stop 
         /// 0 = EMO 
@@ -97,13 +164,13 @@ namespace Wafer_System
         /// 9 = Unknown 
         /// </summary>
         public int Door;
+
+        private string cmd = "GetStatus,EFEM";
+
+        public override string Cmd { get => cmd; set => Cmd = cmd; }
     }
-    public class _Robot_Status
+    public class _Robot_Status : _EFEM_Cmd
     {
-        /// <summary>
-        /// Command error
-        /// </summary>
-        public string Cmd_Error;
         /// <summary>
         /// Controller will return a set of four-digit string (shown by hexadecimal)
         /// </summary>
@@ -116,17 +183,12 @@ namespace Wafer_System
         /// Wafer on lower arm or not, Absence/Presence/Unknown
         /// </summary>
         public string LowPresence;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        private string cmd = "GetStatus,Robot";
+
+        public override string Cmd { get => cmd; set => Cmd = cmd; }
     }
-    public class _Aligner_Status
+    public class _Aligner_Status : _EFEM_Cmd
     {
-        /// <summary>
-        /// Command error
-        /// </summary>
-        public string Cmd_Error;
         /// <summary>
         /// Online/NoReady/Unknown
         /// </summary>
@@ -139,17 +201,14 @@ namespace Wafer_System
         /// True/False
         /// </summary>
         public string Vacuum;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+
+
+        private string cmd = "GetStatus,Aligner";
+
+        public override string Cmd { get => cmd; set => Cmd = cmd; }
     }
-    public class _Loadport_Status
+    public class _Loadport_Status : _EFEM_Cmd
     {
-        /// <summary>
-        /// Command error
-        /// </summary>
-        public string Cmd_Error;
         /// <summary>
         /// Online/Teaching/Maintain/Unknown
         /// </summary>
@@ -170,130 +229,125 @@ namespace Wafer_System
         /// Open/Close/Unknown
         /// </summary>
         public string Door;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+
+        private string cmd = "GetStatus,";
+
+        public LoadPortNum loadPortNum {  get; set; }
+
+        public override string Cmd { get => cmd + loadPortNum.ToString(); set => Cmd = cmd + loadPortNum.ToString(); }
     }
-    public class _SignalTower_Status
+    public class _SignalTower_Status : _EFEM_Cmd
     {
+       
         /// <summary>
-        /// OK/Error
+        /// Red/Yellow/Green/Blue/All
         /// </summary>
-        public string Error;
+        public SignalTower_Color color { get; set; }
         /// <summary>
-        /// ErrorCode
+        /// On/Off/Flash
         /// </summary>
-        public string ErrorCode;
+        public SignalTower_State state { get; set; }
+
+        private string cmd = "SignalTower,EFEM";
+
+        public override string Cmd { get => cmd + "," + color + "," + state; set => Cmd = cmd + "," + color + "," + state; }
     }
-    public class _Home_Cmd
+    public class _Home_Cmd : _EFEM_Cmd
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+
+        private string cmd = "Home,EFEM";
+
+        public override string Cmd { get => cmd; set => Cmd = cmd; }
     }
-    public class _RobotSpeed_Set_Cmd
+    public class _RobotSpeed_Set_Cmd : _EFEM_Cmd
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        private string cmd = "SetSpeed,Robot";
+        private string Speed = ",20%,20%,20%,20%,80%";
+        public override string Cmd { get => cmd + Speed; set => Cmd = cmd + Speed; }
     }
-    public class _AlignmentAngle_Set_Cmd
+    public class _AlignmentAngle_Set_Cmd : _EFEM_Cmd
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+
+        private string cmd = "SetAlignmentAngle,Aligner1,";
+        public string Degree { get; set; }
+        public override string Cmd { get => cmd + Degree; set => Cmd = cmd + Degree; }
     }
 
-    public class _WaferType_Set_Cmd
+    public class _WaferType_Set_Cmd : _EFEM_Cmd
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+       
+        private string cmd = "SetWaferType,Aligner1,";
+        public WaferType waferType { get; set; }
+        public override string Cmd { get => cmd + waferType.ToString(); set => Cmd = cmd + waferType.ToString(); }
     }
-    public class _WaferMode_Set_Cmd
+    public enum WaferMode
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        Transparent,
+        Nontransparent
     }
-    public class _WaferSize_Set_Cmd
+    public class _WaferMode_Set_Cmd : _EFEM_Cmd
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        
+        private string cmd = "SetWaferMode,Aligner1";
+        public WaferMode waferMode { get; set; }
+        public override string Cmd { get => cmd + waferMode.ToString(); set => Cmd = cmd + waferMode.ToString(); }
+    }
+    public class _WaferSize_Set_Cmd : _EFEM_Cmd
+    {
+
+        private string cmd = "SetWaferSize,Aligner1,8";
+        public string Size { get; set; }
+        public override string Cmd { get => cmd + Size; set => Cmd = cmd + Size; }
+    }
+    public enum LoadPortNum 
+    {
+        Loadport1,
+        Loadport2,
+        Loadport3
+    }
+    public class _Reset_Error_LoadPort : _EFEM_Cmd
+    {
+
+        private string cmd = "ResetError,";
+        public LoadPortNum resetLoadPortNum {  get; set; }
+        public override string Cmd { get => cmd + resetLoadPortNum; set => Cmd = cmd + resetLoadPortNum; }
+    }
+    public class _Reset_Error_Aligner : _EFEM_Cmd
+    {
+
+        private string cmd = "ResetError,Aligner1";
+
+        public override string Cmd { get => cmd; set => Cmd = cmd; }
+    }
+    public enum LoadportCmdString
+    {
+        Home,
+        Load,
+        Unload,
+        Clamp,
+        Unclamp,
+        HoldPlate,
+        Unholdplate,
+        Map
+    }
+    public class _Cmd_Loadport : _EFEM_Cmd
+    {
+              
+        public LoadportCmdString cmdString {  get; set; }
+        public LoadPortNum loadPortNum { get; set; }
+        public override string Cmd { get => cmdString + "," + loadPortNum; set => Cmd = cmdString + "," + loadPortNum; }
     }
 
-    public class _Reset_Error_LoadPort
-    {
-        /// <summary>
-        /// OK/Error ErrorCode
-        /// </summary>
-        public string Error;
-    }
-    public class _Reset_Error_Aligner
-    {
-        /// <summary>
-        /// OK/Error ErrorCode
-        /// </summary>
-        public string Error;
-    }
-    public class _Cmd_Loadport
-    {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
-    }
-
-    public class _GetCurrentLPWaferSize
+    public class _GetCurrentLPWaferSize : _EFEM_Cmd
     {
         /// <summary>
         /// 4: 8inch,6: 12inch
         /// </summary>
         public string Result;
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+
+        private string cmd = "GetCurrentLPWaferSize,";
+        public LoadPortNum LoadPortNum { get; set; }
+        public override string Cmd { get => cmd + LoadPortNum; set => Cmd = cmd + LoadPortNum; }
     }
 
     enum map_result_state
@@ -308,7 +362,7 @@ namespace Wafer_System
         Unknown
 
     }
-    public class _GetMapResult
+    public class _GetMapResult : _EFEM_Cmd
     {
 
         /// <summary>
@@ -316,48 +370,72 @@ namespace Wafer_System
         /// 0: Absence 1: Presence 2: Tilted 3: Overlapping 4: Thin 5: Up/Down tile 9:Unknown
         /// </summary>
         public string[] Result;
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
-    }
 
-    public class _SmartGet_Robot
-    {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        private string cmd = "GetMapResult,Loadport";
+        public string node { get; set; }
+        public override string Cmd { get => cmd + node; set => Cmd = cmd + node; }
     }
-    public class _SmartPut_Robot
+    enum SmartGet_RobotArm
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        LowArm,
+        UpArm
     }
-    public class _Alignment_Aligner
+    enum SmartGet_RobotDest
     {
-        /// <summary>
-        /// OK/Error
-        /// </summary>
-        public string Error;
-        /// <summary>
-        /// ErrorCode
-        /// </summary>
-        public string ErrorCode;
+        Loadport1,
+        Loadport2,
+        Loadport3,
+        Aligner1,
+        Stage1,
+        Stage2,
+        Tool1
+    }
+    public class _SmartGet_Robot : _EFEM_Cmd
+    {
+       
+        private string cmd = "SmartGet,Robot,";
+        SmartGet_RobotArm arm { get; set; }
+        SmartGet_RobotDest dest { get; set; }
+        public string Slot { get; set; }
+
+        public override string Cmd { get => cmd + arm + "," + dest + "," + Slot; set => Cmd = cmd + arm + "," + dest + "," + Slot; }
+    }
+    enum SmartPut_RobotArm
+    {
+        LowArm,
+        UpArm
+    }
+    enum SmartPut_RobotDest
+    {
+        Loadport1,
+        Loadport2,
+        Loadport3,
+        Aligner1,
+        Stage1,
+        Stage2,
+        Tool1
+    }
+    public class _SmartPut_Robot : _EFEM_Cmd
+    {       
+        private string cmd = "SmartPut,Robot,";
+        SmartPut_RobotArm arm { get; set; }
+        SmartPut_RobotDest dest { get; set; }
+        public string Slot { get; set; }
+
+        public override string Cmd { get => cmd + arm + "," + dest + "," + Slot; set => Cmd = cmd + arm + "," + dest + "," + Slot; }
+
+    }
+    enum Alignment
+    {
+        Aligner1,
+        Aligner2
+    }
+    public class _Alignment_Aligner : _EFEM_Cmd
+    {
+      
+        private string cmd = "Alignment,";
+        Alignment aligner { get; set; }   
+        public override string Cmd { get => cmd+ aligner; set => Cmd = cmd+ aligner; }
     }
     public class EFEM_Paser
     {
@@ -475,8 +553,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "EFEM":
-                            _SignalTower_Status.Error = words[2];
-                            if (_SignalTower_Status.Error == "OK")
+                            _SignalTower_Status.Cmd_Error = words[2];
+                            if (_SignalTower_Status.Cmd_Error == "OK")
                             {
                                 _SignalTower_Status.ErrorCode = "";
                                 break;
@@ -493,25 +571,25 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case string s when s.Substring(0, s.Length - 1) == "Loadport":
-                            _Reset_Error_LoadPort.Error = words[2];
-                            if (_Reset_Error_LoadPort.Error == "OK")
+                            _Reset_Error_LoadPort.Cmd_Error = words[2];
+                            if (_Reset_Error_LoadPort.Cmd_Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_LoadPort.Error = words[3];
+                                _Reset_Error_LoadPort.Cmd_Error = words[3];
                             }
                             break;
                         case string s when s.Substring(0, s.Length - 1) == "Aligner":
-                            _Reset_Error_Aligner.Error = words[2];
-                            if (_Reset_Error_Aligner.Error == "OK")
+                            _Reset_Error_Aligner.Cmd_Error = words[2];
+                            if (_Reset_Error_Aligner.Cmd_Error == "OK")
                             {
                                 break;
                             }
                             else
                             {
-                                _Reset_Error_Aligner.Error = words[3];
+                                _Reset_Error_Aligner.Cmd_Error = words[3];
                             }
                             break;
 
@@ -522,8 +600,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "EFEM":
-                            _Home_Cmd.Error = words[2];
-                            if (_Home_Cmd.Error == "OK")
+                            _Home_Cmd.Cmd_Error = words[2];
+                            if (_Home_Cmd.Cmd_Error == "OK")
                             {
                                 _Home_Cmd.ErrorCode = "";
                                 break;
@@ -540,8 +618,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Robot":
-                            _RobotSpeed_Set_Cmd.Error = words[2];
-                            if (_RobotSpeed_Set_Cmd.Error == "OK")
+                            _RobotSpeed_Set_Cmd.Cmd_Error = words[2];
+                            if (_RobotSpeed_Set_Cmd.Cmd_Error == "OK")
                             {
                                 _RobotSpeed_Set_Cmd.ErrorCode = "";
                                 break;
@@ -558,8 +636,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Aligner1":
-                            _AlignmentAngle_Set_Cmd.Error = words[2];
-                            if (_AlignmentAngle_Set_Cmd.Error == "OK")
+                            _AlignmentAngle_Set_Cmd.Cmd_Error = words[2];
+                            if (_AlignmentAngle_Set_Cmd.Cmd_Error == "OK")
                             {
                                 _AlignmentAngle_Set_Cmd.ErrorCode = "";
                                 break;
@@ -576,8 +654,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Aligner1":
-                            _WaferType_Set_Cmd.Error = words[2];
-                            if (_WaferType_Set_Cmd.Error == "OK")
+                            _WaferType_Set_Cmd.Cmd_Error = words[2];
+                            if (_WaferType_Set_Cmd.Cmd_Error == "OK")
                             {
                                 _WaferType_Set_Cmd.ErrorCode = "";
                                 break;
@@ -594,8 +672,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Aligner1":
-                            _WaferMode_Set_Cmd.Error = words[2];
-                            if (_WaferMode_Set_Cmd.Error == "OK")
+                            _WaferMode_Set_Cmd.Cmd_Error = words[2];
+                            if (_WaferMode_Set_Cmd.Cmd_Error == "OK")
                             {
                                 _WaferMode_Set_Cmd.ErrorCode = "";
                                 break;
@@ -612,8 +690,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Aligner1":
-                            _WaferSize_Set_Cmd.Error = words[2];
-                            if (_WaferSize_Set_Cmd.Error == "OK")
+                            _WaferSize_Set_Cmd.Cmd_Error = words[2];
+                            if (_WaferSize_Set_Cmd.Cmd_Error == "OK")
                             {
                                 _WaferSize_Set_Cmd.ErrorCode = "";
                                 break;
@@ -633,8 +711,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Loadport1":
-                            _Cmd_Loadport.Error = words[2];
-                            if (_Cmd_Loadport.Error == "OK")
+                            _Cmd_Loadport.Cmd_Error = words[2];
+                            if (_Cmd_Loadport.Cmd_Error == "OK")
                             {
                                 _Cmd_Loadport.ErrorCode = "";
                                 break;
@@ -645,8 +723,8 @@ namespace Wafer_System
                             }
                             break;
                         case "Loadport2":
-                            _Cmd_Loadport.Error = words[2];
-                            if (_Cmd_Loadport.Error == "OK")
+                            _Cmd_Loadport.Cmd_Error = words[2];
+                            if (_Cmd_Loadport.Cmd_Error == "OK")
                             {
                                 _Cmd_Loadport.ErrorCode = "";
                                 break;
@@ -657,8 +735,8 @@ namespace Wafer_System
                             }
                             break;
                         case "Loadport3":
-                            _Cmd_Loadport.Error = words[2];
-                            if (_Cmd_Loadport.Error == "OK")
+                            _Cmd_Loadport.Cmd_Error = words[2];
+                            if (_Cmd_Loadport.Cmd_Error == "OK")
                             {
                                 _Cmd_Loadport.ErrorCode = "";
                                 break;
@@ -675,8 +753,8 @@ namespace Wafer_System
                     switch (words[1])
                     {
                         case "Loadport1":
-                            _GetCurrentLPWaferSize.Error = words[2];
-                            if (_GetCurrentLPWaferSize.Error == "OK")
+                            _GetCurrentLPWaferSize.Cmd_Error = words[2];
+                            if (_GetCurrentLPWaferSize.Cmd_Error == "OK")
                             {
                                 _GetCurrentLPWaferSize.ErrorCode = "";
                                 switch (words[3])
@@ -697,8 +775,8 @@ namespace Wafer_System
                             }
                             break;
                         case "Loadport2":
-                            _GetCurrentLPWaferSize.Error = words[2];
-                            if (_GetCurrentLPWaferSize.Error == "OK")
+                            _GetCurrentLPWaferSize.Cmd_Error = words[2];
+                            if (_GetCurrentLPWaferSize.Cmd_Error == "OK")
                             {
                                 _GetCurrentLPWaferSize.ErrorCode = "";
                                 switch (words[3])
@@ -719,8 +797,8 @@ namespace Wafer_System
                             }
                             break;
                         case "Loadport3":
-                            _GetCurrentLPWaferSize.Error = words[2];
-                            if (_GetCurrentLPWaferSize.Error == "OK")
+                            _GetCurrentLPWaferSize.Cmd_Error = words[2];
+                            if (_GetCurrentLPWaferSize.Cmd_Error == "OK")
                             {
                                 _GetCurrentLPWaferSize.ErrorCode = "";
                                 switch (words[3])
@@ -744,8 +822,8 @@ namespace Wafer_System
                 }
                 else if (words[0] == "GetMapResult")
                 {
-                    _GetMapResult.Error = words[2];
-                    if (_GetMapResult.Error == "OK")
+                    _GetMapResult.Cmd_Error = words[2];
+                    if (_GetMapResult.Cmd_Error == "OK")
                     {
                         _GetMapResult.ErrorCode = "";
                         for (int i = 3; i < words.Count(); i++)
@@ -762,26 +840,26 @@ namespace Wafer_System
                 }
                 else if (words[0] == "SmartGet")
                 {
-                    if (words[1]=="Robot")
+                    if (words[1] == "Robot")
                     {
-                       _SmartGet_Robot.Error = words[2];
-                        if (_SmartGet_Robot.Error == "OK")
+                        _SmartGet_Robot.Cmd_Error = words[2];
+                        if (_SmartGet_Robot.Cmd_Error == "OK")
                         {
-                            _SmartGet_Robot.ErrorCode = "";                          
+                            _SmartGet_Robot.ErrorCode = "";
                         }
                         else
                         {
                             _SmartGet_Robot.ErrorCode = words[3];
                         }
                     }
-                    
+
                 }
                 else if (words[0] == "SmartPut")
                 {
                     if (words[1] == "Robot")
                     {
-                        _SmartPut_Robot.Error = words[2];
-                        if (_SmartPut_Robot.Error == "OK")
+                        _SmartPut_Robot.Cmd_Error = words[2];
+                        if (_SmartPut_Robot.Cmd_Error == "OK")
                         {
                             _SmartPut_Robot.ErrorCode = "";
                         }
@@ -797,8 +875,8 @@ namespace Wafer_System
                     //string s when s.Substring(0, s.Length - 1) == "Loadport":
                     if (words[1].Substring(0, words[1].Length - 1) == "Aligner")
                     {
-                        _Alignment_Aligner.Error = words[2];
-                        if (_Alignment_Aligner.Error == "OK")
+                        _Alignment_Aligner.Cmd_Error = words[2];
+                        if (_Alignment_Aligner.Cmd_Error == "OK")
                         {
                             _Alignment_Aligner.ErrorCode = "";
                         }
