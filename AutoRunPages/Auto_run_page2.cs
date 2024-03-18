@@ -92,16 +92,12 @@ namespace Wafer_System
                 ini = Auto_run_chk();
             }).ContinueWith(task =>
             {
-                //if (ini && MessageBox.Show("Run?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                //{
-                //    Auto_run();
-                //    //home = sys_Home();
-                //}
-                if (ini)
+                if (ini && MessageBox.Show("Run?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Auto_run();
                     //home = sys_Home();
                 }
+                
 
             });
 
