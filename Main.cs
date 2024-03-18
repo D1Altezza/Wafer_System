@@ -76,6 +76,7 @@ namespace Wafer_System
             internal int D132;
             internal int D125;
             internal int D126;
+            internal int D127;
         }
         public D_param d_Param;
         #endregion

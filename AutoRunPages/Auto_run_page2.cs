@@ -918,7 +918,7 @@ namespace Wafer_System
                         });
                         //Step18
                         main.d_Param.D300 = 18;
-                        if ( main.d_Param.D132 != 0 || main.d_Param.D110 != 1 || main.d_Param.D100 != 0)
+                        if (main.d_Param.D132 != 0 || main.d_Param.D110 != 1 || main.d_Param.D100 != 0)
                         {
                             MessageBox.Show("Step18 Fail", "Error");
                             return false;
@@ -963,6 +963,17 @@ namespace Wafer_System
                             default:
                                 MessageBox.Show("Wafer size error");
                                 return false;
+                        }
+                        //Step21 UAputTN()
+                        main.d_Param.D300 = 21;
+                        if (main.d_Param.D100 != 1 || main.d_Param.D111 != 0 || main.d_Param.D133 != 0)
+                        {
+                            MessageBox.Show("Step21 fail");
+                            return false;
+                        }
+                        if (!UAputTN() || main.d_Param.D127 != 0 || main.d_Param.D100 != 0 || main.d_Param.D111 != 1)
+                        {
+                            MessageBox.Show("UAputTN fail");
                         }
                         return true;
                     }
@@ -1110,7 +1121,7 @@ namespace Wafer_System
                     break;
             }
             mutiCam.lightControl.OFF();
-            
+
             Task.Run(() =>
             {
                 var c = 0;
@@ -1123,10 +1134,10 @@ namespace Wafer_System
                 }
                 c = 0;
             });
-            main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) +",100");
+            main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
             main.wait_axis_Inp("a", 120000);
 
-          
+
             //影像處理計算分級寫入資料庫
 
 
@@ -1147,7 +1158,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
             //----pass
-            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110))|| main.d_Param.D110 != 1)
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)) || main.d_Param.D110 != 1)
             {
                 MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1194,7 +1205,7 @@ namespace Wafer_System
                     MessageBox.Show("Robot in DM station");
                     return false;
                 }
-                main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL"))+ ",100");
+                main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
                 main.wait_axis_Inp("a", 120000);
             }
             //IO MPS IN10=ON (PG3-VS)----pass
@@ -1593,7 +1604,7 @@ namespace Wafer_System
                     MessageBox.Show("Robot in DM station");
                     return false;
                 }
-                
+
                 main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
                 main.wait_axis_Inp("a", 120000);
             }
@@ -1613,7 +1624,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
             //----pass
-            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110))||main.d_Param.D110 != 1)
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)) || main.d_Param.D110 != 1)
             {
                 MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -1689,6 +1700,147 @@ namespace Wafer_System
             return true;
 
         }
+
+        public bool UAputTN()
+        {
+            //check EFEMOUT3 ON
+            main.Wait_IO_Check(0, 1, 2, 1, 1000);
+            var x_in_loadpos = (Math.Round(main.aCS_Motion.m_X_lfFPos, 2) == Convert.ToDouble(configWR.ReadSettings("XL")));
+            var y_in_loadpos = (Math.Round(main.aCS_Motion.m_Y_lfFPos, 2) == Convert.ToDouble(configWR.ReadSettings("YL")));
+
+            var z_in_load_pos = false;
+            var z_in_org_pos = false;
+            main.cML.Query("?96.1");
+            main.Wait_Cm1_Received_Update();
+            Thread.Sleep(1000);
+            main.cML.Query("?96.1");
+            main.Wait_Cm1_Received_Update();
+            if (main.cML.recData == "Px.1=" + configWR.ReadSettings("ZL"))
+            {
+                z_in_load_pos = true;
+            }
+            else if (main.cML.recData == "Px.1=" + configWR.ReadSettings("Z0"))
+            {
+                z_in_org_pos = true;
+            }
+
+            //XY not in load pos
+            if (!main.Wait_IO_Check(0, 0, 0, 1, 1000) ||
+                !main.Wait_IO_Check(0, 0, 1, 1, 1000) ||
+                !main.Wait_IO_Check(0, 0, 2, 1, 1000) ||
+                !x_in_loadpos ||
+                !y_in_loadpos ||
+                !z_in_load_pos)
+            {
+                if (!z_in_org_pos)
+                {
+                    //Z軸歸Home
+                    main.cML.Origin();
+                    this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+                    this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
+                    //IN5---->pass
+                    if (!main.pass && !main.Wait_IO_Check(0, 0, 5, 1, 300000))
+                    {
+                        MessageBox.Show("E165\r\n" + "Z_ULS OFF\r\n", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
+                //TN-XY move to XL,YL
+                main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("XL") + "," + configWR.ReadSettings("YL") + ",100");
+                Thread.Sleep(1000);
+                main.wait_axis_Inp("x", 100000);
+                main.wait_axis_Inp("y", 100000);
+                main.cML.pin_Up();
+                if (!main.Wait_IO_Check(0, 0, 2, 1, 300000))
+                {
+                    MessageBox.Show("Z_LS IN2 not on", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        Progres_update(false);
+                    }));
+
+                    return false;
+                }
+                this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+                this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z in load pos..."; }));
+                Thread.Sleep(1000);
+                main.cML.Query("?96.1");
+                main.Wait_Cm1_Received_Update();
+                Thread.Sleep(1000);
+                main.cML.Query("?96.1");
+                main.Wait_Cm1_Received_Update();
+                //當前位置回傳格式未檢查----待修正                                   
+                z_in_load_pos = (main.cML.recData == "Px.1=" + configWR.ReadSettings("ZL"));
+                if (!z_in_load_pos)
+                {
+                    MessageBox.Show("E175\r\n" + "Z not in looad pos", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+            if (!main.Wait_IO_Check(0, 1, 9, 1, 1000))
+            {
+                MessageBox.Show("E007");
+                return false;
+            }
+            if (!main.Wait_IO_Check(0, 1, 9, 1, 1000) || !main.Wait_IO_Check(0, 1, 9, 1, 1000))
+            {
+                MessageBox.Show("E018");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 0)
+            {
+                MessageBox.Show("E058");
+                return false;
+            }
+            if (main.d_Param.D100 != 1)
+            {
+                MessageBox.Show("E053");
+                return false;
+            }
+            if (!main.Wait_IO_Check(0, 1, 2, 1, 1000))
+            {
+                MessageBox.Show("EFOUT3 ON");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 2, 1);
+            main.eFEM._Paser._SmartPut_Robot.arm = _RobotArm.UpArm;
+            main.eFEM._Paser._SmartPut_Robot.dest = _RobotDest.Stage3;
+            main.eFEM._Paser._SmartPut_Robot.Slot = "1";
+            if (!main.eFEM._Paser._SmartPut_Robot.Send_Cmd(main.eFEM.client))
+            {
+                MessageBox.Show("smart put stage3 fail");
+                return false;
+            }
+            main.d_Param.D111 = 1;
+            main.d_Param.D100 = 0;
+            if (!main.Wait_IO_Check(0, 1, 2, 1, 1000))
+            {
+                MessageBox.Show("smart put stage3 fail");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 2, 0);
+            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+            Thread.Sleep(500);
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
+            {
+                MessageBox.Show("E059");
+                main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+                return false;
+            }
+            Thread.Sleep(500);
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            if (main.d_Param.D100 != 0)
+            {
+                MessageBox.Show("E031");
+            }
+            main.d_Param.D127 = 0;
+            return true;
+        }
+
 
 
 

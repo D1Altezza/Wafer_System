@@ -178,6 +178,7 @@ namespace Cool_Muscle_CML_Example
             serialPort.DiscardInBuffer();
             serialPort.Write("[1.1\r\n");
         }
+
         public void pin_Down()
         {
             serialPort.DiscardInBuffer();
