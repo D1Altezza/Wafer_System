@@ -232,9 +232,9 @@ namespace Wafer_System
 
         private string cmd = "GetStatus,";
 
-        public LoadPortNum loadPortNum {  get; set; }
+        public LoadPortNum portNum {  get; set; }
 
-        public override string Cmd { get => cmd + loadPortNum.ToString(); set => Cmd = cmd + loadPortNum.ToString(); }
+        public override string Cmd { get => cmd + portNum.ToString(); set => Cmd = cmd + portNum.ToString(); }
     }
     public class _SignalTower_Status : _EFEM_Cmd
     {
@@ -309,8 +309,8 @@ namespace Wafer_System
     {
 
         private string cmd = "ResetError,";
-        public LoadPortNum resetLoadPortNum {  get; set; }
-        public override string Cmd { get => cmd + resetLoadPortNum; set => Cmd = cmd + resetLoadPortNum; }
+        public LoadPortNum portNum {  get; set; }
+        public override string Cmd { get => cmd + portNum; set => Cmd = cmd + portNum; }
     }
     public class _Reset_Error_Aligner : _EFEM_Cmd
     {
@@ -334,8 +334,8 @@ namespace Wafer_System
     {
               
         public LoadportCmdString cmdString {  get; set; }
-        public LoadPortNum loadPortNum { get; set; }
-        public override string Cmd { get => cmdString + "," + loadPortNum; set => Cmd = cmdString + "," + loadPortNum; }
+        public LoadPortNum portNum { get; set; }
+        public override string Cmd { get => cmdString + "," + portNum; set => Cmd = cmdString + "," + portNum; }
     }
 
     public class _GetCurrentLPWaferSize : _EFEM_Cmd
@@ -346,8 +346,8 @@ namespace Wafer_System
         public string Result;
 
         private string cmd = "GetCurrentLPWaferSize,";
-        public LoadPortNum LoadPortNum { get; set; }
-        public override string Cmd { get => cmd + LoadPortNum; set => Cmd = cmd + LoadPortNum; }
+        public LoadPortNum portNum { get; set; }
+        public override string Cmd { get => cmd + portNum; set => Cmd = cmd + portNum; }
     }
 
     enum map_result_state
@@ -372,15 +372,15 @@ namespace Wafer_System
         public string[] Result;
 
         private string cmd = "GetMapResult,Loadport";
-        public string node { get; set; }
-        public override string Cmd { get => cmd + node; set => Cmd = cmd + node; }
+        public LoadPortNum portNum { get; set; }
+        public override string Cmd { get => cmd + portNum.ToString(); set => Cmd = cmd + portNum.ToString(); }
     }
-    enum SmartGet_RobotArm
+    public enum _RobotArm
     {
         LowArm,
         UpArm
     }
-    enum SmartGet_RobotDest
+    public enum _RobotDest
     {
         Loadport1,
         Loadport2,
@@ -394,32 +394,18 @@ namespace Wafer_System
     {
        
         private string cmd = "SmartGet,Robot,";
-        SmartGet_RobotArm arm { get; set; }
-        SmartGet_RobotDest dest { get; set; }
+        public _RobotArm arm { get; set; }
+        public _RobotDest dest { get; set; }
         public string Slot { get; set; }
 
         public override string Cmd { get => cmd + arm + "," + dest + "," + Slot; set => Cmd = cmd + arm + "," + dest + "," + Slot; }
     }
-    enum SmartPut_RobotArm
-    {
-        LowArm,
-        UpArm
-    }
-    enum SmartPut_RobotDest
-    {
-        Loadport1,
-        Loadport2,
-        Loadport3,
-        Aligner1,
-        Stage1,
-        Stage2,
-        Tool1
-    }
+    
     public class _SmartPut_Robot : _EFEM_Cmd
     {       
         private string cmd = "SmartPut,Robot,";
-        SmartPut_RobotArm arm { get; set; }
-        SmartPut_RobotDest dest { get; set; }
+        public _RobotArm arm { get; set; }
+        public _RobotDest dest { get; set; }
         public string Slot { get; set; }
 
         public override string Cmd { get => cmd + arm + "," + dest + "," + Slot; set => Cmd = cmd + arm + "," + dest + "," + Slot; }
