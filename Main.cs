@@ -76,6 +76,7 @@ namespace Wafer_System
             internal int D132;
             internal int D125;
             internal int D126;
+            internal int D127;
         }
         public D_param d_Param;
         #endregion
@@ -982,6 +983,7 @@ namespace Wafer_System
                 var IN3 = aCS_Motion._ACS.GetInput(1, 3);
                 var IN8 = aCS_Motion._ACS.GetInput(1, 8);
                 var IN10 = aCS_Motion._ACS.GetInput(1, 10);
+                aCS_Motion._ACS.SetOutput(1, 5, 1);
                 var OUT5 = aCS_Motion._ACS.GetOutput(1, 5);
                 var a_in_load_pos = (aCS_Motion.m_A_lfFPos == Convert.ToDouble(configWR.ReadSettings("AL")));
                 if (IN10 == 1 && OUT5 == 1)

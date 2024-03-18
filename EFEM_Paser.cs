@@ -388,7 +388,8 @@ namespace Wafer_System
         Aligner1,
         Stage1,
         Stage2,
-        Tool1
+        Tool1,
+        Stage3
     }
     public class _SmartGet_Robot : _EFEM_Cmd
     {
