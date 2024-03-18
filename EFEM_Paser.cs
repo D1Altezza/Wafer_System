@@ -371,7 +371,7 @@ namespace Wafer_System
         /// </summary>
         public string[] Result;
 
-        private string cmd = "GetMapResult,Loadport";
+        private string cmd = "GetMapResult,";
         public LoadPortNum portNum { get; set; }
         public override string Cmd { get => cmd + portNum.ToString(); set => Cmd = cmd + portNum.ToString(); }
     }

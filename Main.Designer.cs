@@ -47,9 +47,7 @@
             this.cm1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.baslerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoRun_panel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            this.autoRun_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -197,22 +195,11 @@
             // autoRun_panel
             // 
             this.autoRun_panel.AutoScroll = true;
-            this.autoRun_panel.Controls.Add(this.button1);
             this.autoRun_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.autoRun_panel.Location = new System.Drawing.Point(0, 26);
             this.autoRun_panel.Name = "autoRun_panel";
             this.autoRun_panel.Size = new System.Drawing.Size(921, 592);
             this.autoRun_panel.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(532, 474);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Main
             // 
@@ -230,7 +217,6 @@
             this.Shown += new System.EventHandler(this.Main_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.autoRun_panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +242,6 @@
         private System.Windows.Forms.ToolStripMenuItem cm1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem baslerToolStripMenuItem;
         private System.Windows.Forms.Panel autoRun_panel;
-        private System.Windows.Forms.Button button1;
     }
 }
 

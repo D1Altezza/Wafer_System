@@ -92,16 +92,12 @@ namespace Wafer_System
                 ini = Auto_run_chk();
             }).ContinueWith(task =>
             {
-                //if (ini && MessageBox.Show("Run?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                //{
-                //    Auto_run();
-                //    //home = sys_Home();
-                //}
-                if (ini)
+                if (ini && MessageBox.Show("Run?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Auto_run();
                     //home = sys_Home();
                 }
+                
 
             });
 
@@ -754,11 +750,18 @@ namespace Wafer_System
                         else
                         {
                             this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
-                            if (!ANRUN())
+                            //if (!ANRUN())
+                            //{
+                            //    MessageBox.Show("ANRUN Fail", "Error");
+                            //    return false;
+                            //}
+                            Task.Run(() =>
                             {
-                                MessageBox.Show("ANRUN Fail", "Error");
-                                return false;
-                            }
+                                if (!ANRUN())
+                                {
+                                    MessageBox.Show("ANRUN Fail", "Error");
+                                }
+                            });
 
                         }
                         //Step8
@@ -804,11 +807,18 @@ namespace Wafer_System
                             MessageBox.Show("Step11 Fail", "Error");
                             return false;
                         }
-                        if (!ANRUN())
+                        //if (!ANRUN())
+                        //{
+                        //    MessageBox.Show("ANRUN Fail", "Error");
+                        //    return false;
+                        //}
+                        Task.Run(() =>
                         {
-                            MessageBox.Show("ANRUN Fail", "Error");
-                            return false;
-                        }
+                            if (!ANRUN())
+                            {
+                                MessageBox.Show("ANRUN Fail", "Error");                                
+                            }
+                        });
                         //Step12
                         main.d_Param.D300 = 12;
                         if (main.d_Param.D101 != 1 || main.d_Param.D110 != 0 || main.d_Param.D132 != 0)

@@ -1,0 +1,3765 @@
+
+下午 12:29:02 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:29:56 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:30:10 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:30:41 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:30:50 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:31:22 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:31:50 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:32:17 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:32:47 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:33:30 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:33:32 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:33:33 2024年3月18日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:33:47 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:34:20 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:20 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:34:20 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:34:20 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:20 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:20 2024年3月18日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:34:21 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:34:22 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:34:23 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:34:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:34:24 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:34:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:34:28 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:34:41 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:34:41 2024年3月18日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:34:42 2024年3月18日
+
+Return Code: #Event,EFEM,RepairMode,On$
+-------------------------------
+
+下午 12:35:12 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:12 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:12 2024年3月18日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:35:12 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:35:14 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:38 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:39 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:35:40 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:35:41 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:42 2024年3月18日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:35:43 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:35:43 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:35:43 2024年3月18日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:36:03 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:36:18 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:36:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport1,OK$
+-------------------------------
+
+下午 12:36:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport1,OK$
+-------------------------------
+
+下午 12:36:18 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:36:18 2024年3月18日
+
+Return Code: #Event,Loadport2,RobotMappingStart$
+-------------------------------
+
+下午 12:36:39 2024年3月18日
+
+Return Code: #Event,Loadport2,RobotMappingEnd$
+-------------------------------
+
+下午 12:36:39 2024年3月18日
+
+Return Code: #Event,Loadport2,MapResult,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$
+-------------------------------
+
+下午 12:36:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport2,OK$
+-------------------------------
+
+下午 12:36:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport2,OK$
+-------------------------------
+
+下午 12:36:39 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:36:39 2024年3月18日
+
+Return Code: #Event,Loadport3,RobotMappingStart$
+-------------------------------
+
+下午 12:36:58 2024年3月18日
+
+Return Code: #Event,Loadport3,RobotMappingEnd$
+-------------------------------
+
+下午 12:36:58 2024年3月18日
+
+Return Code: #Event,Loadport3,MapResult,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$
+-------------------------------
+
+下午 12:36:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport3,OK$
+-------------------------------
+
+下午 12:36:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport3,OK$
+-------------------------------
+
+下午 12:36:58 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:36:59 2024年3月18日
+
+Return Code: #GetCurrentLPWaferSize,Loadport3,OK,6$
+-------------------------------
+
+下午 12:37:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:37:07 2024年3月18日
+
+Return Code: #Event,EFEM,Error$
+-------------------------------
+
+下午 12:37:07 2024年3月18日
+
+Return Code: #GetMapResult,LoadportLoadport1,Error,0002$
+-------------------------------
+
+下午 12:38:50 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:39:01 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:39:13 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:45:51 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:45:52 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:45:53 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:45:54 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:45:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:45:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:45:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:45:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:45:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:47:09 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:47:09 2024年3月18日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:47:09 2024年3月18日
+
+Return Code: #Event,EFEM,RepairMode,On$
+-------------------------------
+
+下午 12:48:03 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:03 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:48:03 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:48:03 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:03 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:03 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:04 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:48:05 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:26 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:26 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:26 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:26 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:27 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:28 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:48:29 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:30 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:48:30 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:30 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:30 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:48:52 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:06 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:49:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport1,OK$
+-------------------------------
+
+下午 12:49:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport1,OK$
+-------------------------------
+
+下午 12:49:06 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:06 2024年3月18日
+
+Return Code: #Event,Loadport2,RobotMappingStart$
+-------------------------------
+
+下午 12:49:27 2024年3月18日
+
+Return Code: #Event,Loadport2,RobotMappingEnd$
+-------------------------------
+
+下午 12:49:27 2024年3月18日
+
+Return Code: #Event,Loadport2,MapResult,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:49:27 2024年3月18日
+
+Return Code: #Event,Loadport2,MapResult,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:49:27 2024年3月18日
+
+Return Code: #Load,Loadport2,OK$
+-------------------------------
+
+下午 12:49:27 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:27 2024年3月18日
+
+Return Code: #Event,Loadport3,RobotMappingStart$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,Loadport3,RobotMappingEnd$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,Loadport3,MapResult,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport3,OK$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport3,OK$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetCurrentLPWaferSize,Loadport3,OK,6$
+-------------------------------
+
+下午 12:49:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetCurrentLPWaferSize,Loadport3,OK,6$
+-------------------------------
+
+下午 12:49:55 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:49:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:49:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:49:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:49:58 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:49:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:49:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:50:01 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:02 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:03 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:50:03 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Presence$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Presence$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:15 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:50:18 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:18 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:50:18 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:19 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:19 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:50:19 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #Event,Aligner1,Presence$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Absence$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Absence$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:50:26 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:27 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:27 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:50:31 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Send Cmd: SetAlignmentAngle,Aligner1,1800
+-------------------------------
+
+下午 12:50:32 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:33 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:33 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:50:33 2024年3月18日
+
+Send Cmd: Alignment,Aligner1
+-------------------------------
+
+下午 12:50:33 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:36 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:50:36 2024年3月18日
+
+Return Code: #GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0$
+-------------------------------
+
+下午 12:50:37 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:50:38 2024年3月18日
+
+Return Code: #Alignment,Aligner1,OK$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Presence$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Presence$#Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:44 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:50:46 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:46 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:46 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:50:47 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:47 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:50:47 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:53 2024年3月18日
+
+Return Code: #Event,Aligner1,Absence$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #Event,Robot,Presence,Presence$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Presence$
+-------------------------------
+
+下午 12:50:54 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:55 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:55 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:50:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:56 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:50:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:50:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:50:57 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Presence$
+-------------------------------
+
+下午 12:50:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,Aligner1,Presence$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,Robot,Presence,Absence$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:51:03 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:04 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:04 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Presence$
+-------------------------------
+
+下午 12:51:05 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:05 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:06 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Send Cmd: SetAlignmentAngle,Aligner1,1800
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:07 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:51:08 2024年3月18日
+
+Send Cmd: Alignment,Aligner1
+-------------------------------
+
+下午 12:51:08 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:10 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Presence$
+-------------------------------
+
+下午 12:51:13 2024年3月18日
+
+Return Code: #Alignment,Aligner1,OK$
+-------------------------------
+
+下午 12:51:18 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Absence$
+-------------------------------
+
+下午 12:51:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:18 2024年3月18日
+
+Return Code: #SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:51:19 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:51:20 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:51:20 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:55:06 2024年3月18日
+
+Server connected
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:09 2024年3月18日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:55:10 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:10 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:10 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:55:10 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:10 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:10 2024年3月18日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:55:11 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:12 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:12 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:55:12 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Clamp,Open$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:14 2024年3月18日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Clamp,Close$
+-------------------------------
+
+下午 12:55:16 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:55:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:55:47 2024年3月18日
+
+Return Code: #Home,EFEM,OK$
+-------------------------------
+
+下午 12:55:47 2024年3月18日
+
+Return Code: #Event,EFEM,RepairMode,On$
+-------------------------------
+
+下午 12:56:41 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:41 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:41 2024年3月18日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:56:41 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:41 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:41 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:42 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:56:43 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:45 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:45 2024年3月18日
+
+Return Code: #SetSpeed,Robot,OK$
+-------------------------------
+
+下午 12:56:46 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:46 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:46 2024年3月18日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:46 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:46 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:46 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SignalTower,EFEM,OK$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:56 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:57 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #GetStatus,EFEM,OK,1,1,1,1,1,1,1,1,1,1$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #ResetError,Loadport1,OK$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:58 2024年3月18日
+
+Return Code: #ResetError,Loadport2,OK$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#ResetError,Loadport3,OK$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #ResetError,Aligner1,OK$
+-------------------------------
+
+下午 12:56:59 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:57:00 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Loadport1,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:57:01 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:01 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:57:01 2024年3月18日
+
+Return Code: #GetStatus,Loadport2,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:57:01 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:01 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:57:01 2024年3月18日
+
+Return Code: #GetStatus,Loadport3,OK,Online,NoError,Presence,Unclamp,Close$
+-------------------------------
+
+下午 12:57:22 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:36 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0$
+-------------------------------
+
+下午 12:57:36 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:57:36 2024年3月18日
+
+Return Code: #Load,Loadport1,OK$
+-------------------------------
+
+下午 12:57:36 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:36 2024年3月18日
+
+Return Code: #Event,Loadport2,RobotMappingStart$
+-------------------------------
+
+下午 12:57:57 2024年3月18日
+
+Return Code: #Event,Loadport2,RobotMappingEnd$
+-------------------------------
+
+下午 12:57:57 2024年3月18日
+
+Return Code: #Event,Loadport2,MapResult,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$
+-------------------------------
+
+下午 12:57:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport2,OK$
+-------------------------------
+
+下午 12:57:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport2,OK$
+-------------------------------
+
+下午 12:57:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:57:57 2024年3月18日
+
+Return Code: #Event,Loadport3,RobotMappingStart$
+-------------------------------
+
+下午 12:58:17 2024年3月18日
+
+Return Code: #Event,Loadport3,RobotMappingEnd$
+-------------------------------
+
+下午 12:58:17 2024年3月18日
+
+Return Code: #Event,Loadport3,MapResult,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0$
+-------------------------------
+
+下午 12:58:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport3,OK$
+-------------------------------
+
+下午 12:58:17 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#Load,Loadport3,OK$
+-------------------------------
+
+下午 12:58:17 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #GetCurrentLPWaferSize,Loadport1,OK,6$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #GetCurrentLPWaferSize,Loadport2,OK,6$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:18 2024年3月18日
+
+Return Code: #GetCurrentLPWaferSize,Loadport3,OK,6$
+-------------------------------
+
+下午 12:58:22 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:22 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:22 2024年3月18日
+
+Return Code: #GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0$
+-------------------------------
+
+下午 12:58:23 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:24 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:58:24 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:24 2024年3月18日
+
+Return Code: #GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0$
+-------------------------------
+
+下午 12:58:24 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:25 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:25 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:58:25 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:37 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0$
+-------------------------------
+
+下午 12:58:37 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Presence$
+-------------------------------
+
+下午 12:58:37 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:58:37 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:58:38 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:38 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:38 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:58:38 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:39 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:58:39 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:39 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:39 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:58:40 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:46 2024年3月18日
+
+Return Code: #Event,Aligner1,Presence$
+-------------------------------
+
+下午 12:58:46 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Absence$
+-------------------------------
+
+下午 12:58:46 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:58:46 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:58:46 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:47 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:47 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:58:47 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:48 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:48 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:58:48 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:48 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:58:48 2024年3月18日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #GetMapResult,Loadport1,OK,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:58:49 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Send Cmd: SetAlignmentAngle,Aligner1,1800
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Send Cmd: Alignment,Aligner1
+-------------------------------
+
+下午 12:58:50 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:56 2024年3月18日
+
+Return Code: #Alignment,Aligner1,OK$
+-------------------------------
+
+下午 12:58:56 2024年3月18日
+
+Return Code: #Event,Loadport1,MapResult,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0$
+-------------------------------
+
+下午 12:58:56 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Presence$
+-------------------------------
+
+下午 12:58:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:58:56 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:58:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:57 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:57 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:58:57 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:58 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:58 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:58:58 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:58:59 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:58:59 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Absence$
+-------------------------------
+
+下午 12:58:59 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:05 2024年3月18日
+
+Return Code: #Event,Aligner1,Absence$
+-------------------------------
+
+下午 12:59:05 2024年3月18日
+
+Return Code: #Event,Robot,Presence,Presence$
+-------------------------------
+
+下午 12:59:05 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:59:05 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#SmartGet,Robot,OK$
+-------------------------------
+
+下午 12:59:05 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Presence$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:06 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:07 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Absence,False$
+-------------------------------
+
+下午 12:59:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:07 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:07 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Presence,Presence$
+-------------------------------
+
+下午 12:59:07 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:13 2024年3月18日
+
+Return Code: #Event,Aligner1,Presence$
+-------------------------------
+
+下午 12:59:13 2024年3月18日
+
+Return Code: #Event,Robot,Presence,Absence$
+-------------------------------
+
+下午 12:59:13 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:13 2024年3月18日
+
+Return Code: #SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:59:14 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:14 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:14 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:59:14 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:15 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:15 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Presence$
+-------------------------------
+
+下午 12:59:15 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:15 2024年3月18日
+
+Return Code: #GetStatus,Aligner1,OK,Online,Presence,False$
+-------------------------------
+
+下午 12:59:15 2024年3月18日
+
+Send Cmd: SetWaferMode,Aligner1,Nontransparent
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Return Code: #SetWaferMode,Aligner1,OK$
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Robot,OK,0315,Absence,Presence$
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$#GetStatus,Robot,OK,0315,Absence,Presence$
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Send Cmd: SetWaferSize,Aligner1,12
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Return Code: #SetWaferSize,Aligner1,OK$
+-------------------------------
+
+下午 12:59:16 2024年3月18日
+
+Send Cmd: SetWaferType,Aligner1,Notch
+-------------------------------
+
+下午 12:59:17 2024年3月18日
+
+Return Code: #SetWaferType,Aligner1,OK$
+-------------------------------
+
+下午 12:59:17 2024年3月18日
+
+Send Cmd: SetAlignmentAngle,Aligner1,1800
+-------------------------------
+
+下午 12:59:17 2024年3月18日
+
+Return Code: #SetAlignmentAngle,Aligner1,OK$
+-------------------------------
+
+下午 12:59:17 2024年3月18日
+
+Send Cmd: Alignment,Aligner1
+-------------------------------
+
+下午 12:59:23 2024年3月18日
+
+Return Code: #Alignment,Aligner1,OK$
+-------------------------------
+
+下午 12:59:24 2024年3月18日
+
+Return Code: #Event,Robot,Absence,Absence$
+-------------------------------
+
+下午 12:59:24 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:24 2024年3月18日
+
+Return Code: #SmartPut,Robot,OK$
+-------------------------------
+
+下午 12:59:25 2024年3月18日
+
+Return Code: #Event,EFEM,Run$
+-------------------------------
+
+下午 12:59:25 2024年3月18日
+
+Return Code: #Event,EFEM,Idle$
+-------------------------------
+
+下午 12:59:25 2024年3月18日
+
+Return Code: #GetStatus,Robot,OK,0315,Absence,Absence$
+-------------------------------

@@ -47,7 +47,7 @@ namespace Wafer_System.BaslerMutiCam
 
 
         // Update the list of connected cameras.
-        public void UpdateDeviceList()
+        public bool UpdateDeviceList()
         {
             try
             {
@@ -69,6 +69,7 @@ namespace Wafer_System.BaslerMutiCam
                         openSelectedButton1.Enabled = !settingsPanel1.GetGuiCamera().IsCreated;
                         openSelectedButton2.Enabled = !settingsPanel2.GetGuiCamera().IsCreated;
                     }));
+                    return true;
                 }
                 else
                 {
@@ -80,11 +81,13 @@ namespace Wafer_System.BaslerMutiCam
                         openSelectedButton1.Enabled = false;
                         openSelectedButton2.Enabled = false;
                     }));
+                    return false;
                 }
             }
             catch (Exception exception)
             {
                 Helper.ShowException(exception);
+                return false;
             }
         }
 
