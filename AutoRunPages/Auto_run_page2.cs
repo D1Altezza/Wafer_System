@@ -975,6 +975,14 @@ namespace Wafer_System
                         {
                             MessageBox.Show("UAputTN fail");
                         }
+                        //Step22 TNRUN
+                        main.d_Param.D300 = 22;
+                        if (main.d_Param.D111 != 1 || main.d_Param.D127 != 0 || main.d_Param.D128 != 0)
+                        {
+                            TNRUN(autorun_Prarm.wafer_Size);
+                        }
+
+
                         return true;
                     }
                 }
@@ -991,6 +999,58 @@ namespace Wafer_System
                 return false;
             }
 
+        }
+
+        private bool TNRUN(Wafer_Size wafer_Size)
+        {
+            main.d_Param.D133 = 1;
+            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
+            {
+                MessageBox.Show("E059");
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            main.cML.Origin();
+            //IN5---->pass
+            if (!main.pass && !main.Wait_IO_Check(0, 0, 5, 1, 300000))
+            {
+                MessageBox.Show("E174\r\n" + "Z_ULS OFF\r\n", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+                return false;
+            }
+            main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("Xg") + "," + configWR.ReadSettings("Yg") + ",100");
+            //進行雷射頭補償
+            //包含: 上、下雷射頭原點補償，及厚度補償
+            if (LaserReset())
+            {
+
+            }
+
+
+
+            
+            switch (wafer_Size)
+            {
+                case Wafer_Size.eight:
+                    main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("X_8") + "," + configWR.ReadSettings("Y_8") + ",100");
+                    break;
+                case Wafer_Size.tweleve:
+                    main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("X_12") + "," + configWR.ReadSettings("Y_12") + ",100");
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
+
+        private bool LaserReset()
+        {
+           return true;
         }
 
         private bool DMRUN(int wafer_size)

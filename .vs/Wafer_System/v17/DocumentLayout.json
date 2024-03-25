@@ -3,36 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\autorunpages\\auto_run_page2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\autorunpages\\auto_run_page2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\maintain_forms\\keyence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:maintain_forms\\keyence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\maintain_forms\\keyence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:maintain_forms\\keyence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\efem_paser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:efem_paser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\App.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:App.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\CML.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:Maintain_Forms\\CML.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\Main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:Main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\maintain_forms\\efem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:maintain_forms\\efem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\maintain_forms\\cml.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:maintain_forms\\cml.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\EFEM.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:Maintain_Forms\\EFEM.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
@@ -59,28 +55,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CML.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\CML.cs",
-              "RelativeDocumentMoniker": "Maintain_Forms\\CML.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\CML.cs",
-              "RelativeToolTip": "Maintain_Forms\\CML.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "Keyence.cs [\u8A2D\u8A08]",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\Keyence.cs",
+              "RelativeDocumentMoniker": "Maintain_Forms\\Keyence.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\Keyence.cs [\u8A2D\u8A08]*",
+              "RelativeToolTip": "Maintain_Forms\\Keyence.cs [\u8A2D\u8A08]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:16:51.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-25T04:05:08.647Z",
+              "EditorCaption": " [\u8A2D\u8A08]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Main.cs",
-              "RelativeDocumentMoniker": "Main.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Main.cs",
-              "RelativeToolTip": "Main.cs",
-              "ViewState": "AQIAANQCAAAAAAAAAADwv90CAAAPAAAA",
+              "Title": "Keyence.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\Keyence.cs",
+              "RelativeDocumentMoniker": "Maintain_Forms\\Keyence.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\Keyence.cs*",
+              "RelativeToolTip": "Maintain_Forms\\Keyence.cs*",
+              "ViewState": "AQIAAKcCAAAAAAAAAAArwMICAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T03:22:25.653Z",
+              "WhenOpened": "2024-03-25T04:05:05.611Z",
               "EditorCaption": ""
             },
             {
@@ -100,43 +95,27 @@
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Auto_run_page1.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page1.cs",
-              "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page1.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page1.cs",
-              "RelativeToolTip": "AutoRunPages\\Auto_run_page1.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAAAgwIgAAAANAAAA",
+              "DocumentIndex": 5,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Main.cs",
+              "RelativeToolTip": "Main.cs",
+              "ViewState": "AQIAAPICAAAAAAAAAAAtwBEDAAB/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T14:55:59.147Z",
+              "WhenOpened": "2024-03-18T03:22:25.653Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Auto_run_page1.cs [\u8A2D\u8A08]",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page1.cs",
-              "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page1.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page1.cs [\u8A2D\u8A08]",
-              "RelativeToolTip": "AutoRunPages\\Auto_run_page1.cs [\u8A2D\u8A08]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T14:55:57.039Z",
-              "EditorCaption": " [\u8A2D\u8A08]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\App.config",
               "RelativeDocumentMoniker": "App.config",
               "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\App.config",
               "RelativeToolTip": "App.config",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABEAAAABAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACoAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-03-15T10:36:06.098Z",
               "EditorCaption": ""
@@ -149,43 +128,22 @@
               "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page2.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page2.cs",
               "RelativeToolTip": "AutoRunPages\\Auto_run_page2.cs",
-              "ViewState": "AQIAAMgDAAAAAAAAAAAAANcDAAAsAAAA",
+              "ViewState": "AQIAAAkEAAAAAAAAAAAiwBsEAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-15T07:08:35.684Z",
               "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "12f9139a-f3c3-4381-a73f-09ef1d50fd11",
-        "Display": 0,
-        "X": 955,
-        "Y": 0,
-        "Width": 970,
-        "Height": 1085,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EFEM_Paser.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\EFEM_Paser.cs",
-              "RelativeDocumentMoniker": "EFEM_Paser.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\EFEM_Paser.cs",
-              "RelativeToolTip": "EFEM_Paser.cs",
-              "ViewState": "AQIAAI4BAAAAAAAAAAAYwJgBAAAPAAAA",
+              "DocumentIndex": 4,
+              "Title": "CML.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\CML.cs",
+              "RelativeDocumentMoniker": "Maintain_Forms\\CML.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\CML.cs",
+              "RelativeToolTip": "Maintain_Forms\\CML.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T07:09:58.982Z",
+              "WhenOpened": "2024-03-18T09:16:51.644Z",
               "EditorCaption": ""
             }
           ]

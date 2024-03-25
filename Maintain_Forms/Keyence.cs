@@ -688,6 +688,10 @@ namespace CL3_IF_DllSample
 
         private void _buttonAutoZeroMulti_Click(object sender, EventArgs e)
         {
+            AutoZeroMulti();
+        }
+        public bool AutoZeroMulti() 
+        {
             CL3IF_OUTNO outNo = 0;
             outNo |= _checkBoxAutoZeroMultiOutNo1.Checked ? CL3IF_OUTNO.CL3IF_OUTNO_01 : (CL3IF_OUTNO)0;
             outNo |= _checkBoxAutoZeroMultiOutNo2.Checked ? CL3IF_OUTNO.CL3IF_OUTNO_02 : (CL3IF_OUTNO)0;
@@ -700,6 +704,8 @@ namespace CL3_IF_DllSample
             int returnCode = NativeMethods.CL3IF_AutoZeroMulti(CurrentDeviceId, outNo, _comboBoxAutoZeroMultiOnOff.SelectedIndex == 0);
 
             OutputLogMessage("AutoZeroMulti", returnCode);
+            //CL3IF_RC_OK
+            return true;
         }
 
         private void _buttonAutoZeroGroup_Click(object sender, EventArgs e)
