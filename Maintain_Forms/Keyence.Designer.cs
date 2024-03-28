@@ -3377,7 +3377,7 @@
             this._textBoxThirdSegment.Name = "_textBoxThirdSegment";
             this._textBoxThirdSegment.Size = new System.Drawing.Size(28, 22);
             this._textBoxThirdSegment.TabIndex = 4;
-            this._textBoxThirdSegment.Text = "1";
+            this._textBoxThirdSegment.Text = "2";
             this._textBoxThirdSegment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // _textBoxSecondSegment

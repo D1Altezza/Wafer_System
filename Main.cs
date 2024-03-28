@@ -438,6 +438,9 @@ namespace Wafer_System
             //IO MPS Red Light ON out7
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Stop_LG_C3"; }));
             aCS_Motion._ACS.SetOutput(1, 7, 1);
+            // laser off
+            aCS_Motion._ACS.SetOutput(1, 8, 1);
+            aCS_Motion._ACS.SetOutput(1, 8, 1);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "SignalTower,EFEM,ALL,OFF"; }));
@@ -737,7 +740,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
             //IN5---->pass
-            if (!pass && !Wait_IO_Check(0, 0, 5, 1, IO_timeout))
+            if (!pass && !Wait_IO_Check(0, 0, 5, 1, TimeSpan.FromMinutes(3)))
             {
                 MessageBox.Show("E165\r\n" + "Z_ULS OFF\r\n", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
@@ -986,7 +989,7 @@ namespace Wafer_System
                 var IN10 = aCS_Motion._ACS.GetInput(1, 10);
                 aCS_Motion._ACS.SetOutput(1, 5, 1);
                 var OUT5 = aCS_Motion._ACS.GetOutput(1, 5);
-                var a_in_load_pos = (aCS_Motion.m_A_lfFPos == Convert.ToDouble(configWR.ReadSettings("AL")));
+                var a_in_load_pos = ((Convert.ToDouble(aCS_Motion.m_A_lfFPos) - Convert.ToDouble(configWR.ReadSettings("AL")) < 2));
                 if (IN10 == 1 && OUT5 == 1)
                 {
                     switch (IN8)
@@ -1065,20 +1068,20 @@ namespace Wafer_System
             {
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "XN1_ON ON..."; }));
                 //OUT8
-                aCS_Motion._ACS.SetOutput(1, 8, 1);
-
+                aCS_Motion._ACS.SetOutput(1, 8, 0);
+                Thread.Sleep(1000);
                 var OUT8 = aCS_Motion._ACS.GetOutput(1, 8);
                 var IN0 = aCS_Motion._ACS.GetInput(0, 0);
                 var IN1 = aCS_Motion._ACS.GetInput(1, 1);
                 var IN2 = aCS_Motion._ACS.GetInput(0, 2);
                 var IN6 = aCS_Motion._ACS.GetInput(1, 6);
-                var xy_in_load_pos = (Math.Round(aCS_Motion.m_X_lfFPos, 1) == Convert.ToDouble(configWR.ReadSettings("XL")) &&
-                    Math.Round(aCS_Motion.m_Y_lfFPos, 1) == Convert.ToDouble(configWR.ReadSettings("YL")));
+                var xy_in_load_pos = (Math.Round(aCS_Motion.m_X_lfFPos, 1) - Convert.ToDouble(configWR.ReadSettings("XL"))<2 &&
+                    Math.Round(aCS_Motion.m_Y_lfFPos, 1) - Convert.ToDouble(configWR.ReadSettings("YL"))<2);
                 cML.Query("?96");
-                Wait_Cm1_Received_Update();
+                Wait_Cm1_Received_Update();                            
                 //當前位置回傳格式未檢查----待修正                
                 var z_in_load_pos = (cML.recData == "Px.1=" + configWR.ReadSettings("ZL"));
-                if (OUT8 == 1 && IN0 == 1 && IN1 == 1 && xy_in_load_pos)
+                if (OUT8 == 0 && IN0 == 1 && IN1 == 1 && xy_in_load_pos)
                 {
                     switch (IN6)
                     {
@@ -1767,9 +1770,9 @@ namespace Wafer_System
                         }
                         break;
                 }
-               
+
             });
-            
+
             if (!t.Wait(timeout))
             {
                 MessageBox.Show("Timeout", "IO MPS");

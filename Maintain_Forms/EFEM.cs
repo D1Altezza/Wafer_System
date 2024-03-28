@@ -35,19 +35,19 @@ namespace Wafer_System
 
         private void EFEM_Load(object sender, EventArgs e)
         {
-            //if (!string.IsNullOrEmpty(configWR.ReadSettings("EFEM_IP")) && !string.IsNullOrEmpty(configWR.ReadSettings("EFEM_Port")))
-            //{
-            //    client = new SimpleTcpClient(configWR.ReadSettings("EFEM_IP") + ":" + configWR.ReadSettings("EFEM_Port"));
-            //    client.Events.Connected += Events_Connected;
-            //    client.Events.DataReceived += Events_DataReceived;
-            //    client.Events.Disconnected += Events_Disconnected;
+            if (!string.IsNullOrEmpty(configWR.ReadSettings("EFEM_IP")) && !string.IsNullOrEmpty(configWR.ReadSettings("EFEM_Port")))
+            {
+                client = new SimpleTcpClient(configWR.ReadSettings("EFEM_IP") + ":" + configWR.ReadSettings("EFEM_Port"));
+                client.Events.Connected += Events_Connected;
+                client.Events.DataReceived += Events_DataReceived;
+                client.Events.Disconnected += Events_Disconnected;
 
-            //}
-            //else
-            //{
-            //    logRW.WriteLog("EFEM " + "Disconnected", "System");
-            //    //MessageBox.Show("Disconnected");
-            //}
+            }
+            else
+            {
+                logRW.WriteLog("EFEM " + "Disconnected", "System");
+                //MessageBox.Show("Disconnected");
+            }
             _Paser = new EFEM_Paser();
         }
         public bool Connect()

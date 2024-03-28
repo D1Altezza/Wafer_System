@@ -677,7 +677,7 @@ namespace Wafer_System
         public string[] cassett1_status = new string[25];
         public string[] cassett2_status = new string[25];
         public string[] cassett3_status = new string[25];
-        Task an_run, dm_run;
+        Task<bool> an_run, dm_run, tn_run;
         private bool Auto_run()
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check D400=0..."; }));
@@ -951,9 +951,18 @@ namespace Wafer_System
                         {
                             MessageBox.Show("Step22 fail");
                         }
-                        Task.Run(() =>
+                        //Task.Run(() =>
+                        //{
+                        //    TNRUN(autorun_Prarm.wafer_Size);
+                        //});
+                        tn_run = Task<bool>.Run(() =>
                         {
-                            TNRUN(autorun_Prarm.wafer_Size);
+                            if (!TNRUN(autorun_Prarm.wafer_Size))
+                            {
+                                MessageBox.Show("TNRUN Fail", "Error");
+                                return Task.FromResult(false);
+                            }
+                            return Task.FromResult(true);
                         });
                         //Step23
                         main.d_Param.D300 = 23;
@@ -1056,16 +1065,26 @@ namespace Wafer_System
                         });
                         //Step30
                         main.d_Param.D300 = 30;
-                        if (!CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(2)) ||
-                            !CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(2)) ||
-                            !CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(2)))
+                        if (!CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(3)) ||
+                            !CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(3)) ||
+                            !CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(3)))
                         {
                             MessageBox.Show("Step30 fail");
+                            return false;
                         }
 
+                        //if (!CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(3)) ||
+                        //    !CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(3)) ||
+                        //    !CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(3)))
+                        //{
+                        //    MessageBox.Show("TNRUN fail");
+                        //    return false;
+                        //}
 
-
-
+                        if (!LAgetTN())
+                        {
+                            MessageBox.Show("LAgetTN fail");
+                        }
                         return true;
                     }
                 }
@@ -1087,13 +1106,13 @@ namespace Wafer_System
         private bool TNRUN(Wafer_Size wafer_Size)
         {
             main.d_Param.D133 = 1;
-            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+
             if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
             {
                 MessageBox.Show("E059");
             }
             main.aCS_Motion._ACS.SetOutput(1, 8, 1);
-            main.cML.Origin();
+            main.cML.pin_Down();
             //IN5---->pass
             if (!main.pass && !main.Wait_IO_Check(0, 0, 5, 1, TimeSpan.FromMinutes(2)))
             {
@@ -1106,9 +1125,10 @@ namespace Wafer_System
                 return false;
             }
             main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("Xg") + "," + configWR.ReadSettings("Yg") + ",100");
-            Thread.Sleep(1000);
+
             main.wait_axis_Inp("x", 100000);
             main.wait_axis_Inp("y", 100000);
+            Thread.Sleep(TimeSpan.FromSeconds(5));
             //進行雷射頭補償
             //包含: 上、下雷射頭原點補償，及厚度補償???怎麼補??
 
@@ -1116,7 +1136,7 @@ namespace Wafer_System
             {
                 MessageBox.Show("CL reset zero fail");
             }
-
+            Thread.Sleep(1000);
             switch (wafer_Size)
             {
                 case Wafer_Size.eight:
@@ -1125,7 +1145,13 @@ namespace Wafer_System
                     main.wait_axis_Inp("x", 100000);
                     main.wait_axis_Inp("y", 100000);
                     //執行8吋量測路徑
+                    main.measure_end_flag[0] = false;
                     main.aCS_Motion._ACS.Command("#" + configWR.ReadSettings("Mprog_8") + "X");
+                    if (!CheckCondition(ref main.measure_end_flag[0], true, TimeSpan.FromMinutes(10)))
+                    {
+                        MessageBox.Show("Measure TimeOut");
+                        return false;
+                    }
                     break;
                 case Wafer_Size.tweleve:
                     main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("X_12") + "," + configWR.ReadSettings("Y_12") + ",100");
@@ -1133,7 +1159,13 @@ namespace Wafer_System
                     main.wait_axis_Inp("x", 100000);
                     main.wait_axis_Inp("y", 100000);
                     //執行12吋量測路徑
+                    main.measure_end_flag[1] = false;
                     main.aCS_Motion._ACS.Command("#" + configWR.ReadSettings("Mprog_12") + "X");
+                    if (!CheckCondition(ref main.measure_end_flag[1], true, TimeSpan.FromMinutes(10)))
+                    {
+                        MessageBox.Show("Measure TimeOut");
+                        return false;
+                    }
                     break;
                 case Wafer_Size.unknow:
                     break;
@@ -1142,15 +1174,15 @@ namespace Wafer_System
             }
             //執行量測路徑
             //還沒抓雷射值
-            main.measure_end_flag[0] = false;
-            main.measure_end_flag[1] = false;
 
-            if (CheckCondition(ref main.measure_end_flag[0], true, TimeSpan.FromMinutes(2)) ||
-                    CheckCondition(ref main.measure_end_flag[1], true, TimeSpan.FromMinutes(2)))
-            {
-                MessageBox.Show("Measure TimeOut");
-                return false;
-            }
+
+
+            //if (CheckCondition(ref main.measure_end_flag[0], true, TimeSpan.FromMinutes(5)) ||
+            //        CheckCondition(ref main.measure_end_flag[1], true, TimeSpan.FromMinutes(5)))
+            //{
+            //    MessageBox.Show("Measure TimeOut");
+            //    return false;
+            //}
             //量測完成 計算.......
 
 
@@ -1158,7 +1190,7 @@ namespace Wafer_System
             //判斷好壞...........
             //假設是好的
             main.d_Param.D201 = 0;
-
+            main.d_Param.D133 = 0;
             return true;
         }
 
@@ -1329,8 +1361,8 @@ namespace Wafer_System
                 c = 0;
             });
             main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
+            Thread.Sleep(3000);
             main.wait_axis_Inp("a", 120000);
-
 
             //影像處理計算分級寫入資料庫
 
@@ -1692,6 +1724,7 @@ namespace Wafer_System
             }
             else
             {
+                Array.Clear(cassett1_status, 0, cassett1_status.Length);
                 if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
                 {
                     MessageBox.Show("Cassette Mapping Fail", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1735,7 +1768,7 @@ namespace Wafer_System
                             {
                                 main.d_Param.D122 = 0;
                                 //取片完位置狀態更改
-                                cassett1_status[get_index] = "Absence";
+                                //cassett1_status[get_index] = "Absence";
                                 return true;
                             }
                         }
@@ -1948,7 +1981,6 @@ namespace Wafer_System
                 MessageBox.Show("E018");
                 return false;
             }
-            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
             if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 0)
             {
                 MessageBox.Show("E058");
@@ -1981,7 +2013,7 @@ namespace Wafer_System
                 return false;
             }
             main.aCS_Motion._ACS.SetOutput(1, 2, 0);
-            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+
             Thread.Sleep(500);
             if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
             {
@@ -2024,9 +2056,9 @@ namespace Wafer_System
             }
 
             //XY not in load pos
-            if (!main.Wait_IO_Check(0, 0, 0, 1, TimeSpan.FromMinutes(2)) ||
-                !main.Wait_IO_Check(0, 0, 1, 1, TimeSpan.FromMinutes(2)) ||
-                !main.Wait_IO_Check(0, 0, 2, 1, TimeSpan.FromMinutes(2)) ||
+            if (!main.Wait_IO_Check(0, 0, 0, 1, TimeSpan.FromSeconds(3)) ||
+                !main.Wait_IO_Check(0, 0, 1, 1, TimeSpan.FromSeconds(3)) ||
+                main.aCS_Motion._ACS.GetInput(0, 2) != 1 ||
                 !x_in_loadpos ||
                 !y_in_loadpos ||
                 !z_in_load_pos)
@@ -2034,7 +2066,7 @@ namespace Wafer_System
                 if (!z_in_org_pos)
                 {
                     //Z軸歸Home
-                    main.cML.Origin();
+                    main.cML.pin_Down();
                     this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
                     this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
@@ -2046,7 +2078,8 @@ namespace Wafer_System
                     }
                 }
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
-                if (!main.Wait_IO_Check(0, 1, 2, 1, TimeSpan.FromMinutes(2)))
+
+                if (main.aCS_Motion._ACS.GetInput(1, 2) != 1)
                 {
                     MessageBox.Show("EFEMOUT3 OFF\r\n", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -2088,7 +2121,7 @@ namespace Wafer_System
             //C_CL1_C4
             main.aCS_Motion._ACS.SetOutput(1, 10, 1);
             //C_CLS1
-            main.Wait_IO_Check(0, 1, 13, 1, TimeSpan.FromSeconds(1));
+            main.Wait_IO_Check(0, 1, 13, 1, TimeSpan.FromSeconds(10));
             //C_CL_C0
             main.aCS_Motion._ACS.SetOutput(1, 4, 1);
             //C_CLS
@@ -2101,6 +2134,94 @@ namespace Wafer_System
             main.aCS_Motion._ACS.SetOutput(1, 10, 0);
             //C_ UCLS 1
             main.Wait_IO_Check(0, 1, 14, 1, TimeSpan.FromSeconds(1));
+
+
+
+            if (main.aCS_Motion._ACS.GetInput(1, 9) == 1 &&
+                 main.aCS_Motion._ACS.GetInput(1, 5) == 0 &&
+                   main.aCS_Motion._ACS.GetOutput(1, 4) == 0)
+            {
+                main.d_Param.D111 = 2;
+                MessageBox.Show("E018");
+                return false;
+            }
+
+
+            //if (!main.Wait_IO_Check(1, 1, 4, 0, TimeSpan.FromSeconds(3)) &&
+            //    !main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(3)) &&
+            //    !main.Wait_IO_Check(0, 1, 5, 0, TimeSpan.FromSeconds(3)))
+            //{
+            //    main.d_Param.D111 = 2;
+            //    MessageBox.Show("E018");
+            //    return false;
+            //}
+
+
+
+            if (main.aCS_Motion._ACS.GetInput(1, 9) == 1 &&
+                  main.aCS_Motion._ACS.GetInput(1, 14) == 0 &&
+                    main.aCS_Motion._ACS.GetOutput(1, 10) == 0)
+            {
+                main.d_Param.D111 = 2;
+                MessageBox.Show("E018");
+                return false;
+            }
+            //if (main.Wait_IO_Check(1, 1, 10, 0, TimeSpan.FromSeconds(3)) &&
+            //   main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(3)) &&
+            //   main.Wait_IO_Check(0, 1, 14, 0, TimeSpan.FromSeconds(3)))
+            //{
+            //    main.d_Param.D111 = 2;
+            //    MessageBox.Show("E018");
+            //    return false;
+            //}
+            if (!main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(3)))
+            {
+                main.d_Param.D111 = 2;
+                MessageBox.Show("E007");
+                return false;
+            }
+
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
+            {
+                MessageBox.Show("TNWAFER fail");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            if (main.d_Param.D101 != 0)
+            {
+                MessageBox.Show("E032");
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 2, 1);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartGet,Robot..."; }));
+
+
+            main.eFEM._Paser._SmartGet_Robot.arm = _RobotArm.LowArm;
+            main.eFEM._Paser._SmartGet_Robot.dest = _RobotDest.Stage3;
+            main.eFEM._Paser._SmartGet_Robot.Slot = "1";
+            if (!main.eFEM._Paser._SmartGet_Robot.Send_Cmd(main.eFEM.client))
+            {
+                MessageBox.Show("SmartGet,Robot$\r\n" + main.eFEM._Paser._SmartGet_Robot.Cmd_Error +
+                    "\r\n" + main.eFEM._Paser._SmartGet_Robot.ErrorCode, "LAgetAN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            main.d_Param.D111 = 0;
+            main.d_Param.D101 = 1;
+            main.Wait_IO_Check(0, 1, 2, 1, TimeSpan.FromSeconds(3));
+            main.aCS_Motion._ACS.SetOutput(1, 2, 0);
+
+
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 0)
+            {
+                MessageBox.Show("TNWAFER fail");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            if (main.d_Param.D101 != 1)
+            {
+                MessageBox.Show("E054");
+            }
+            main.d_Param.D128 = 0;
             return true;
         }
 
@@ -2532,6 +2653,7 @@ namespace Wafer_System
             }
             return false;
         }
+
         public bool CheckCondition(ref bool value, bool tg, TimeSpan timeout)
         {
             DateTime startTime = DateTime.Now;
