@@ -438,6 +438,9 @@ namespace Wafer_System
             //IO MPS Red Light ON out7
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Stop_LG_C3"; }));
             aCS_Motion._ACS.SetOutput(1, 7, 1);
+            // laser off
+            aCS_Motion._ACS.SetOutput(1, 8, 1);
+            aCS_Motion._ACS.SetOutput(1, 8, 1);
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "SignalTower,EFEM,ALL,OFF"; }));

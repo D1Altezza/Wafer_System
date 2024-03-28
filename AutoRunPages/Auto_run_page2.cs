@@ -677,7 +677,7 @@ namespace Wafer_System
         public string[] cassett1_status = new string[25];
         public string[] cassett2_status = new string[25];
         public string[] cassett3_status = new string[25];
-        Task an_run, dm_run;
+        Task<bool> an_run, dm_run,tn_run;
         private bool Auto_run()
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check D400=0..."; }));
@@ -951,9 +951,18 @@ namespace Wafer_System
                         {
                             MessageBox.Show("Step22 fail");
                         }
-                        Task.Run(() =>
+                        //Task.Run(() =>
+                        //{
+                        //    TNRUN(autorun_Prarm.wafer_Size);
+                        //});
+                        tn_run = Task<bool>.Run(() =>
                         {
-                            TNRUN(autorun_Prarm.wafer_Size);
+                            if (!TNRUN(autorun_Prarm.wafer_Size))
+                            {
+                                MessageBox.Show("TNRUN Fail", "Error");
+                                return Task.FromResult(false);
+                            }
+                            return Task.FromResult(true);
                         });
                         //Step23
                         main.d_Param.D300 = 23;
@@ -1008,7 +1017,7 @@ namespace Wafer_System
                             }
                             return Task.FromResult(true);
                         });
-
+                        
                         //Step27
                         main.d_Param.D300 = 27;
                         if (!CheckCondition(ref main.d_Param.D132, 0, TimeSpan.FromMinutes(2)) ||
@@ -1061,11 +1070,21 @@ namespace Wafer_System
                             !CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(2)))
                         {
                             MessageBox.Show("Step30 fail");
+                            return false;
                         }
 
+                        if (!CheckCondition(ref main.d_Param.D133,0,TimeSpan.FromMinutes(2))||
+                            !CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(2))||
+                            !CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(2)))
+                        {
+                            MessageBox.Show("TNRUN fail");
+                            return false;
+                        }
 
-
-
+                        if (!LAgetTN())
+                        {
+                            MessageBox.Show("LAgetTN fail");
+                        }
                         return true;
                     }
                 }
@@ -1692,6 +1711,7 @@ namespace Wafer_System
             }
             else
             {
+                Array.Clear(cassett1_status, 0, cassett1_status.Length);
                 if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
                 {
                     MessageBox.Show("Cassette Mapping Fail", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1735,7 +1755,7 @@ namespace Wafer_System
                             {
                                 main.d_Param.D122 = 0;
                                 //取片完位置狀態更改
-                                cassett1_status[get_index] = "Absence";
+                                //cassett1_status[get_index] = "Absence";
                                 return true;
                             }
                         }
@@ -2101,6 +2121,71 @@ namespace Wafer_System
             main.aCS_Motion._ACS.SetOutput(1, 10, 0);
             //C_ UCLS 1
             main.Wait_IO_Check(0, 1, 14, 1, TimeSpan.FromSeconds(1));
+
+            if (!main.Wait_IO_Check(0, 1, 4, 0, TimeSpan.FromSeconds(3)) ||
+                !main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(3)) ||
+                !main.Wait_IO_Check(0, 1, 5, 0, TimeSpan.FromSeconds(3)))
+            {
+                main.d_Param.D111 = 2;
+                MessageBox.Show("E018");
+                return false;
+            }
+            if (main.Wait_IO_Check(0, 1, 10, 0, TimeSpan.FromSeconds(3)) &&
+               main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(3)) &&
+               main.Wait_IO_Check(0, 1, 14, 0, TimeSpan.FromSeconds(3)))
+            {
+                main.d_Param.D111 = 2;
+                MessageBox.Show("E018");
+                return false;
+            }
+            if (main.Wait_IO_Check(0, 1, 9, 0, TimeSpan.FromSeconds(3)))
+            {
+                main.d_Param.D111 = 2;
+                MessageBox.Show("E007");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
+            {
+                MessageBox.Show("TNWAFER fail");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            if (main.d_Param.D101 != 0)
+            {
+                MessageBox.Show("E032");
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 2, 1);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartGet,Robot..."; }));
+
+
+            main.eFEM._Paser._SmartGet_Robot.arm = _RobotArm.LowArm;
+            main.eFEM._Paser._SmartGet_Robot.dest = _RobotDest.Stage3;
+            main.eFEM._Paser._SmartGet_Robot.Slot = "1";
+            if (!main.eFEM._Paser._SmartGet_Robot.Send_Cmd(main.eFEM.client))
+            {
+                MessageBox.Show("SmartGet,Robot$\r\n" + main.eFEM._Paser._SmartGet_Robot.Cmd_Error +
+                    "\r\n" + main.eFEM._Paser._SmartGet_Robot.ErrorCode, "LAgetAN Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            main.d_Param.D111 = 0;
+            main.d_Param.D101 = 1;
+            main.Wait_IO_Check(0, 1, 2, 1, TimeSpan.FromSeconds(3));
+            main.aCS_Motion._ACS.SetOutput(1, 2, 0);
+
+            main.aCS_Motion._ACS.SetOutput(1, 8, 0);
+            if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 0)
+            {
+                MessageBox.Show("TNWAFER fail");
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 8, 1);
+            if (main.d_Param.D101 != 0)
+            {
+                MessageBox.Show("E054");
+            }
+            main.d_Param.D128= 0;
             return true;
         }
 
