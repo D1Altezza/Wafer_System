@@ -94,9 +94,9 @@ namespace Wafer_System
         bool cm1_Received_Update = false;
         bool PROGRAMEND_Status_Update = false;
         public int efem_timeout = 100000;
-        public int IO_timeout = 3000;
+        public TimeSpan IO_timeout = TimeSpan.FromSeconds(3);
         bool[] home_end_flag = new bool[] { false, false, false };
-
+        public bool[] measure_end_flag = new bool[] { false, false };
 
         public Main()
         {
@@ -737,7 +737,7 @@ namespace Wafer_System
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
             //IN5---->pass
-            if (!pass && !Wait_IO_Check(0, 0, 5, 1, 300000))
+            if (!pass && !Wait_IO_Check(0, 0, 5, 1, IO_timeout))
             {
                 MessageBox.Show("E165\r\n" + "Z_ULS OFF\r\n", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
@@ -797,7 +797,7 @@ namespace Wafer_System
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check X_LS..."; }));
-            if (!Wait_IO_Check(0, 0, 0, 1, 10000))
+            if (!Wait_IO_Check(0, 0, 0, 1, IO_timeout))
             {
                 MessageBox.Show("X_LS IN0 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
@@ -808,7 +808,7 @@ namespace Wafer_System
                 return false;
             }
 
-            if (!Wait_IO_Check(0, 0, 1, 1, 10000))
+            if (!Wait_IO_Check(0, 0, 1, 1, IO_timeout))
             {
                 MessageBox.Show("Y_LS IN1 not on", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
@@ -1691,33 +1691,14 @@ namespace Wafer_System
                 home_end_flag[1] = true;
             if (end_bufferNo == 3)
                 home_end_flag[2] = true;
+            if (end_bufferNo == Convert.ToInt32(configWR.ReadSettings("Mprog_8")))
+                measure_end_flag[0] = true;
+            if (end_bufferNo == Convert.ToInt32(configWR.ReadSettings("Mprog_12")))
+                measure_end_flag[1] = true;
+            //measure_end_flag
             PROGRAMEND_Status_Update = true;
         }
 
-        private void Wait_Buffer_End(string msg, int timeout, int buffer)
-        {
-            var t = Task.Run(() =>
-            {
-                while (!PROGRAMEND_Status_Update && end_bufferNo == buffer)
-                {
-                    Thread.Sleep(5);
-                }
-                if (buffer == 0)
-                    home_end_flag[0] = true;
-                if (buffer == 1)
-                    home_end_flag[1] = true;
-                if (buffer == 2)
-                    home_end_flag[2] = true;
-                PROGRAMEND_Status_Update = false;
-
-            });
-            if (!t.Wait(timeout))
-            {
-                MessageBox.Show("Timeout", "PROGRAMEND");
-                PROGRAMEND_Status_Update = false;
-                return;
-            }
-        }
 
         private void Wait_XYA_Home_End(string msg, int timeout)
         {
@@ -1767,7 +1748,7 @@ namespace Wafer_System
         /// <param name="value"> Target value</param>
         /// <param name="timeout">Time Out</param>
         /// <returns></returns>
-        public bool Wait_IO_Check(int mode, int port, int bit, int value, int timeout)
+        public bool Wait_IO_Check(int mode, int port, int bit, int value, TimeSpan timeout)
         {
             var t = Task.Run(() =>
             {
@@ -1786,8 +1767,9 @@ namespace Wafer_System
                         }
                         break;
                 }
-
+               
             });
+            
             if (!t.Wait(timeout))
             {
                 MessageBox.Show("Timeout", "IO MPS");

@@ -688,10 +688,6 @@ namespace CL3_IF_DllSample
 
         private void _buttonAutoZeroMulti_Click(object sender, EventArgs e)
         {
-            AutoZeroMulti();
-        }
-        public bool AutoZeroMulti() 
-        {
             CL3IF_OUTNO outNo = 0;
             outNo |= _checkBoxAutoZeroMultiOutNo1.Checked ? CL3IF_OUTNO.CL3IF_OUTNO_01 : (CL3IF_OUTNO)0;
             outNo |= _checkBoxAutoZeroMultiOutNo2.Checked ? CL3IF_OUTNO.CL3IF_OUTNO_02 : (CL3IF_OUTNO)0;
@@ -704,10 +700,25 @@ namespace CL3_IF_DllSample
             int returnCode = NativeMethods.CL3IF_AutoZeroMulti(CurrentDeviceId, outNo, _comboBoxAutoZeroMultiOnOff.SelectedIndex == 0);
 
             OutputLogMessage("AutoZeroMulti", returnCode);
-            //CL3IF_RC_OK
-            return true;
-        }
 
+
+        }
+        public bool AutoSystemZeroMulti(ref string error,bool On_Off) 
+        {               
+            var outNo = CL3IF_OUTNO.CL3IF_OUTNO_01 | CL3IF_OUTNO.CL3IF_OUTNO_02 | CL3IF_OUTNO.CL3IF_OUTNO_03 | CL3IF_OUTNO.CL3IF_OUTNO_04;
+            int returnCode = NativeMethods.CL3IF_AutoZeroMulti(CurrentDeviceId, outNo, On_Off);
+            OutputLogMessage("AutoZeroMulti", returnCode);
+            string result = "";
+            if (returnCode != NativeMethods.CL3IF_RC_OK)
+            {
+                result=returnCode == NativeMethods.CL3IF_RC_OK ? "OK" : "NG(" + returnCode + ")";
+                error=result;   
+                return false;
+            }
+            error = "";      
+            return true;          
+        }
+      
         private void _buttonAutoZeroGroup_Click(object sender, EventArgs e)
         {
             CL3IF_ZERO_GROUP group = 0;
@@ -746,8 +757,23 @@ namespace CL3_IF_DllSample
             int returnCode = NativeMethods.CL3IF_TimingMulti(CurrentDeviceId, outNo, _comboBoxTimingMultiOutValue.SelectedIndex == 0);
 
             OutputLogMessage("TimingMulti", returnCode);
-        }
 
+        }
+        public bool SystemTimingMulti(ref string error, bool On_Off) 
+        {
+            var outNo = CL3IF_OUTNO.CL3IF_OUTNO_01 | CL3IF_OUTNO.CL3IF_OUTNO_02 | CL3IF_OUTNO.CL3IF_OUTNO_03 | CL3IF_OUTNO.CL3IF_OUTNO_04;
+            int returnCode = NativeMethods.CL3IF_TimingMulti(CurrentDeviceId, outNo, On_Off);
+            OutputLogMessage("TimingMulti", returnCode);
+            string result = "";
+            if (returnCode != NativeMethods.CL3IF_RC_OK)
+            {
+                result = returnCode == NativeMethods.CL3IF_RC_OK ? "OK" : "NG(" + returnCode + ")";
+                error = result;
+                return false;
+            }
+            error = "";
+            return true;
+        }
         private void _buttonTimingGroup_Click(object sender, EventArgs e)
         {
             CL3IF_TIMING_GROUP group = 0;
