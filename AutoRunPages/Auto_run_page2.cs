@@ -976,6 +976,7 @@ namespace Wafer_System
                             return false;
                         }
                         //Step24
+                        Step24:
                         main.d_Param.D300 = 24;
                         if (!CheckCondition(ref main.d_Param.D131, 0, TimeSpan.FromMinutes(2)) ||
                             !CheckCondition(ref main.d_Param.D102, 1, TimeSpan.FromMinutes(2)) ||
@@ -1073,17 +1074,84 @@ namespace Wafer_System
                             return false;
                         }
 
-                        //if (!CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(3)) ||
-                        //    !CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(3)) ||
-                        //    !CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(3)))
-                        //{
-                        //    MessageBox.Show("TNRUN fail");
-                        //    return false;
-                        //}
-
-                        if (!LAgetTN())
+                        if (!LAgetTN() ||
+                            main.d_Param.D128 != 0 ||
+                            main.d_Param.D101 != 1 ||
+                            main.d_Param.D111 != 0)
                         {
                             MessageBox.Show("LAgetTN fail");
+                        }
+                        //Step31
+                        main.d_Param.D300 = 31;
+                        if (main.d_Param.D100 != 1 ||
+                            main.d_Param.D111 != 0 ||
+                            main.d_Param.D133 != 0)
+                        {
+                            MessageBox.Show("Step31 fail");
+                        }
+                        if (!UAputTN() ||
+                            main.d_Param.D127 != 0 ||
+                            main.d_Param.D100 != 0 ||
+                            main.d_Param.D111 != 1)
+                        {
+                            MessageBox.Show("UAputTN fail");
+                        }
+                        //Step32
+                        main.d_Param.D300 = 32;
+                        if (main.d_Param.D111 != 1 ||
+                            main.d_Param.D127 != 0 ||
+                            main.d_Param.D128 != 0)
+                        {
+                            MessageBox.Show("Step32 fail");
+                        }
+                        tn_run = Task<bool>.Run(() =>
+                        {
+                            if (!TNRUN(autorun_Prarm.wafer_Size))
+                            {
+                                MessageBox.Show("TNRUN Fail", "Error");
+                                return Task.FromResult(false);
+                            }
+                            return Task.FromResult(true);
+                        });
+                        //Step33
+                        main.d_Param.D300 = 33;
+                        if ((main.d_Param.D200 == 0) && (main.d_Param.D201 == 0))
+                        {
+                            if (!LAputOKLP2())
+                            {
+                                MessageBox.Show("LAputOKLP2 fail");
+                            }
+                           
+                        }
+                        else
+                        {
+                            //LAputOKLP3();
+                            return true;
+                        }
+                        //Step34
+                        main.d_Param.D300 = 34;
+                        if (main.d_Param.D100 != 0 ||
+                            main.d_Param.D400 != 0)
+                        {
+                            MessageBox.Show("Step34 Fail");
+                        }
+                        if (!UAgetLP1()||
+                            main.d_Param.D122!=0||
+                            main.d_Param.D100!=1)
+                        {
+                            MessageBox.Show("UAgetLP1 fail");
+                        }
+                        if (main.d_Param.D100 == 1 || 
+                            main.d_Param.D101 == 1 || 
+                            main.d_Param.D102 == 1 || 
+                            main.d_Param.D110 == 1 || 
+                            main.d_Param.D111 == 1)
+                        {
+                            goto Step24;
+                        }
+                        else
+                        {
+                            MessageBox.Show("finsh");
                         }
                         return true;
                     }
@@ -1101,6 +1169,48 @@ namespace Wafer_System
                 return false;
             }
 
+        }
+
+        private void LAputOKLP3()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool LAputOKLP2()
+        {
+            main.d_Param.D129 = 1;
+            if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
+            {
+                MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!MappingCassette(LoadPortNum.Loadport2, out cassett2_status))
+            {
+                MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "SmartPutt,Robot..."; }));
+            var get_index = Array.FindIndex(cassett2_status, x => x == "Abeence");
+            if (get_index == -1)
+            {
+                return false;
+            }
+            main.eFEM._Paser._SmartPut_Robot.arm = _RobotArm.LowArm;
+            main.eFEM._Paser._SmartPut_Robot.dest = _RobotDest.Loadport2;
+            main.eFEM._Paser._SmartPut_Robot.Slot = (Convert.ToInt32(get_index) + 1).ToString();//取無片的位置
+            if (!main.eFEM._Paser._SmartPut_Robot.Send_Cmd(main.eFEM.client))
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                MessageBox.Show("SmartPut,Robot$\r\n" + main.eFEM._Paser._SmartPut_Robot.Cmd_Error +
+                    "\r\n" + main.eFEM._Paser._SmartPut_Robot.ErrorCode, "LAput Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (main.d_Param.D101!=0)
+            {
+                MessageBox.Show("E032");
+            }
+            main.d_Param.D129 = 0;
+            return true;
         }
 
         private bool TNRUN(Wafer_Size wafer_Size)
@@ -1366,7 +1476,8 @@ namespace Wafer_System
 
             //影像處理計算分級寫入資料庫
 
-
+            //假設OK
+            main.d_Param.D200 = 0;
 
             //IO MPS IN10=ON (PG3-VS)----pass
             this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
