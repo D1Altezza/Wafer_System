@@ -1109,15 +1109,20 @@ namespace Wafer_System
                             MessageBox.Show("Step32 fail");
                             return false;
                         }
-                        tn_run = Task<bool>.Run(() =>
+                        //tn_run = Task<bool>.Run(() =>
+                        //{
+                        //    if (!TNRUN(autorun_Prarm.wafer_Size))
+                        //    {
+                        //        MessageBox.Show("TNRUN Fail", "Error");
+                        //        return Task.FromResult(false);
+                        //    }
+                        //    return Task.FromResult(true);
+                        //});
+                        if (!TNRUN(autorun_Prarm.wafer_Size))
                         {
-                            if (!TNRUN(autorun_Prarm.wafer_Size))
-                            {
-                                MessageBox.Show("TNRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-                        });
+                            MessageBox.Show("TNRUN Fail", "Error");
+                            return false;
+                        }
                         //Step33
                         main.d_Param.D300 = 33;
                         if ((main.d_Param.D200 == 0) && (main.d_Param.D201 == 0))
