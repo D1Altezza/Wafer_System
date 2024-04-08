@@ -7,13 +7,6 @@
       "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\efem_paser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:efem_paser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\user\\documents\\project\\wafer_systemtests1\\autorunpages\\auto_run_page2tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\EFEM.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:Maintain_Forms\\EFEM.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -45,16 +38,17 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "EFEM.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\EFEM.cs",
               "RelativeDocumentMoniker": "Maintain_Forms\\EFEM.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\EFEM.cs",
               "RelativeToolTip": "Maintain_Forms\\EFEM.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAABRwDIAAAAkAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAowDIAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-15T07:10:57.6Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -75,18 +69,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Auto_run_page2Tests.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_SystemTests1\\AutoRunPages\\Auto_run_page2Tests.cs",
-              "RelativeDocumentMoniker": "..\\Wafer_SystemTests1\\AutoRunPages\\Auto_run_page2Tests.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_SystemTests1\\AutoRunPages\\Auto_run_page2Tests.cs",
-              "RelativeToolTip": "..\\Wafer_SystemTests1\\AutoRunPages\\Auto_run_page2Tests.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAswBAAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T04:27:58.324Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Keyence.cs [\u8A2D\u8A08]",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\Keyence.cs",
               "RelativeDocumentMoniker": "Maintain_Forms\\Keyence.cs",
@@ -97,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Keyence.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\Keyence.cs",
               "RelativeDocumentMoniker": "Maintain_Forms\\Keyence.cs",
@@ -109,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -127,14 +109,14 @@
               "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page2.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page2.cs",
               "RelativeToolTip": "AutoRunPages\\Auto_run_page2.cs",
-              "ViewState": "AQIAAIsBAAAAAAAAAAAiwJ4BAAA/AAAA",
+              "ViewState": "AQIAALUEAAAAAAAAAAAIwMkEAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-15T07:08:35.684Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "CML.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Maintain_Forms\\CML.cs",
               "RelativeDocumentMoniker": "Maintain_Forms\\CML.cs",
@@ -143,40 +125,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAxwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-18T09:16:51.644Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "404f1822-894a-4753-9ed7-546be8741e70",
-        "Display": 0,
-        "X": 249,
-        "Y": 164,
-        "Width": 1882,
-        "Height": 831,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EFEM_Paser.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\EFEM_Paser.cs",
-              "RelativeDocumentMoniker": "EFEM_Paser.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\EFEM_Paser.cs",
-              "RelativeToolTip": "EFEM_Paser.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAswMUAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-25T04:17:41.027Z",
-              "EditorCaption": ""
             }
           ]
         }
