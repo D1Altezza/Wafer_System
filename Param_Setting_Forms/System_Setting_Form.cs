@@ -679,8 +679,12 @@ namespace Wafer_System.Param_Settin_Forms
 
 
 
+
         #endregion
 
-       
+        private void button2_Click(object sender, EventArgs e)
+        {
+            systematics_RW.ReadConfiguration(FilePath, config);
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using ACS_DotNET_Library_Advanced_Demo;
 using Cool_Muscle_CML_Example;
 using LiteDB;
+using OpenCvSharp;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
@@ -40,7 +42,7 @@ namespace Wafer_System
         private Auto_run_page1.Autorun_Prarm autorun_Prarm;
         Bitmap[] eight_bp = new Bitmap[3];
         Bitmap[] tweleve_bp = new Bitmap[3];
-
+        EdgeDetect detect = new EdgeDetect();
         public Auto_run_page2(Main main, MutiCam mutiCam, Cognex cognex, Autorun_Prarm autorun_Prarm, ConfigWR configWR)
         {
             InitializeComponent();
@@ -59,11 +61,11 @@ namespace Wafer_System
             #region Splash
             progresBar.Step = 1;
             progresBar.Width = 500;
-            progresBar.Location = new Point(panel.Width / 2 - progresBar.Width / 2, panel.Height / 2 - progresBar.Height / 2);
+            progresBar.Location = new System.Drawing.Point(panel.Width / 2 - progresBar.Width / 2, panel.Height / 2 - progresBar.Height / 2);
             progresBar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             progresBar.Maximum = 150;
             panel.Controls.Add(progresBar);
-            lb_progress.Location = new Point(progresBar.Location.X, progresBar.Location.Y + progresBar.Height);
+            lb_progress.Location = new System.Drawing.Point(progresBar.Location.X, progresBar.Location.Y + progresBar.Height);
             lb_progress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             lb_progress.BackColor = System.Drawing.SystemColors.Control;
             lb_progress.Font = new Font("Consolas", 11.25F);//Consolas, 11.25pt
@@ -74,7 +76,7 @@ namespace Wafer_System
             lb_progress_Title.BackColor = System.Drawing.SystemColors.Control;
             lb_progress_Title.Font = new Font("Consolas", 11.25F);//Consolas, 11.25pt
             lb_progress_Title.AutoSize = true;
-            lb_progress_Title.Location = new Point(progresBar.Location.X, progresBar.Location.Y - lb_progress_Title.Height);
+            lb_progress_Title.Location = new System.Drawing.Point(progresBar.Location.X, progresBar.Location.Y - lb_progress_Title.Height);
             panel.Controls.Add(lb_progress_Title);
             lb_progress_Title.BringToFront();
             progresBar.BringToFront();
@@ -1175,6 +1177,7 @@ namespace Wafer_System
             else if (main.d_Param.D400 == 1)
             {
                 //go end
+                AutoRun_End();
                 return true;
             }
             else
@@ -1222,13 +1225,340 @@ namespace Wafer_System
             main.d_Param.D125 = 3;
             main.d_Param.D126 = 3;
             main.d_Param.D127 = 3;
-            main.d
+            main.d_Param.D128 = 3;
+            main.d_Param.D129 = 3;
+            main.d_Param.D130 = 3;
+            main.d_Param.D131 = 3;
+            main.d_Param.D132 = 3;
+            main.d_Param.D133 = 3;
+            main.d_Param.D400 = 0;
+            main.cML.Origin();
 
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-Z Home check..."; }));
+            //IN5---->pass
+            if (!main.pass && !main.Wait_IO_Check(0, 0, 5, 1, TimeSpan.FromMinutes(3)))
+            {
+                MessageBox.Show("E165\r\n" + "Z_ULS OFF\r\n", "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() =>
+                {
+                    Progres_update(false);
+                }));
+                return false;
+            }
 
+            main.home_end_flag[0] = false;
+            main.home_end_flag[1] = false;
+            main.home_end_flag[2] = false;
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "TN-X Home...\r\n" + "TN-Y Home...\r\n" + "DM-DD Home..."; }));
+            //X軸歸Home
+            main.aCS_Motion._ACS.Command("#3X");
+            Thread.Sleep(3000);
+            //Y軸歸Home
+            main.aCS_Motion._ACS.Command("#2X");
+            Thread.Sleep(3000);
+            //A軸歸Home
+            main.aCS_Motion._ACS.Command("#1X");
+            Thread.Sleep(3000);
+            main.Wait_XYA_Home_End("", 120000);
+            var msg = string.Empty;
+            //Thread.Sleep(3000);
+            if (!main.home_end_flag[0] || !main.home_end_flag[1] || !main.home_end_flag[2] ||
+                Math.Round(main.aCS_Motion.m_X_lfFPos, 1) != 0.0 || Math.Round(main.aCS_Motion.m_Y_lfFPos, 1) != 0.0 || Math.Round(main.aCS_Motion.m_A_lfFPos, 1) != 0.0 ||
+                !main.aCS_Motion.x_Inp || !main.aCS_Motion.y_Inp || !main.aCS_Motion.a_Inp)
+            {
+                if (!main.home_end_flag[0] || !main.home_end_flag[1])
+                    msg += "E164\r\n" + "TN-XY Home Error\r\n";
+                if (!main.home_end_flag[2])
+                    msg += "E166\r\n" + "DM-DD Home Error\r\n";
+                else msg += "E166\r\n" + "Exception\r\n";
+                this.BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                //MessageBox.Show(msg, "Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+                return false;
+            }
+            main.aCS_Motion._ACS.SetOutput(1, 6, 0);
+            main.aCS_Motion._ACS.SetOutput(1, 7, 1);
+
+            main.eFEM._Paser._SignalTower_Status.color = SignalTower_Color.All;
+            main.eFEM._Paser._SignalTower_Status.state = SignalTower_State.Off;
+            if (!main.eFEM._Paser._SignalTower_Status.Send_Cmd(main.eFEM.client))
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            }
+            main.eFEM._Paser._SignalTower_Status.color = SignalTower_Color.Blue;
+            main.eFEM._Paser._SignalTower_Status.state = SignalTower_State.Flash;
+            if (!main.eFEM._Paser._SignalTower_Status.Send_Cmd(main.eFEM.client))
+            {
+                this.BeginInvoke(new Action(() => { Progres_update(false); }));
+            }
+            main.d_Param.D400 = 0;
+            return true;
+        }
+
+       
+
+        private bool LaserReset()
+        {
+            var rtn = "";
+            if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+
+            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            if (!main.keyence.SystemTimingMulti(ref rtn, true)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+
+            if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+
+            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            if (!main.keyence.SystemTimingMulti(ref rtn, true)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
 
             return true;
         }
 
+        bool ccd_enable = true;
+        double pexil_s;
+        RecData recData;
+        RecData recDataToUpdate;
+        ILiteCollection<RecData> col;
+        private bool DMRUN(Wafer_Size wafer_size)
+        {
+            //IO MPS IN10=ON (PG3-VS)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
+            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
+            {
+                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(10);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
+            //----pass
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
+            {
+                if (main.d_Param.D110 != 1)
+                {
+                    MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+
+            col = main.db.GetCollection<RecData>("RecData");
+            recData = new RecData();
+            var cc_Points = new Point2d[3];
+            switch (wafer_size)
+            {
+                case Wafer_Size.eight:
+                    col = main.db.GetCollection<RecData>("RecData");
+                    recData = new RecData();
+                    recData.FileName = autorun_Prarm.file_name;
+                    recData.WaferID = "N/A";
+                    col.EnsureIndex(x => x.Id, true);
+                    col.Insert(recData);
+                    DM_recID = recData.Id;
+                    break;
+                case Wafer_Size.tweleve:
+                    main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",100");
+                    main.wait_axis_Inp("a", 120000);
+                    Thread.Sleep(1000);
+                    //OCR 字元辨識
+                    cognex.ReadData(0);
+                    if (!CheckCondition(ref ocr_read_update, true, TimeSpan.FromSeconds(1)))
+                    {
+                        MessageBox.Show("OCR TimeOut");
+                        return false;
+                    }
+                    //寫入資料庫
+                    col = main.db.GetCollection<RecData>("RecData");
+                    recData = new RecData();
+                    recData.FileName = autorun_Prarm.file_name;
+                    if (cognex.data == "************\r\n")
+                    {
+                        recData.WaferID = "N/A";
+                    }
+                    else
+                    {
+                        recData.WaferID = cognex.data;
+                    }
+                    col.EnsureIndex(x => x.Id, true);
+                    col.Insert(recData);
+                    DM_recID = recData.Id;
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
+
+            mutiCam.lightControl.ON();
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A1") + ",100");
+            main.wait_axis_Inp("a", 120000);
+            Thread.Sleep(100);
+            switch (wafer_size)
+            {
+                case Wafer_Size.eight:
+                    if (ccd_enable)
+                        eight_bp[0] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
+                    break;
+                case Wafer_Size.tweleve:
+                    if (ccd_enable)
+                        tweleve_bp[0] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
+
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A2") + ",100");
+            main.wait_axis_Inp("a", 120000);
+            Thread.Sleep(100);
+
+            switch (wafer_size)
+            {
+                case Wafer_Size.eight:
+                    if (ccd_enable)
+                        eight_bp[1] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
+                    break;
+                case Wafer_Size.tweleve:
+                    if (ccd_enable)
+                        tweleve_bp[1] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
+
+            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A3") + ",100");
+            main.wait_axis_Inp("a", 120000);
+            Thread.Sleep(100);
+            switch (wafer_size)
+            {
+                case Wafer_Size.eight:
+                    if (ccd_enable)
+                        eight_bp[2] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
+                    break;
+                case Wafer_Size.tweleve:
+                    if (ccd_enable)
+                        tweleve_bp[2] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
+            mutiCam.lightControl.OFF();
+
+            Task.Run(() =>
+            {
+                var c = 0;
+                foreach (var item in tweleve_bp)
+                {
+                    this.BeginInvoke(new Action(() => { lb_progress.Text = "Save "; }));
+                    item.Save("C:\\Users\\MyUser\\Desktop\\12_INCH_" + c + ".bmp", ImageFormat.Bmp);
+
+                    c++;
+                }
+                c = 0;
+            });
+
+
+            main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
+            Thread.Sleep(3000);
+            main.wait_axis_Inp("a", 120000);
+            Point2d center = new Point2d(800, 600);
+            pexil_s = Convert.ToDouble(configWR.ReadSettings("Pixel_Size"));
+            //影像處理計算分級寫入資料庫
+            switch (wafer_size)
+            {
+                case Wafer_Size.eight:
+                    var r_8 = Convert.ToDouble(configWR.ReadSettings("Radius_8"));                   
+                    cc_Points[0] = new Point2d(detect.point_converter(r_8, 30).X + (detect.edge(eight_bp[0], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_8, 30).Y + (detect.edge(eight_bp[0], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[1] = new Point2d(detect.point_converter(r_8, 150).X + (detect.edge(eight_bp[1], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_8, 150).Y + (detect.edge(eight_bp[1], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[2] = new Point2d(detect.point_converter(r_8, 270).X + (detect.edge(eight_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_8, 270).Y + (detect.edge(eight_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    var d_8 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);                   
+                    recDataToUpdate = col.FindById(DM_recID);
+                  
+                    if (recDataToUpdate != null)
+                    {
+                        // 更新指定欄位
+                        recDataToUpdate.Diameter = d_8.ToString();
+                        // 執行更新操作
+                        col.Update(recDataToUpdate);
+                    }
+                  
+                    break;
+                case Wafer_Size.tweleve:
+                    var r_12 = Convert.ToDouble(configWR.ReadSettings("Radius_12"));                  
+                    cc_Points[0] = new Point2d(detect.point_converter(r_12, 30).X + (detect.edge(eight_bp[0], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_12, 30).Y + (detect.edge(eight_bp[0], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[1] = new Point2d(detect.point_converter(r_12, 150).X + (detect.edge(eight_bp[1], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_12, 150).Y + (detect.edge(eight_bp[1], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[2] = new Point2d(detect.point_converter(r_12, 270).X + (detect.edge(eight_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_12, 270).Y + (detect.edge(eight_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);                    
+                    var d_12 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
+                    recDataToUpdate = col.FindById(DM_recID);
+                    
+                    if (recDataToUpdate != null)
+                    {
+                        // 更新指定欄位
+                        recDataToUpdate.Diameter = d_12.ToString();
+                        // 執行更新操作
+                        col.Update(recDataToUpdate);
+                    }
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
+
+            //假設OK
+            main.d_Param.D200 = 0;
+
+            //IO MPS IN10=ON (PG3-VS)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
+            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
+            {
+                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
+
+            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
+            Thread.Sleep(1000);
+
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
+            //----pass
+            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)) || main.d_Param.D110 != 1)
+            {
+                MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            //IO MPS OUT5=OFF (VC_ON_C1 ON)
+            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
+            main.aCS_Motion._ACS.SetOutput(1, 5, 0);
+            main.d_Param.D132 = 0;
+
+
+            return true;
+        }
         private bool TNRUN(Wafer_Size wafer_Size)
         {
             main.d_Param.D133 = 1;
@@ -1317,211 +1647,6 @@ namespace Wafer_System
             //假設是好的
             main.d_Param.D201 = 0;
             main.d_Param.D133 = 0;
-            return true;
-        }
-
-        private bool LaserReset()
-        {
-            var rtn = "";
-            if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
-            if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
-
-            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
-            if (!main.keyence.SystemTimingMulti(ref rtn, true)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
-            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
-
-            if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
-            if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
-
-            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
-            if (!main.keyence.SystemTimingMulti(ref rtn, true)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
-            if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
-
-            return true;
-        }
-
-        bool ccd_enable = true;
-        private bool DMRUN(Wafer_Size wafer_size)
-        {
-            //IO MPS IN10=ON (PG3-VS)----pass
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
-            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
-            {
-                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-
-            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
-            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
-            Thread.Sleep(10);
-
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
-            //----pass
-            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)))
-            {
-                if (main.d_Param.D110 != 1)
-                {
-                    MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return false;
-            }
-
-            var col = main.db.GetCollection<RecData>("RecData");
-            var recdata = new RecData();
-            switch (wafer_size)
-            {
-                case Wafer_Size.eight:
-                    col = main.db.GetCollection<RecData>("RecData");
-                    recdata = new RecData();
-                    recdata.FileName = autorun_Prarm.file_name;
-                    recdata.WaferID = "N/A";
-                    col.EnsureIndex(x => x.Id, true);
-                    col.Insert(recdata);
-                    DM_recID = recdata.Id;
-                    break;
-                case Wafer_Size.tweleve:
-                    main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("Aocr") + ",100");
-                    main.wait_axis_Inp("a", 120000);
-                    Thread.Sleep(1000);
-                    //OCR 字元辨識
-                    cognex.ReadData(0);
-                    if (!CheckCondition(ref ocr_read_update, true, TimeSpan.FromSeconds(1)))
-                    {
-                        MessageBox.Show("OCR TimeOut");
-                        return false;
-                    }
-                    //寫入資料庫
-                    col = main.db.GetCollection<RecData>("RecData");
-                    recdata = new RecData();
-                    recdata.FileName = autorun_Prarm.file_name;
-                    if (cognex.data == "************\r\n")
-                    {
-                        recdata.WaferID = "N/A";
-                    }
-                    else
-                    {
-                        recdata.WaferID = cognex.data;
-                    }
-                    col.EnsureIndex(x => x.Id, true);
-                    col.Insert(recdata);
-                    DM_recID = recdata.Id;
-                    break;
-                case Wafer_Size.unknow:
-                    break;
-                default:
-                    break;
-            }
-
-            mutiCam.lightControl.ON();
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A1") + ",100");
-            main.wait_axis_Inp("a", 120000);
-            Thread.Sleep(100);
-            switch (wafer_size)
-            {
-                case Wafer_Size.eight:
-                    if (ccd_enable)
-                        eight_bp[0] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
-                    break;
-                case Wafer_Size.tweleve:
-                    if (ccd_enable)
-                        tweleve_bp[0] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
-                    break;
-                case Wafer_Size.unknow:
-                    break;
-                default:
-                    break;
-            }
-
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A2") + ",100");
-            main.wait_axis_Inp("a", 120000);
-            Thread.Sleep(100);
-
-            switch (wafer_size)
-            {
-                case Wafer_Size.eight:
-                    if (ccd_enable)
-                        eight_bp[1] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
-                    break;
-                case Wafer_Size.tweleve:
-                    if (ccd_enable)
-                        tweleve_bp[1] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
-                    break;
-                case Wafer_Size.unknow:
-                    break;
-                default:
-                    break;
-            }
-
-            main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A3") + ",100");
-            main.wait_axis_Inp("a", 120000);
-            Thread.Sleep(100);
-            switch (wafer_size)
-            {
-                case Wafer_Size.eight:
-                    if (ccd_enable)
-                        eight_bp[2] = (Bitmap)mutiCam.Cam1_OneShot().Clone();
-                    break;
-                case Wafer_Size.tweleve:
-                    if (ccd_enable)
-                        tweleve_bp[2] = (Bitmap)mutiCam.Cam2_OneShot().Clone();
-                    break;
-                case Wafer_Size.unknow:
-                    break;
-                default:
-                    break;
-            }
-            mutiCam.lightControl.OFF();
-
-            Task.Run(() =>
-            {
-                var c = 0;
-                foreach (var item in tweleve_bp)
-                {
-                    this.BeginInvoke(new Action(() => { lb_progress.Text = "Save "; }));
-                    item.Save("C:\\Users\\MyUser\\Desktop\\12_INCH_" + c + ".bmp", ImageFormat.Bmp);
-
-                    c++;
-                }
-                c = 0;
-            });
-            main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
-            Thread.Sleep(3000);
-            main.wait_axis_Inp("a", 120000);
-
-            //影像處理計算分級寫入資料庫
-
-            //假設OK
-            main.d_Param.D200 = 0;
-
-            //IO MPS IN10=ON (PG3-VS)----pass
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
-            if (!main.pass && !main.Wait_IO_Check(0, 1, 10, 1, main.IO_timeout))
-            {
-                MessageBox.Show("E008\r\n" + "PG3-VS OFF", "Initial Home", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-
-            //IO MPS OUT5=ON (VC_ON_C1 ON)----pass
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
-            main.aCS_Motion._ACS.SetOutput(1, 5, 1);
-            Thread.Sleep(1000);
-
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "DMWAFER"; }));
-            //----pass
-            if (!main.pass && (!main.DMWAFER(ref main.d_Param.D110)) || main.d_Param.D110 != 1)
-            {
-                MessageBox.Show("E057", "DMWAFER", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            //IO MPS OUT5=OFF (VC_ON_C1 ON)
-            this.BeginInvoke(new Action(() => { lb_progress.Text = "VC_ON_C1"; }));
-            main.aCS_Motion._ACS.SetOutput(1, 5, 0);
-            main.d_Param.D132 = 0;
-
-
             return true;
         }
         bool ocr_read_update = false;
@@ -2404,8 +2529,6 @@ namespace Wafer_System
             return true;
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -2436,11 +2559,6 @@ namespace Wafer_System
                 }
             }
         }
-
-
-
-
-
 
         /// <summary>
         /// 
@@ -2507,8 +2625,6 @@ namespace Wafer_System
             }
             return true;
         }
-
-
 
         #region Mapping Wafer & Exchange Casette
 

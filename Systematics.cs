@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wafer_System.Config_Fun;
+using static OpenCvSharp.Stitcher;
 
 namespace Wafer_System
 {
@@ -47,6 +48,7 @@ namespace Wafer_System
         [JsonProperty("mark_color")]
         public string Mark { get; set; }
     }
+  
     public class Systematics_RW
     {
         public bool ReadConfiguration(string FilePath, Systematics config)
@@ -56,17 +58,46 @@ namespace Wafer_System
 
             var fileData = File.ReadAllText(FilePath);
 
-            try
+
+
+            Systematics data = JsonConvert.DeserializeObject<Systematics>(fileData);
+
+            // 現在您可以根據需要訪問 data.Modes 中的資料
+            foreach (var mode in data.Mode)
             {
-                JsonConvert.PopulateObject(fileData, config);
-                return true;
+                if (mode.Name == "a")
+                {
+                    foreach (var diameterLevel in mode.DiameterLevel)
+                    {
+                        //Console.WriteLine($"Grade Name: {diameterLevel.Grade}");
+                        //Console.WriteLine($"Threshold: {diameterLevel.Threshold}");
+                        //Console.WriteLine($"High Limit: {diameterLevel.hLimit}");
+                        //Console.WriteLine($"Low Limit: {diameterLevel.lLimit}");
+                        //Console.WriteLine($"Mark Color: {diameterLevel.Mark}");
+                        //Console.WriteLine();
+                    }
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("設定檔內容有誤，請確認!\n" + e.Message, "設定檔內容有誤");
-                return false;
-            }
+            return true;
+
+
+
+            //try
+            //{
+            //    JsonConvert.PopulateObject(fileData, config);
+            //    return true;
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("設定檔內容有誤，請確認!\n" + e.Message, "設定檔內容有誤");
+            //    return false;
+            //}
         }
+
+       
+
+
+
 
         public void SaveConfiguration(string FilePath, Systematics config)
         {

@@ -33,7 +33,7 @@ namespace Wafer_System
 {
     public partial class Main : Form
     {
-        public bool pass = false;
+        public bool pass = true;
         LogRW logRW = new LogRW();
         ConfigWR configWR;
         public LiteDatabase db;
@@ -97,7 +97,7 @@ namespace Wafer_System
         bool PROGRAMEND_Status_Update = false;
         public int efem_timeout = 100000;
         public TimeSpan IO_timeout = TimeSpan.FromSeconds(3);
-        bool[] home_end_flag = new bool[] { false, false, false };
+        public bool[] home_end_flag = new bool[] { false, false, false };
         public bool[] measure_end_flag = new bool[] { false, false };
 
         public Main()
@@ -1705,7 +1705,7 @@ namespace Wafer_System
         }
 
 
-        private void Wait_XYA_Home_End(string msg, int timeout)
+        public void Wait_XYA_Home_End(string msg, int timeout)
         {
             var t = Task.Run(() =>
             {
