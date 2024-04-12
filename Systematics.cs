@@ -68,28 +68,28 @@ namespace Wafer_System
                 return false;
             }
         }
-        public bool rrrr() 
-        {
-            Systematics data = JsonConvert.DeserializeObject<Systematics>(fileData);
+        //public bool rrrr() 
+        //{
+        //    Systematics data = JsonConvert.DeserializeObject<Systematics>(fileData);
 
-            // 現在您可以根據需要訪問 data.Modes 中的資料
-            foreach (var mode in data.Mode)
-            {
-                if (mode.Name == "a")
-                {
-                    foreach (var diameterLevel in mode.DiameterLevel)
-                    {
-                        //Console.WriteLine($"Grade Name: {diameterLevel.Grade}");
-                        //Console.WriteLine($"Threshold: {diameterLevel.Threshold}");
-                        //Console.WriteLine($"High Limit: {diameterLevel.hLimit}");
-                        //Console.WriteLine($"Low Limit: {diameterLevel.lLimit}");
-                        //Console.WriteLine($"Mark Color: {diameterLevel.Mark}");
-                        //Console.WriteLine();
-                    }
-                }
-            }
-            return true;
-        }
+        //    // 現在您可以根據需要訪問 data.Modes 中的資料
+        //    foreach (var mode in data.Mode)
+        //    {
+        //        if (mode.Name == "a")
+        //        {
+        //            foreach (var diameterLevel in mode.DiameterLevel)
+        //            {
+        //                //Console.WriteLine($"Grade Name: {diameterLevel.Grade}");
+        //                //Console.WriteLine($"Threshold: {diameterLevel.Threshold}");
+        //                //Console.WriteLine($"High Limit: {diameterLevel.hLimit}");
+        //                //Console.WriteLine($"Low Limit: {diameterLevel.lLimit}");
+        //                //Console.WriteLine($"Mark Color: {diameterLevel.Mark}");
+        //                //Console.WriteLine();
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
        
 
 

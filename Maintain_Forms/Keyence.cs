@@ -42,7 +42,7 @@ namespace CL3_IF_DllSample
         private const int MaxLightWaveData = NativeMethods.CL3IF_LIGHT_WAVE_DATA_LENGTH * NativeMethods.CL3IF_MAX_LIGHT_WAVE_COUNT;
         private ushort[] _lightWaveData;
 
-        private CL3IF_MEASUREMENT_DATA[] _storageData = new CL3IF_MEASUREMENT_DATA[MaxMeasurementDataCountPerTime];
+        public CL3IF_MEASUREMENT_DATA[] _storageData = new CL3IF_MEASUREMENT_DATA[MaxMeasurementDataCountPerTime];
         private uint _storageIndex;
         private uint _storageReceivedDataCount;
 
@@ -2525,6 +2525,10 @@ namespace CL3_IF_DllSample
 
         private void _buttonStartStorage_Click(object sender, EventArgs e)
         {
+            StartStorage();
+        }
+        public void StartStorage() 
+        {
             int returnCode = NativeMethods.CL3IF_StartStorage(CurrentDeviceId);
 
             OutputLogMessage("StartStorage", returnCode);
@@ -2532,12 +2536,20 @@ namespace CL3_IF_DllSample
 
         private void _buttonStopStorage_Click(object sender, EventArgs e)
         {
+            StopStorage();
+        }
+        public void StopStorage() 
+        {
             int returnCode = NativeMethods.CL3IF_StopStorage(CurrentDeviceId);
 
             OutputLogMessage("StopStorage", returnCode);
         }
 
         private void _buttonClearStorageData_Click(object sender, EventArgs e)
+        {
+            ClearStorage();
+        }
+        public void ClearStorage()
         {
             int returnCode = NativeMethods.CL3IF_ClearStorageData(CurrentDeviceId);
 
@@ -2609,8 +2621,64 @@ namespace CL3_IF_DllSample
                 }
             }
         }
+        public void GetStorageData() 
+        {
+            byte[] buffer = new byte[MaxRequestDataLength];
+            using (PinnedObject pin = new PinnedObject(buffer))
+            {
+                uint index = 0;
+                if (!uint.TryParse("0", out index))
+                {
+                    MessageBox.Show(this, "index is Invalid Value");
+                    return;
+                }
+                uint requestDataCount = 0;
+                if (!uint.TryParse("200", out requestDataCount) || requestDataCount > MaxMeasurementDataCountPerTime)
+                {
+                    MessageBox.Show(this, "requestDataCount is Invalid Value");
+                    return;
+                }
+
+                uint nextIndex = 0;
+                uint obtainedDataCount = 0;
+                CL3IF_OUTNO outTarget = 0;
+                int returnCode = NativeMethods.CL3IF_GetStorageData(CurrentDeviceId, index, requestDataCount, out nextIndex, out obtainedDataCount, out outTarget, pin.Pointer);
+
+                List<int> outTargetList = ConvertOutTargetList(outTarget);
+                List<LoggingProperty> loggingProperties = new List<LoggingProperty>() { };
+                loggingProperties.Add(new LoggingProperty("targetOut", CreateTargetOutSequence(outTargetList)));
+                loggingProperties.Add(new LoggingProperty("nextIndex", nextIndex.ToString()));
+                loggingProperties.Add(new LoggingProperty("obtainedDataCount", obtainedDataCount.ToString()));
+                OutputLogMessage("GetStorageData", returnCode, loggingProperties);
+
+                if (returnCode != NativeMethods.CL3IF_RC_OK) return;
+                _storageIndex = (uint)index;
+                _storageReceivedDataCount = (uint)obtainedDataCount;
+                _storageData = new CL3IF_MEASUREMENT_DATA[MaxMeasurementDataCountPerTime];
+                int readPosition = 0;
+                for (int i = 0; i < obtainedDataCount; i++)
+                {
+                    CL3IF_MEASUREMENT_DATA measurementData = new CL3IF_MEASUREMENT_DATA();
+                    measurementData.outMeasurementData = new CL3IF_OUTMEASUREMENT_DATA[outTargetList.Count];
+
+                    measurementData.addInfo = (CL3IF_ADD_INFO)Marshal.PtrToStructure(pin.Pointer + readPosition, typeof(CL3IF_ADD_INFO));
+                    readPosition += Marshal.SizeOf(typeof(CL3IF_ADD_INFO));
+
+                    for (int j = 0; j < outTargetList.Count; j++)
+                    {
+                        measurementData.outMeasurementData[j] = (CL3IF_OUTMEASUREMENT_DATA)Marshal.PtrToStructure(pin.Pointer + readPosition, typeof(CL3IF_OUTMEASUREMENT_DATA));
+                        readPosition += Marshal.SizeOf(typeof(CL3IF_OUTMEASUREMENT_DATA));
+                    }
+                    _storageData[i] = measurementData;
+                }
+            }
+        }
 
         private void _buttonStorageSave_Click(object sender, EventArgs e)
+        {
+            StorageSave();
+        }
+        public void StorageSave() 
         {
             if (_storageReceivedDataCount <= 0)
             {

@@ -1,4 +1,5 @@
 ﻿using ACS_DotNET_Library_Advanced_Demo;
+using CL3_IF_DllSample;
 using Cool_Muscle_CML_Example;
 using LiteDB;
 using OpenCvSharp;
@@ -7,9 +8,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,7 +31,7 @@ using ProgressBar = System.Windows.Forms.ProgressBar;
 
 namespace Wafer_System
 {
-    public partial class Auto_run_page2 : Form
+    public partial class Auto_run_page2 :Form
     {
         Main main;
         private Cognex cognex;
@@ -39,7 +42,7 @@ namespace Wafer_System
         private MutiCam mutiCam;
         //IF DM done TN_recID=DM_recID
         int DM_recID = 0, TN_recID = 0;
-        private Auto_run_page1.Autorun_Prarm autorun_Prarm;
+        public Auto_run_page1.Autorun_Prarm autorun_Prarm;
         Bitmap[] eight_bp = new Bitmap[3];
         Bitmap[] tweleve_bp = new Bitmap[3];
         EdgeDetect detect = new EdgeDetect();
@@ -1303,19 +1306,30 @@ namespace Wafer_System
         private bool LaserReset()
         {
             var rtn = "";
-            if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            //if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            //Thread.Sleep(1000);
             if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
 
             if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
             if (!main.keyence.SystemTimingMulti(ref rtn, true)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
             if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
 
-            if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            //if (!main.keyence.AutoSystemZeroMulti(ref rtn, false)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            //Thread.Sleep(1000);
             if (!main.keyence.AutoSystemZeroMulti(ref rtn, true)) { MessageBox.Show("AutoZeroMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
 
             if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
             if (!main.keyence.SystemTimingMulti(ref rtn, true)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
             if (!main.keyence.SystemTimingMulti(ref rtn, false)) { MessageBox.Show("TimingMulti:" + rtn, "Keyence"); return false; }
+            Thread.Sleep(100);
+
+
 
             return true;
         }
@@ -1402,7 +1416,7 @@ namespace Wafer_System
             mutiCam.lightControl.ON();
             main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A1") + ",100");
             main.wait_axis_Inp("a", 120000);
-            Thread.Sleep(100);
+            Thread.Sleep(2000);
             switch (wafer_size)
             {
                 case Wafer_Size.eight:
@@ -1421,7 +1435,7 @@ namespace Wafer_System
 
             main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A2") + ",100");
             main.wait_axis_Inp("a", 120000);
-            Thread.Sleep(100);
+            Thread.Sleep(2000);
 
             switch (wafer_size)
             {
@@ -1441,7 +1455,7 @@ namespace Wafer_System
 
             main.aCS_Motion._ACS.Command("PTP/v 2," + configWR.ReadSettings("A3") + ",100");
             main.wait_axis_Inp("a", 120000);
-            Thread.Sleep(100);
+            Thread.Sleep(2000);
             switch (wafer_size)
             {
                 case Wafer_Size.eight:
@@ -1503,12 +1517,12 @@ namespace Wafer_System
                     break;
                 case Wafer_Size.tweleve:
                     var r_12 = Convert.ToDouble(configWR.ReadSettings("Radius_12"));                  
-                    cc_Points[0] = new Point2d(detect.point_converter(r_12, 30).X + (detect.edge(eight_bp[0], "ref_Point_Left_Center").X - center.X) * pexil_s,
-                                               detect.point_converter(r_12, 30).Y + (detect.edge(eight_bp[0], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
-                    cc_Points[1] = new Point2d(detect.point_converter(r_12, 150).X + (detect.edge(eight_bp[1], "ref_Point_Left_Center").X - center.X) * pexil_s,
-                                               detect.point_converter(r_12, 150).Y + (detect.edge(eight_bp[1], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
-                    cc_Points[2] = new Point2d(detect.point_converter(r_12, 270).X + (detect.edge(eight_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
-                                               detect.point_converter(r_12, 270).Y + (detect.edge(eight_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[0] = new Point2d(detect.point_converter(r_12, 30).X + (detect.edge(tweleve_bp[0], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_12, 30).Y + (detect.edge(tweleve_bp[0], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[1] = new Point2d(detect.point_converter(r_12, 150).X + (detect.edge(tweleve_bp[1], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_12, 150).Y + (detect.edge(tweleve_bp[1], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
+                    cc_Points[2] = new Point2d(detect.point_converter(r_12, 270).X + (detect.edge(tweleve_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
+                                               detect.point_converter(r_12, 270).Y + (detect.edge(tweleve_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);                    
                     var d_12 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
                     recDataToUpdate = col.FindById(DM_recID);
@@ -1559,10 +1573,77 @@ namespace Wafer_System
 
             return true;
         }
-        private bool TNRUN(Wafer_Size wafer_Size)
-        {
-            main.d_Param.D133 = 1;
 
+        List<int> list_laser_low = new List<int>();
+        List<int> list_laser_up = new List<int>();
+        public bool TNRUN(Wafer_Size wafer_Size)
+        {
+            main.d_Param.D133 = 1;           
+            if (!TNRUN_ACT(wafer_Size))
+            {
+                return false;
+            }
+            //main.keyence.StorageSave(); 
+            //執行量測路徑
+            //解析量測資料
+            main.keyence.GetStorageData();
+            list_laser_low.Clear();
+            list_laser_up.Clear();  
+            //this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
+            for (int i = 0; i < 157; i++)
+            {
+                list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
+                list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
+            }
+
+            this.BeginInvoke(new Action(() =>
+            {
+                var saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    // Write list values to the CSV file
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        for (int i = 0; i < Math.Max(list_laser_low.Count, list_laser_up.Count); i++)
+                        {
+                            int valueA = (i < list_laser_low.Count) ? list_laser_low[i] : 0;
+                            int valueB = (i < list_laser_up.Count) ? list_laser_up[i] : 0;
+
+                            writer.WriteLine($"{valueA},{valueB}");
+                        }
+                    }
+
+                    Console.WriteLine($"CSV file saved at: {filePath}");
+                }
+                else
+                {
+                    Console.WriteLine("File save operation canceled.");
+                }
+
+            }));
+
+
+
+
+
+            //var t1 = main.keyence._storageData[0].outMeasurementData[0].measurementValue;
+            //var t2 = main.keyence._storageData[0].outMeasurementData[1].measurementValue;
+            //var t3 = main.keyence._storageData[0].outMeasurementData[2].measurementValue;
+
+            //量測完成 計算.......
+
+
+
+            //判斷好壞...........
+            //假設是好的
+            main.d_Param.D201 = 0;
+            main.d_Param.D133 = 0;
+            return true;
+        }
+        public bool TNRUN_ACT(Wafer_Size wafer_Size) 
+        {
             if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
             {
                 MessageBox.Show("E059");
@@ -1587,7 +1668,7 @@ namespace Wafer_System
             Thread.Sleep(TimeSpan.FromSeconds(5));
             //進行雷射頭補償
             //包含: 上、下雷射頭原點補償，及厚度補償???怎麼補??
-
+            //????
             if (!LaserReset())
             {
                 MessageBox.Show("CL reset zero fail");
@@ -1603,12 +1684,16 @@ namespace Wafer_System
                     //執行8吋量測路徑
                     main.measure_end_flag[0] = false;
                     main.aCS_Motion._ACS.Command("#" + configWR.ReadSettings("Mprog_8") + "X");
+                    main.keyence.ClearStorage();
+                    main.keyence.StartStorage();
                     if (!CheckCondition(ref main.measure_end_flag[0], true, TimeSpan.FromMinutes(10)))
                     {
+                        main.keyence.StopStorage();
                         MessageBox.Show("Measure TimeOut");
                         return false;
                     }
-                    break;
+                    main.keyence.StopStorage();
+                    return true;
                 case Wafer_Size.tweleve:
                     main.aCS_Motion._ACS.Command("PTP/v (0,1)," + configWR.ReadSettings("X_12") + "," + configWR.ReadSettings("Y_12") + ",100");
                     Thread.Sleep(1000);
@@ -1617,37 +1702,21 @@ namespace Wafer_System
                     //執行12吋量測路徑
                     main.measure_end_flag[1] = false;
                     main.aCS_Motion._ACS.Command("#" + configWR.ReadSettings("Mprog_12") + "X");
+                    main.keyence.ClearStorage();
+                    main.keyence.StartStorage();
                     if (!CheckCondition(ref main.measure_end_flag[1], true, TimeSpan.FromMinutes(10)))
                     {
+                        main.keyence.StopStorage();
                         MessageBox.Show("Measure TimeOut");
                         return false;
                     }
-                    break;
+                    main.keyence.StopStorage();
+                    return true;
                 case Wafer_Size.unknow:
-                    break;
+                    return false;
                 default:
-                    break;
+                    return false;
             }
-            //執行量測路徑
-            //還沒抓雷射值
-
-
-
-            //if (CheckCondition(ref main.measure_end_flag[0], true, TimeSpan.FromMinutes(5)) ||
-            //        CheckCondition(ref main.measure_end_flag[1], true, TimeSpan.FromMinutes(5)))
-            //{
-            //    MessageBox.Show("Measure TimeOut");
-            //    return false;
-            //}
-            //量測完成 計算.......
-
-
-
-            //判斷好壞...........
-            //假設是好的
-            main.d_Param.D201 = 0;
-            main.d_Param.D133 = 0;
-            return true;
         }
         bool ocr_read_update = false;
         private void Cognex_receive_update(object sender, EventArgs e)
@@ -2941,6 +3010,30 @@ namespace Wafer_System
                 MessageBox.Show("DMRUN Fail", "Error");               
             }
            
+        }
+
+        private void btn_TN_Run_Click(object sender, EventArgs e)
+        {
+
+
+            var tn_run = Task<bool>.Run(() =>
+            {
+                if (!TNRUN(autorun_Prarm.wafer_Size))
+                {
+                    MessageBox.Show("TNRUN Fail", "Error");
+                    return Task.FromResult(false);
+                }
+                return Task.FromResult(true);
+            });
+            //if (!TNRUN(autorun_Prarm.wafer_Size))
+            //{
+            //    MessageBox.Show("DMRUN Fail", "Error");
+            //}
+        }
+
+        private void btn_reset_LAser_Click(object sender, EventArgs e)
+        {
+            LaserReset();   
         }
 
         private void button1_Click(object sender, EventArgs e)

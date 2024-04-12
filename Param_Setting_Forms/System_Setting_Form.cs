@@ -1,5 +1,6 @@
 ﻿
 using Azuria.Controls.ColorPicker;
+using Cool_Muscle_CML_Example;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,21 +9,27 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Wafer_System.BaslerMutiCam;
 using Wafer_System.Config_Fun;
 using Wafer_System.Log_Fun;
 using Wafer_System.Param_Setting_Forms;
+using static Wafer_System.Auto_run_page1;
 using Label = System.Windows.Forms.Label;
 
 namespace Wafer_System.Param_Settin_Forms
 {
     public partial class System_Setting_Form : Form
     {
+        Main main;       
+        private Auto_run_page2 auto_Run_Page2;
         private LogRW logRW;
         private ConfigWR configWR;
+        private Auto_run_page1.Autorun_Prarm autorun_Prarm;
         IniRW iniRW_Morph;
         public List<PointF> Path_8Inch = new List<PointF>();
         public List<PointF> Path_12Inch = new List<PointF>();
@@ -31,11 +38,14 @@ namespace Wafer_System.Param_Settin_Forms
         string FilePath;
         Classify classify;
         List<GradeScore> gradeScores = new List<GradeScore>();
-        public System_Setting_Form(LogRW logRW, ConfigWR configWR)
+
+        public System_Setting_Form(Main main, LogRW logRW, ConfigWR configWR)
         {
             InitializeComponent();
+            this.main = main;
             this.logRW = logRW;
             this.configWR = configWR;
+
             var str = System.Environment.CurrentDirectory;
             iniRW_Morph = new IniRW(str + "\\MorphPath.ini");
 
@@ -54,6 +64,12 @@ namespace Wafer_System.Param_Settin_Forms
             Classify_Setup_UI();
             combo_Mode_update();
 
+        }
+
+       
+        public void load_auto_Run_Page2(Auto_run_page2 auto_Run_Page2) 
+        {            
+            this.auto_Run_Page2 = auto_Run_Page2;
         }
 
         #region Path UI Build        
@@ -256,6 +272,8 @@ namespace Wafer_System.Param_Settin_Forms
         }
         int edit_row = 1;
         string edit_value;
+      
+
         private void _textBox_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = sender as TextBox;
@@ -267,7 +285,7 @@ namespace Wafer_System.Param_Settin_Forms
         {
             ColorPicker colorPicker = (ColorPicker)sender;
             edit_row = tbp_Classify_Setup.GetRow(colorPicker);
-            edit_value=colorPicker.Text;
+            edit_value = colorPicker.Text;
         }
 
         private void _numericUpDown_ValueChanged(object sender, EventArgs e)
@@ -500,7 +518,7 @@ namespace Wafer_System.Param_Settin_Forms
                     switch (detection)
                     {
                         case "Diameter":
-                            score = config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).DiameterLevel.Find(o => (o.Grade).Contains(item.Grade));                           
+                            score = config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).DiameterLevel.Find(o => (o.Grade).Contains(item.Grade));
                             score.hLimit = item.hLimit;
                             score.lLimit = item.lLimit;
                             score.Threshold = item.Threshold;
@@ -541,20 +559,20 @@ namespace Wafer_System.Param_Settin_Forms
                     switch (detection)
                     {
                         case "Diameter":
-                            if (config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).DiameterLevel.Count<edit_row)
+                            if (config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).DiameterLevel.Count < edit_row)
                             {
                                 config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).DiameterLevel.Add(item);
                             }
                             else
                             {
                                 score = config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).DiameterLevel[edit_row - 1];
-                                score.Grade=item.Grade; 
+                                score.Grade = item.Grade;
                                 score.hLimit = item.hLimit;
                                 score.lLimit = item.lLimit;
                                 score.Threshold = item.Threshold;
                                 score.Mark = item.Mark;
                             }
-                           
+
                             break;
                         case "Thickness":
                             if (config.Mode.Find(o => o.Name == (string)combo_Mode.SelectedItem).ThicknessLevel.Count < edit_row)
@@ -685,6 +703,38 @@ namespace Wafer_System.Param_Settin_Forms
         private void button2_Click(object sender, EventArgs e)
         {
             systematics_RW.ReadConfiguration(FilePath, config);
+        }
+       
+        private void btn_Calibrate_Click(object sender, EventArgs e)
+        {
+            Wafer_Size wafer_Size = new Wafer_Size();
+
+            switch (comboBox1.SelectedItem)
+            {
+                case 8:
+                    wafer_Size = Wafer_Size.eight;
+                    break;
+                case 12:
+                    wafer_Size = Wafer_Size.tweleve;
+                    break;
+            }
+            auto_Run_Page2.TNRUN_ACT(wafer_Size);
+            main.keyence.GetStorageData();
+            Array.Clear(main.calibration, 0, main.calibration.Length);
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("ID");
+
+            dataTable.Columns.Add("Value");           
+            for (int i = 0; i < 157; i++)
+            {
+                DataRow dataRow = dataTable.NewRow();
+                dataRow[0] = i;
+                dataRow[1] = main.keyence._storageData[i].outMeasurementData[0].measurementValue;
+                dataTable.Rows.Add(dataRow);
+                main.calibration[i]= main.keyence._storageData[i].outMeasurementData[0].measurementValue;
+            }
+            dGV_Calibrate.DataSource = dataTable;
+       
         }
     }
 }

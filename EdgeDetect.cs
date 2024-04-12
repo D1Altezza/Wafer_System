@@ -12,8 +12,8 @@ public class EdgeDetect
 {
     public double cross_Point_X = 0.0, cross_Point_Y = 0.0;
 
-    
-    Point2d ref_Point_Left_Center;   
+
+    Point2d ref_Point_Left_Center;
     Point2d ref_Point_Right_Center;
     Mat canny;
     Mat gray;
@@ -39,11 +39,11 @@ public class EdgeDetect
 
     public void define_Img_Area(Bitmap source_img)
     {
-      
+
         ref_Point_Left_Center = new Point2d(0, source_img.Height / 2);
-       
+
         ref_Point_Right_Center = new Point2d(source_img.Width, source_img.Height / 2);
-       
+
     }
     //邊緣檢測
     public Point2d edge(Bitmap sorce_img, string mode)
@@ -87,18 +87,18 @@ public class EdgeDetect
         var select_refer_Line = new LineSegmentPoint();
         switch (mode)
         {
-           
+
             case "ref_Point_Left_Center":
                 select_refer_Point = ref_Point_Left_Center;
                 select_refer_Line = lineSegmentPoint_H;
                 break;
-         
+
             case "ref_Point_Right_Center":
                 select_refer_Point = ref_Point_Right_Center;
                 select_refer_Line = lineSegmentPoint_H;
-                break;         
+                break;
         }
-        
+
         //LineDetection(select_refer_Point, select_refer_Line,ref c_point);
         CrossPointCollection.Clear();
         minDist = 0;
@@ -122,7 +122,7 @@ public class EdgeDetect
             CrossPointCollection.Add(crossPoint_Detail);
 
         }
-      
+
         //Cv2.ImShow("All Line", gray);
         Cv2.ImWrite(@"C:\Users\User\Desktop\test_save.jpg", gray);
         for (int i = 0; i < CrossPointCollection.Count; i++)
@@ -147,23 +147,23 @@ public class EdgeDetect
             Cv2.Line(gray, lineSegmentPoint_V.P1, lineSegmentPoint_V.P2, Scalar.White, 1, OpenCvSharp.LineTypes.Link8);
             Cv2.Line(gray, lineSegmentPoint_H.P1, lineSegmentPoint_H.P2, Scalar.White, 1, OpenCvSharp.LineTypes.Link8);
             Cv2.Line(gray, select_refer_Line.P1, select_refer_Line.P2, Scalar.Yellow, 1, OpenCvSharp.LineTypes.Link8);
-            Cv2.Line(gray, select_refer_Line.P1, select_refer_Line.P2, Scalar.White, 1, OpenCvSharp.LineTypes.Link8);           
-            var c_point = CrossPointCollection[min_index].CrossPoint;           
+            Cv2.Line(gray, select_refer_Line.P1, select_refer_Line.P2, Scalar.White, 1, OpenCvSharp.LineTypes.Link8);
+            var c_point = CrossPointCollection[min_index].CrossPoint;
             cross_Point_X = CrossPointCollection[min_index].CrossPoint.X;
             cross_Point_Y = CrossPointCollection[min_index].CrossPoint.Y;
             return c_point;
         }
         else
         {
-            var c_point = new Point2d(0,0);
+            var c_point = new Point2d(0, 0);
             return c_point;
         }
     }
 
     //線段識別
-    public void LineDetection(Point2d Ref_Point, LineSegmentPoint Ref_line,ref Point2d c_point)
+    public void LineDetection(Point2d Ref_Point, LineSegmentPoint Ref_line, ref Point2d c_point)
     {
-        
+
     }
     //求交點
     OpenCvSharp.Point2d CrossPoint(OpenCvSharp.LineSegmentPoint line1, OpenCvSharp.LineSegmentPoint line2)

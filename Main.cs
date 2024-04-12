@@ -33,7 +33,7 @@ namespace Wafer_System
 {
     public partial class Main : Form
     {
-        public bool pass = true;
+        public bool pass = false;
         LogRW logRW = new LogRW();
         ConfigWR configWR;
         public LiteDatabase db;
@@ -45,6 +45,7 @@ namespace Wafer_System
         public CML cML;
         public MutiCam mutiCam;
         public Cognex Cognex;
+        public int[] calibration = new int[157];
         #endregion
 
         #region AutoRun Pages
@@ -105,7 +106,7 @@ namespace Wafer_System
             InitializeComponent();
             d_Param = new D_param();
             configWR = new ConfigWR(logRW);
-            System_Setting_Form = new System_Setting_Form(logRW, configWR);
+           
             aCS_Motion = new ACS_Motion(logRW);
             keyence = new Keyence(logRW, configWR);
             Cognex = new Cognex(logRW, configWR);
@@ -116,8 +117,12 @@ namespace Wafer_System
             Morph_Monitor = new Morph_Monitor(logRW, System_Setting_Form, aCS_Motion, eFEM, cML, keyence);
             Diameter_Monitor = new Diameter_Monitor(logRW, configWR, aCS_Motion, eFEM, mutiCam, Cognex);
             Auto_Run_Page0 = new Auto_run_page0();
+            System_Setting_Form = new System_Setting_Form(this,logRW, configWR);
             Auto_Run_Page1 = new Auto_run_page1(System_Setting_Form.config);
             Auto_Run_Page2 = new Auto_run_page2(this, mutiCam, Cognex, Auto_Run_Page1.autorun_Prarm, configWR);
+            System_Setting_Form.load_auto_Run_Page2(Auto_Run_Page2);
+
+
         }
         private void Main_Load(object sender, EventArgs e)
         {

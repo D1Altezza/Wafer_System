@@ -57,12 +57,18 @@
             this.combo_Detect_Item = new System.Windows.Forms.ComboBox();
             this.combo_Mode = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dGV_Calibrate = new System.Windows.Forms.DataGridView();
+            this.btn_Calibrate = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tbp_Connection.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Calibrate)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -71,6 +77,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -488,6 +495,50 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "模式";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.comboBox1);
+            this.tabPage4.Controls.Add(this.dGV_Calibrate);
+            this.tabPage4.Controls.Add(this.btn_Calibrate);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1446, 610);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "Morph";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dGV_Calibrate
+            // 
+            this.dGV_Calibrate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_Calibrate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dGV_Calibrate.Location = new System.Drawing.Point(492, 3);
+            this.dGV_Calibrate.Name = "dGV_Calibrate";
+            this.dGV_Calibrate.RowTemplate.Height = 24;
+            this.dGV_Calibrate.Size = new System.Drawing.Size(951, 604);
+            this.dGV_Calibrate.TabIndex = 1;
+            // 
+            // btn_Calibrate
+            // 
+            this.btn_Calibrate.Location = new System.Drawing.Point(8, 6);
+            this.btn_Calibrate.Name = "btn_Calibrate";
+            this.btn_Calibrate.Size = new System.Drawing.Size(126, 81);
+            this.btn_Calibrate.TabIndex = 0;
+            this.btn_Calibrate.Text = "Calibrate";
+            this.btn_Calibrate.UseVisualStyleBackColor = true;
+            this.btn_Calibrate.Click += new System.EventHandler(this.btn_Calibrate_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "8",
+            "12"});
+            this.comboBox1.Location = new System.Drawing.Point(140, 18);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 2;
+            // 
             // System_Setting_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -503,6 +554,8 @@
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_Calibrate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -538,5 +591,9 @@
         private System.Windows.Forms.ComboBox combo_Classify;
         private System.Windows.Forms.ComboBox combo_Detect_Item;
         private System.Windows.Forms.TableLayoutPanel tbp_Classify_Setup;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.DataGridView dGV_Calibrate;
+        private System.Windows.Forms.Button btn_Calibrate;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

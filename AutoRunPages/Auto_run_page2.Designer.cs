@@ -31,7 +31,9 @@
             this.btn_Go_Page1 = new System.Windows.Forms.Button();
             this.btn_Start = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
+            this.btn_TN_Run = new System.Windows.Forms.Button();
             this.btn_DM_Run = new System.Windows.Forms.Button();
+            this.btn_reset_LAser = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +59,8 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.btn_reset_LAser);
+            this.panel.Controls.Add(this.btn_TN_Run);
             this.panel.Controls.Add(this.btn_DM_Run);
             this.panel.Controls.Add(this.btn_Start);
             this.panel.Controls.Add(this.btn_Go_Page1);
@@ -65,6 +69,16 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(921, 592);
             this.panel.TabIndex = 3;
+            // 
+            // btn_TN_Run
+            // 
+            this.btn_TN_Run.Location = new System.Drawing.Point(546, 398);
+            this.btn_TN_Run.Name = "btn_TN_Run";
+            this.btn_TN_Run.Size = new System.Drawing.Size(105, 83);
+            this.btn_TN_Run.TabIndex = 3;
+            this.btn_TN_Run.Text = "TN_run";
+            this.btn_TN_Run.UseVisualStyleBackColor = true;
+            this.btn_TN_Run.Click += new System.EventHandler(this.btn_TN_Run_Click);
             // 
             // btn_DM_Run
             // 
@@ -75,6 +89,16 @@
             this.btn_DM_Run.Text = "DM_run";
             this.btn_DM_Run.UseVisualStyleBackColor = true;
             this.btn_DM_Run.Click += new System.EventHandler(this.btn_DM_Run_Click);
+            // 
+            // btn_reset_LAser
+            // 
+            this.btn_reset_LAser.Location = new System.Drawing.Point(707, 294);
+            this.btn_reset_LAser.Name = "btn_reset_LAser";
+            this.btn_reset_LAser.Size = new System.Drawing.Size(105, 83);
+            this.btn_reset_LAser.TabIndex = 3;
+            this.btn_reset_LAser.Text = "Reset";
+            this.btn_reset_LAser.UseVisualStyleBackColor = true;
+            this.btn_reset_LAser.Click += new System.EventHandler(this.btn_reset_LAser_Click);
             // 
             // Auto_run_page2
             // 
@@ -96,5 +120,7 @@
         private System.Windows.Forms.Button btn_Start;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button btn_DM_Run;
+        private System.Windows.Forms.Button btn_TN_Run;
+        private System.Windows.Forms.Button btn_reset_LAser;
     }
 }
