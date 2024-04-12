@@ -2934,6 +2934,15 @@ namespace Wafer_System
             var bp = mutiCam.Cam1_OneShot();
         }
 
+        private void btn_DM_Run_Click(object sender, EventArgs e)
+        {
+            if (!DMRUN(autorun_Prarm.wafer_Size))
+            {
+                MessageBox.Show("DMRUN Fail", "Error");               
+            }
+           
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             var col = main.db.GetCollection<RecData>("RecData");

@@ -31,6 +31,7 @@
             this.btn_Go_Page1 = new System.Windows.Forms.Button();
             this.btn_Start = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
+            this.btn_DM_Run = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.btn_DM_Run);
             this.panel.Controls.Add(this.btn_Start);
             this.panel.Controls.Add(this.btn_Go_Page1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -63,6 +65,16 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(921, 592);
             this.panel.TabIndex = 3;
+            // 
+            // btn_DM_Run
+            // 
+            this.btn_DM_Run.Location = new System.Drawing.Point(546, 294);
+            this.btn_DM_Run.Name = "btn_DM_Run";
+            this.btn_DM_Run.Size = new System.Drawing.Size(105, 83);
+            this.btn_DM_Run.TabIndex = 3;
+            this.btn_DM_Run.Text = "DM_run";
+            this.btn_DM_Run.UseVisualStyleBackColor = true;
+            this.btn_DM_Run.Click += new System.EventHandler(this.btn_DM_Run_Click);
             // 
             // Auto_run_page2
             // 
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Button btn_Go_Page1;
         private System.Windows.Forms.Button btn_Start;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Button btn_DM_Run;
     }
 }

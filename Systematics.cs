@@ -57,9 +57,19 @@ namespace Wafer_System
                 File.WriteAllText(FilePath, JsonConvert.SerializeObject(config));
 
             var fileData = File.ReadAllText(FilePath);
-
-
-
+            try
+            {
+                JsonConvert.PopulateObject(fileData, config);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("設定檔內容有誤，請確認!\n" + e.Message, "設定檔內容有誤");
+                return false;
+            }
+        }
+        public bool rrrr() 
+        {
             Systematics data = JsonConvert.DeserializeObject<Systematics>(fileData);
 
             // 現在您可以根據需要訪問 data.Modes 中的資料
@@ -79,21 +89,7 @@ namespace Wafer_System
                 }
             }
             return true;
-
-
-
-            //try
-            //{
-            //    JsonConvert.PopulateObject(fileData, config);
-            //    return true;
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("設定檔內容有誤，請確認!\n" + e.Message, "設定檔內容有誤");
-            //    return false;
-            //}
         }
-
        
 
 
