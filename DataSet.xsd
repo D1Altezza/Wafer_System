@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet" targetNamespace="http://tempuri.org/DataSet.xsd" xmlns:mstns="http://tempuri.org/DataSet.xsd" xmlns="http://tempuri.org/DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSet" msprop:Generator_DataSetName="DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RecData" msprop:Generator_RowEvHandlerName="RecDataRowChangeEventHandler" msprop:Generator_RowDeletedName="RecDataRowDeleted" msprop:Generator_RowDeletingName="RecDataRowDeleting" msprop:Generator_RowEvArgName="RecDataRowChangeEvent" msprop:Generator_TablePropName="RecData" msprop:Generator_RowChangedName="RecDataRowChanged" msprop:Generator_RowChangingName="RecDataRowChanging" msprop:Generator_TableClassName="RecDataDataTable" msprop:Generator_RowClassName="RecDataRow" msprop:Generator_TableVarName="tableRecData" msprop:Generator_UserTableName="RecData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="FileName" msprop:Generator_ColumnPropNameInRow="FileName" msprop:Generator_ColumnPropNameInTable="FileNameColumn" msprop:Generator_ColumnVarNameInTable="columnFileName" msprop:Generator_UserColumnName="FileName" type="xs:string" minOccurs="0" />
+              <xs:element name="Diameter" msprop:Generator_ColumnPropNameInRow="Diameter" msprop:Generator_ColumnPropNameInTable="DiameterColumn" msprop:Generator_ColumnVarNameInTable="columnDiameter" msprop:Generator_UserColumnName="Diameter" type="xs:string" minOccurs="0" />
+              <xs:element name="Diameter_Level" msprop:Generator_ColumnPropNameInRow="Diameter_Level" msprop:Generator_ColumnPropNameInTable="Diameter_LevelColumn" msprop:Generator_ColumnVarNameInTable="columnDiameter_Level" msprop:Generator_UserColumnName="Diameter_Level" type="xs:string" minOccurs="0" />
+              <xs:element name="Thickness" msprop:Generator_ColumnPropNameInRow="Thickness" msprop:Generator_ColumnPropNameInTable="ThicknessColumn" msprop:Generator_ColumnVarNameInTable="columnThickness" msprop:Generator_UserColumnName="Thickness" type="xs:string" minOccurs="0" />
+              <xs:element name="Thickness_Level" msprop:Generator_ColumnPropNameInRow="Thickness_Level" msprop:Generator_ColumnPropNameInTable="Thickness_LevelColumn" msprop:Generator_ColumnVarNameInTable="columnThickness_Level" msprop:Generator_UserColumnName="Thickness_Level" type="xs:string" minOccurs="0" />
+              <xs:element name="TTV" msprop:Generator_ColumnPropNameInRow="TTV" msprop:Generator_ColumnPropNameInTable="TTVColumn" msprop:Generator_ColumnVarNameInTable="columnTTV" msprop:Generator_UserColumnName="TTV" type="xs:string" minOccurs="0" />
+              <xs:element name="TTV_Level" msprop:Generator_ColumnPropNameInRow="TTV_Level" msprop:Generator_ColumnPropNameInTable="TTV_LevelColumn" msprop:Generator_ColumnVarNameInTable="columnTTV_Level" msprop:Generator_UserColumnName="TTV_Level" type="xs:string" minOccurs="0" />
+              <xs:element name="BOW" msprop:Generator_ColumnPropNameInRow="BOW" msprop:Generator_ColumnPropNameInTable="BOWColumn" msprop:Generator_ColumnVarNameInTable="columnBOW" msprop:Generator_UserColumnName="BOW" type="xs:string" minOccurs="0" />
+              <xs:element name="BOW_Level" msprop:Generator_ColumnPropNameInRow="BOW_Level" msprop:Generator_ColumnPropNameInTable="BOW_LevelColumn" msprop:Generator_ColumnVarNameInTable="columnBOW_Level" msprop:Generator_UserColumnName="BOW_Level" type="xs:string" minOccurs="0" />
+              <xs:element name="WARP" msprop:Generator_ColumnPropNameInRow="WARP" msprop:Generator_ColumnPropNameInTable="WARPColumn" msprop:Generator_ColumnVarNameInTable="columnWARP" msprop:Generator_UserColumnName="WARP" type="xs:string" minOccurs="0" />
+              <xs:element name="WARP_Level" msprop:Generator_ColumnPropNameInRow="WARP_Level" msprop:Generator_ColumnPropNameInTable="WARP_LevelColumn" msprop:Generator_ColumnVarNameInTable="columnWARP_Level" msprop:Generator_UserColumnName="WARP_Level" type="xs:string" minOccurs="0" />
+              <xs:element name="WaferID" msprop:Generator_ColumnPropNameInRow="WaferID" msprop:Generator_ColumnPropNameInTable="WaferIDColumn" msprop:Generator_ColumnVarNameInTable="columnWaferID" msprop:Generator_UserColumnName="WaferID" type="xs:string" minOccurs="0" />
+              <xs:element name="Cassette_Number" msprop:Generator_ColumnPropNameInRow="Cassette_Number" msprop:Generator_ColumnPropNameInTable="Cassette_NumberColumn" msprop:Generator_ColumnVarNameInTable="columnCassette_Number" msprop:Generator_UserColumnName="Cassette_Number" type="xs:string" minOccurs="0" />
+              <xs:element name="Slot" msprop:Generator_ColumnPropNameInRow="Slot" msprop:Generator_ColumnPropNameInTable="SlotColumn" msprop:Generator_ColumnVarNameInTable="columnSlot" msprop:Generator_UserColumnName="Slot" type="xs:string" minOccurs="0" />
+              <xs:element name="LaserRawData" msprop:Generator_ColumnPropNameInRow="LaserRawData" msprop:Generator_ColumnPropNameInTable="LaserRawDataColumn" msprop:Generator_ColumnVarNameInTable="columnLaserRawData" msprop:Generator_UserColumnName="LaserRawData" type="xs:string" minOccurs="0" />
+              <xs:element name="IsActive" msprop:Generator_ColumnPropNameInRow="IsActive" msprop:Generator_ColumnPropNameInTable="IsActiveColumn" msprop:Generator_ColumnVarNameInTable="columnIsActive" msprop:Generator_UserColumnName="IsActive" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

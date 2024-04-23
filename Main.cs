@@ -58,12 +58,13 @@ namespace Wafer_System
         EFEM_Monitor EFEM_Monitor;
         Morph_Monitor Morph_Monitor;
         Diameter_Monitor Diameter_Monitor;
+        Report_Form Report_Form;
         #endregion
 
 
         #region Setting Form
         System_Setting_Form System_Setting_Form;
-        Report_Form Report_Form=new Report_Form();
+       
         #endregion
 
         #region D_param
@@ -122,6 +123,7 @@ namespace Wafer_System
             Auto_Run_Page1 = new Auto_run_page1(System_Setting_Form.config);
             Auto_Run_Page2 = new Auto_run_page2(this, mutiCam, Cognex, Auto_Run_Page1.autorun_Prarm, configWR);
             System_Setting_Form.load_auto_Run_Page2(Auto_Run_Page2);
+            Report_Form = new Report_Form(this);
 
 
         }

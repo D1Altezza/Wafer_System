@@ -213,6 +213,14 @@
     <Compile Include="BaslerMutiCam\LightControl.Designer.cs">
       <DependentUpon>LightControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSet.cs">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EdgeDetect.cs" />
     <Compile Include="EFEM_Paser.cs" />
     <Compile Include="Maintain_Forms\Cognex.cs">
@@ -569,6 +577,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Report_Form.resx">
+      <DependentUpon>Report_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingRWForms\AmbientLightFilterForm.resx">
       <DependentUpon>AmbientLightFilterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -663,6 +675,17 @@
       <DependentUpon>ToleranceForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\x64\Debug\Wafer_System.exe.config" />
+    <None Include="DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
