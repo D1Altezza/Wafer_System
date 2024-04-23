@@ -31,7 +31,7 @@ using ProgressBar = System.Windows.Forms.ProgressBar;
 
 namespace Wafer_System
 {
-    public partial class Auto_run_page2 :Form
+    public partial class Auto_run_page2 : Form
     {
         Main main;
         private Cognex cognex;
@@ -1301,7 +1301,7 @@ namespace Wafer_System
             return true;
         }
 
-       
+
 
         private bool LaserReset()
         {
@@ -1496,16 +1496,16 @@ namespace Wafer_System
             switch (wafer_size)
             {
                 case Wafer_Size.eight:
-                    var r_8 = Convert.ToDouble(configWR.ReadSettings("Radius_8"));                   
+                    var r_8 = Convert.ToDouble(configWR.ReadSettings("Radius_8"));
                     cc_Points[0] = new Point2d(detect.point_converter(r_8, 30).X + (detect.edge(eight_bp[0], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_8, 30).Y + (detect.edge(eight_bp[0], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     cc_Points[1] = new Point2d(detect.point_converter(r_8, 150).X + (detect.edge(eight_bp[1], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_8, 150).Y + (detect.edge(eight_bp[1], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     cc_Points[2] = new Point2d(detect.point_converter(r_8, 270).X + (detect.edge(eight_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_8, 270).Y + (detect.edge(eight_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
-                    var d_8 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);                   
+                    var d_8 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
                     recDataToUpdate = col.FindById(DM_recID);
-                  
+
                     if (recDataToUpdate != null)
                     {
                         // 更新指定欄位
@@ -1513,20 +1513,20 @@ namespace Wafer_System
                         // 執行更新操作
                         col.Update(recDataToUpdate);
                     }
-                  
+
                     break;
                 case Wafer_Size.tweleve:
-                    var r_12 = Convert.ToDouble(configWR.ReadSettings("Radius_12"));                  
+                    var r_12 = Convert.ToDouble(configWR.ReadSettings("Radius_12"));
                     cc_Points[0] = new Point2d(detect.point_converter(r_12, 30).X + (detect.edge(tweleve_bp[0], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_12, 30).Y + (detect.edge(tweleve_bp[0], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     cc_Points[1] = new Point2d(detect.point_converter(r_12, 150).X + (detect.edge(tweleve_bp[1], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_12, 150).Y + (detect.edge(tweleve_bp[1], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     cc_Points[2] = new Point2d(detect.point_converter(r_12, 270).X + (detect.edge(tweleve_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_12, 270).Y + (detect.edge(tweleve_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
-                    detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);                    
+                    detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
                     var d_12 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
                     recDataToUpdate = col.FindById(DM_recID);
-                    
+
                     if (recDataToUpdate != null)
                     {
                         // 更新指定欄位
@@ -1543,6 +1543,7 @@ namespace Wafer_System
 
             //假設OK
             main.d_Param.D200 = 0;
+            TN_recID = DM_recID;
 
             //IO MPS IN10=ON (PG3-VS)----pass
             this.BeginInvoke(new Action(() => { lb_progress.Text = "PG3-VS"; }));
@@ -1576,24 +1577,44 @@ namespace Wafer_System
 
         List<int> list_laser_low = new List<int>();
         List<int> list_laser_up = new List<int>();
+        List<int> list_laser_thick = new List<int>();
+        List<int> list_laser_low_up_Difference = new List<int>();
+        List<int> bow_point_a_value = new List<int>();
+        List<int> bow_point_b_value = new List<int>();
+        List<int> bow_per = new List<int>();
+        double thickness = 0, ttv = 0, warp = 0, bow = 0;
         public bool TNRUN(Wafer_Size wafer_Size)
         {
-            main.d_Param.D133 = 1;           
+            main.d_Param.D133 = 1;
             if (!TNRUN_ACT(wafer_Size))
             {
                 return false;
             }
+
+            Random random1 = new Random();
+            Random random2 = new Random();
+            Random random3 = new Random();
+            for (int i = 0; i < 157; i++)
+            {
+                list_laser_low.Add(random1.Next(1, 100));
+                list_laser_up.Add(random2.Next(1, 100));
+                list_laser_thick.Add(random3.Next(1, 100));
+            }
+
+
+
             //main.keyence.StorageSave(); 
             //執行量測路徑
             //解析量測資料
             main.keyence.GetStorageData();
             list_laser_low.Clear();
-            list_laser_up.Clear();  
+            list_laser_up.Clear();
             //this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
             for (int i = 0; i < 157; i++)
             {
                 list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
                 list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
+                list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
             }
 
             this.BeginInvoke(new Action(() =>
@@ -1624,7 +1645,49 @@ namespace Wafer_System
 
             }));
 
+            thickness = list_laser_thick.Average();
+            ttv = list_laser_thick.Max() - list_laser_thick.Min();
+            foreach (var OUT1 in list_laser_low)
+            {
+                foreach (var OUT2 in list_laser_up)
+                {
+                    list_laser_low_up_Difference.Add(OUT1 - OUT2);
+                }
+            }
+            var max = list_laser_low_up_Difference.Max();
+            var min = list_laser_low_up_Difference.Min();
+            warp = (max - min) / 2;
 
+            //var warp=
+            switch (autorun_Prarm.wafer_Size)
+            {
+                case Wafer_Size.eight:
+                    //var bow1 = list
+                    break;
+                case Wafer_Size.tweleve:
+                    var C = list_laser_low[81];
+                    bow_point_a_value.Clear();
+                    bow_point_b_value.Clear();
+                    bow_per.Clear();
+                    bow_point_a_value.Add(list_laser_low[2]);
+                    bow_point_a_value.Add(list_laser_low[21]);
+                    bow_point_a_value.Add(list_laser_low[74]);
+                    bow_point_a_value.Add(list_laser_low[151]);
+                    bow_point_b_value.Add(list_laser_low[160]);
+                    bow_point_b_value.Add(list_laser_low[141]);
+                    bow_point_b_value.Add(list_laser_low[88]);
+                    bow_point_b_value.Add(list_laser_low[11]);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        bow_per.Add(C - (bow_point_a_value[i] + bow_point_b_value[i]));
+                    }
+                    bow = bow_per.Max();
+                    break;
+                case Wafer_Size.unknow:
+                    break;
+                default:
+                    break;
+            }
 
 
 
@@ -1637,12 +1700,34 @@ namespace Wafer_System
 
 
             //判斷好壞...........
+
+
+
+            recDataToUpdate = col.FindById(DM_recID);
+
+            if (recDataToUpdate != null)
+            {
+                // 更新指定欄位
+                recDataToUpdate.Thickness = thickness.ToString();
+                //recDataToUpdate.Thickness_Level
+                recDataToUpdate.TTV = ttv.ToString();
+                //recDataToUpdate.TTV_Level
+                recDataToUpdate.BOW = bow.ToString();
+                //recDataToUpdate.BOW_Level
+                recDataToUpdate.WARP = warp.ToString();
+                //recDataToUpdate.WARP_Level                
+                // 執行更新操作
+                col.Update(recDataToUpdate);
+            }
+
+
+
             //假設是好的
             main.d_Param.D201 = 0;
             main.d_Param.D133 = 0;
             return true;
         }
-        public bool TNRUN_ACT(Wafer_Size wafer_Size) 
+        public bool TNRUN_ACT(Wafer_Size wafer_Size)
         {
             if (!main.TNWAFER(ref main.d_Param.D111) || main.d_Param.D111 != 1)
             {
@@ -2560,6 +2645,16 @@ namespace Wafer_System
                     "\r\n" + main.eFEM._Paser._SmartPut_Robot.ErrorCode, "LAput Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            recDataToUpdate = col.FindById(TN_recID);
+
+            if (recDataToUpdate != null)
+            {
+                // 更新指定欄位
+                recDataToUpdate.Slot = get_index.ToString();
+                recDataToUpdate.Cassette_Number = autorun_Prarm.cassette2_number;
+            }
+
             main.d_Param.D101 = 0;
             main.d_Param.D129 = 0;
             return true;
@@ -2593,6 +2688,16 @@ namespace Wafer_System
                     "\r\n" + main.eFEM._Paser._SmartPut_Robot.ErrorCode, "LAput Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            recDataToUpdate = col.FindById(TN_recID);
+
+            if (recDataToUpdate != null)
+            {
+                // 更新指定欄位
+                recDataToUpdate.Slot = get_index.ToString();
+                recDataToUpdate.Cassette_Number = autorun_Prarm.cassette3_number;
+            }
+
             main.d_Param.D101 = 0;
             main.d_Param.D130 = 0;
             return true;
@@ -3007,9 +3112,9 @@ namespace Wafer_System
         {
             if (!DMRUN(autorun_Prarm.wafer_Size))
             {
-                MessageBox.Show("DMRUN Fail", "Error");               
+                MessageBox.Show("DMRUN Fail", "Error");
             }
-           
+
         }
 
         private void btn_TN_Run_Click(object sender, EventArgs e)
@@ -3033,7 +3138,7 @@ namespace Wafer_System
 
         private void btn_reset_LAser_Click(object sender, EventArgs e)
         {
-            LaserReset();   
+            LaserReset();
         }
 
         private void button1_Click(object sender, EventArgs e)

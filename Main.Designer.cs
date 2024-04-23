@@ -100,6 +100,7 @@
             this.報表ToolStripMenuItem.Name = "報表ToolStripMenuItem";
             this.報表ToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.報表ToolStripMenuItem.Text = "報表(Report)";
+            this.報表ToolStripMenuItem.Click += new System.EventHandler(this.ReportToolStripMenuItem_Click);
             // 
             // 設定ToolStripMenuItem
             // 

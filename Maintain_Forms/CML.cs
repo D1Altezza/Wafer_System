@@ -200,7 +200,9 @@ namespace Cool_Muscle_CML_Example
         /// 32: pushmode torque limit reached (K60)
         /// 128:over termperature limit (K71)
         /// 256:pushmode timout not reached (K61)
-        /// 512:emergency stop (*)-----       
+        /// 5
+        /// 
+        /// emergency stop (*)-----       
         /// ?96 :Current Position
         /// </summary>
         /// <param name="query"></param>
