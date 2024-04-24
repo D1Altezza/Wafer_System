@@ -451,19 +451,31 @@ namespace Wafer_System
             }
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Check Z in orgin"; }));
             //當前位置回傳格式未檢查----待修正       
+            main.cML.pin_Down();
             main.cML.Query("?96.1");
             main.Wait_Cm1_Received_Update();
-            var z_in_zero_pos = (main.cML.recData == "Px.1=" + configWR.ReadSettings("Z0"));
-            if (!z_in_zero_pos)
+            if (!main.pass && !main.Wait_IO_Check(0, 0, 5, 1, TimeSpan.FromMinutes(3)))
             {
                 MessageBox.Show("E175\r\n" + "Z not in org pos", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new Action(() =>
                 {
                     Progres_update(false);
                 }));
-
                 return false;
             }
+            //var z_in_zero_pos = (main.cML.recData == "Px.1=" + configWR.ReadSettings("Z0"));
+            //Thread.Sleep(100);
+            //z_in_zero_pos = (main.cML.recData == "Px.1=" + configWR.ReadSettings("Z0"));
+            //if (!z_in_zero_pos)
+            //{
+            //    MessageBox.Show("E175\r\n" + "Z not in org pos", "AutoRun Check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    this.BeginInvoke(new Action(() =>
+            //    {
+            //        Progres_update(false);
+            //    }));
+
+            //    return false;
+            //}
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
 
             this.BeginInvoke(new Action(() => { lb_progress.Text = "MOVE TO (XL,YL)..."; }));
@@ -695,486 +707,858 @@ namespace Wafer_System
                     this.BeginInvoke(new Action(() => { Progres_update(false); }));
                     MessageBox.Show("MappingCassette(1) Fail", "AutoRun ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
+
+
                 }
+                if (main.d_Param.D400 == 1)
+                {
+                    AutoRun_End();
+                    return true;
+                }
+
+
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "Mapping Cassette2..."; }));
                 if (!MappingCassette(LoadPortNum.Loadport2, out cassett2_status))
                 {
-                    this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                    MessageBox.Show("MappingCassette(2) Fail", "AutoRun ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    if (!Finish_measure)
+                    {
+                        AutoRun_End();
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "Mapping Cassette3..."; }));
                 if (!MappingCassette(LoadPortNum.Loadport3, out cassett3_status))
                 {
-                    this.BeginInvoke(new Action(() => { Progres_update(false); }));
-                    MessageBox.Show("MappingCassette(3) Fail", "AutoRun ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    if (!Finish_measure)
+                    {
+                        AutoRun_End();
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
                 }
                 //Step5
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "Set D300=5..."; }));
                 main.d_Param.D300 = 5;
                 this.BeginInvoke(new Action(() => { lb_progress.Text = "Check D100=0 D400=0..."; }));
-                if (main.d_Param.D100 != 0 || main.d_Param.D400 != 0)
+                if (main.d_Param.D400 == 0)
                 {
-                    MessageBox.Show("UAgetLP1 Fail D100!=0 or D400!=0");
-                    return false;
+
+
+
+
+                    UALAWAFER();
+                    if (main.d_Param.D100 != 0 /*|| main.d_Param.D400 != 0*/)
+                    {
+                        MessageBox.Show("UAgetLP1 Fail D100!=0 or D400!=0");
+                        return false;
+
+                    }
+                    else
+                    {
+                        this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
+                        if (!UAgetLP1() || main.d_Param.D100 != 1)
+                        {
+                            MessageBox.Show("UAgetLP1 Fail");
+                            return false;
+                        }
+                        else
+                        {
+                            //Step6
+                            main.d_Param.D300 = 6;
+                            if (main.d_Param.D100 != 1 || main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
+                            {
+                                MessageBox.Show("Step 6 Fail", "Error");
+                                return false;
+
+                            }
+                            else
+                            {
+                                this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
+                                if (!UAputAN())
+                                {
+                                    MessageBox.Show("UAputAN Fail", "Error");
+                                    return false;
+                                }
+                            }
+                            //Step7
+                            main.d_Param.D300 = 7;
+                            if (main.d_Param.D102 != 1 || main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
+                            {
+                                MessageBox.Show("Step7 Fail", "Error");
+                                return false;
+                            }
+                            else
+                            {
+                                this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
+
+                                if (!Finish_measure)
+                                {
+                                    an_run = Task<bool>.Run(() =>
+                                    {
+                                        if (!ANRUN())
+                                        {
+                                            MessageBox.Show("ANRUN Fail", "Error");
+                                            return Task.FromResult(false);
+                                        }
+                                        return Task.FromResult(true);
+                                    });
+                                }
+                                else
+                                {
+                                    if (!ANRUN())
+                                    {
+                                        MessageBox.Show("ANRUN Fail", "Error");
+                                        return false;
+                                    }
+                                }
+
+
+
+
+
+                            }
+                            //Step8
+                            if (main.d_Param.D400 != 1)
+                            {
+                                MappingCassette(LoadPortNum.Loadport1, out cassett1_status);
+                            }
+                            main.d_Param.D300 = 8;
+                            if (main.d_Param.D400 == 0)
+                            {
+                                if (main.d_Param.D100 != 0 /*|| main.d_Param.D400 != 0*/)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step8 Fail", "Error");
+                                        return false;
+                                    }
+
+
+                                }
+                                if (!UAgetLP1() || main.d_Param.D100 != 1)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("UAgetLP1 Fail");
+                                        return false;
+                                    }
+                                }
+                            }
+
+
+
+                            //Step9
+                            main.d_Param.D300 = 9;
+                            if (main.d_Param.D131 != 0 || main.d_Param.D102 != 1 || main.d_Param.D101 != 0 || main.d_Param.D131 != 0)
+                            {
+                                MessageBox.Show("Step9 Fail", "Error");
+                                return false;
+                            }
+                            if (!LAgetAN() || main.d_Param.D124 != 0 || main.d_Param.D101 != 1 || main.d_Param.D102 != 0)
+                            {
+                                MessageBox.Show("LAgetAN Fail", "Error");
+                                return false;
+                            }
+                            //Step10
+                            main.d_Param.D300 = 10;
+                            if (main.d_Param.D100 == 1)
+                            {
+                                if (main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
+                                {
+                                    MessageBox.Show("Step10 Fail", "Error");
+                                    return false;
+                                }
+                                if (!UAputAN() || main.d_Param.D123 != 0 || main.d_Param.D100 != 0 || main.d_Param.D102 != 1)
+                                {
+                                    MessageBox.Show("UAputAN Fail", "Error");
+                                    return false;
+                                }
+                            }
+
+                            //Step11
+                            main.d_Param.D300 = 11;
+                            if (main.d_Param.D102 == 1)
+                            {
+                                if (/*main.d_Param.D102 != 1 ||*/ main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
+                                {
+                                    MessageBox.Show("Step11 Fail", "Error");
+                                    return false;
+                                }
+
+                                if (!Finish_measure)
+                                {
+                                    an_run = Task<bool>.Run(() =>
+                                    {
+                                        if (!ANRUN())
+                                        {
+                                            MessageBox.Show("ANRUN Fail", "Error");
+                                            return Task.FromResult(false);
+                                        }
+                                        return Task.FromResult(true);
+                                    });
+                                }
+                                else
+                                {
+                                    if (!ANRUN())
+                                    {
+                                        MessageBox.Show("ANRUN Fail", "Error");
+                                        return false;
+                                    }
+                                }
+                                //an_run = Task.Run(() =>
+                                //{
+                                //    if (!ANRUN())
+                                //    {
+                                //        MessageBox.Show("ANRUN Fail", "Error");
+                                //        return Task.FromResult(false);
+                                //    }
+                                //    return Task.FromResult(true);
+                                //});
+                            }
+
+                            //Step12
+                            main.d_Param.D300 = 12;
+                            if (main.d_Param.D101 != 1 || main.d_Param.D110 != 0 || main.d_Param.D132 != 0)
+                            {
+                                MessageBox.Show("Step12 Fail", "Error");
+                                return false;
+                            }
+                            if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
+                            {
+                                MessageBox.Show("LAputDM Fail", "Error");
+                                return false;
+                            }
+                            //Step13
+                            main.d_Param.D300 = 13;
+                            if (main.d_Param.D110 != 1 || main.d_Param.D125 != 0 || main.d_Param.D126 != 0)
+                            {
+                                MessageBox.Show("Step13 Fail", "Error");
+                                return false;
+                            }
+                            //執行外徑量測
+                            if (!Finish_measure)
+                            {
+                                dm_run = Task.Run(() =>
+                                {
+                                    if (!DMRUN(autorun_Prarm.wafer_Size))
+                                    {
+                                        MessageBox.Show("DMRUN Fail", "Error");
+                                        return Task.FromResult(false);
+                                    }
+                                    return Task.FromResult(true);
+
+                                });
+                            }
+                            else
+                            {
+                                if (!DMRUN(autorun_Prarm.wafer_Size))
+                                {
+                                    MessageBox.Show("DMRUN Fail", "Error");
+                                }
+                            }
+                            //Step14
+                            main.d_Param.D300 = 14;
+                            if (main.d_Param.D400 != 1)
+                            {
+                                MappingCassette(LoadPortNum.Loadport1, out cassett1_status);
+                            }
+
+                            if (main.d_Param.D400 == 0)
+                            {
+                                if (main.d_Param.D100 != 0 /*|| main.d_Param.D400 != 0*/)
+                                {
+                                    MessageBox.Show("Step14 Fail", "Error");
+                                    return false;
+                                }
+                                if (!UAgetLP1() || main.d_Param.D100 != 1)
+                                {
+                                    MessageBox.Show("UAgetLP1 Fail");
+                                    return false;
+                                }
+                            }
+
+
+                            //Step15
+                            main.d_Param.D300 = 15;
+                            if (main.d_Param.D102 == 1)
+                            {
+                                if (main.d_Param.D131 != 0 || /*main.d_Param.D102 != 1 ||*/ main.d_Param.D101 != 0)
+                                {
+                                    MessageBox.Show("Step15 Fail", "Error");
+                                    return false;
+                                }
+                                if (!LAgetAN() || main.d_Param.D124 != 0 || main.d_Param.D101 != 1 || main.d_Param.D102 != 0)
+                                {
+                                    MessageBox.Show("LAgetAN Fail");
+                                    return false;
+                                }
+                            }
+
+                            //Step16
+                            main.d_Param.D300 = 16;
+                            if (main.d_Param.D100 == 1)
+                            {
+                                if (/*main.d_Param.D100 != 1 ||*/ main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
+                                {
+                                    MessageBox.Show("Step16 Fail", "Error");
+                                    return false;
+                                }
+                                if (!UAputAN() || main.d_Param.D132 != 0 || main.d_Param.D100 != 0 || main.d_Param.D102 != 1)
+                                {
+                                    MessageBox.Show("UAputAN Fail", "Error");
+                                    return false;
+                                }
+                            }
+
+                            //Step17
+                            main.d_Param.D300 = 17;
+                            if (main.d_Param.D102 == 1)
+                            {
+                                if (main.d_Param.D102 != 1 || main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
+                                {
+                                    MessageBox.Show("Step17 Fail", "Error");
+                                    return false;
+                                }
+                                if (!Finish_measure)
+                                {
+                                    an_run = Task<bool>.Run(() =>
+                                    {
+                                        if (!ANRUN())
+                                        {
+                                            MessageBox.Show("ANRUN Fail", "Error");
+                                            return Task.FromResult(false);
+                                        }
+                                        return Task.FromResult(true);
+                                    });
+                                }
+                                else
+                                {
+                                    if (!ANRUN())
+                                    {
+                                        MessageBox.Show("ANRUN Fail", "Error");
+                                    }
+                                }
+
+                            }
+
+                            //Step18
+                            main.d_Param.D300 = 18;
+                            if (main.d_Param.D132 != 0 || main.d_Param.D110 != 1 || main.d_Param.D100 != 0)
+                            {
+                                MessageBox.Show("Step18 Fail", "Error");
+                                return false;
+                            }
+                            if (!UAgetDM() || main.d_Param.D126 != 0 || main.d_Param.D100 != 1 || main.d_Param.D110 != 0)
+                            {
+                                MessageBox.Show("UAgetDM Fail", "Error");
+                                return false;
+                            }
+                            //Step19
+                            main.d_Param.D300 = 19;
+                            if (main.d_Param.D101 == 1)
+                            {
+                                if (/*main.d_Param.D101 != 1 ||*/ main.d_Param.D110 != 0 || main.d_Param.D132 != 0)
+                                {
+                                    MessageBox.Show("Step19 Fail", "Error");
+                                    return false;
+                                }
+                                if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
+                                {
+                                    MessageBox.Show("LAputDM Fail", "Error");
+                                    return false;
+                                }
+                                //Step20
+                                main.d_Param.D300 = 20;
+                                if (!Finish_measure)
+                                {
+                                    dm_run = Task.Run(() =>
+                                    {
+                                        if (!DMRUN(autorun_Prarm.wafer_Size))
+                                        {
+                                            MessageBox.Show("DMRUN Fail", "Error");
+                                            return Task.FromResult(false);
+                                        }
+                                        return Task.FromResult(true);
+
+                                    });
+                                }
+                                else
+                                {
+                                    if (!DMRUN(autorun_Prarm.wafer_Size))
+                                    {
+                                        MessageBox.Show("DMRUN Fail", "Error");
+                                    }
+                                }
+
+                            }
+
+
+                            //Step21 UAputTN()
+                            main.d_Param.D300 = 21;
+                            if (main.d_Param.D100 != 1 || main.d_Param.D111 != 0 || main.d_Param.D133 != 0)
+                            {
+                                MessageBox.Show("Step21 fail");
+                                return false;
+                            }
+                            if (!UAputTN() || main.d_Param.D127 != 0 || main.d_Param.D100 != 0 || main.d_Param.D111 != 1)
+                            {
+                                MessageBox.Show("UAputTN fail");
+                            }
+                            //Step22 TNRUN
+                            main.d_Param.D300 = 22;
+                            if (main.d_Param.D111 != 1 || main.d_Param.D127 != 0 || main.d_Param.D128 != 0)
+                            {
+                                MessageBox.Show("Step22 fail");
+                            }
+                            if (!Finish_measure)
+                            {
+                                tn_run = Task<bool>.Run(() =>
+                                {
+                                    if (!TNRUN(autorun_Prarm.wafer_Size))
+                                    {
+                                        MessageBox.Show("TNRUN Fail", "Error");
+                                        return Task.FromResult(false);
+                                    }
+                                    return Task.FromResult(true);
+                                });
+                            }
+                            else
+                            {
+                                if (!TNRUN(autorun_Prarm.wafer_Size))
+                                {
+                                    MessageBox.Show("TNRUN Fail", "Error");
+                                }
+                            }
+
+                            //Step23
+                            main.d_Param.D300 = 23;
+                            if (main.d_Param.D400 != 1)
+                            {
+                                MappingCassette(LoadPortNum.Loadport1, out cassett1_status);
+                            }
+                            if (main.d_Param.D400 == 0)
+                            {
+                                if (main.d_Param.D100 != 0/* || main.d_Param.D400 != 0*/)
+                                {
+                                    MessageBox.Show("Step23 fail");
+                                }
+                                if (!UAgetLP1() || main.d_Param.D122 != 0 || main.d_Param.D100 != 1)
+                                {
+                                    MessageBox.Show("UAgetLP1 Fail");
+                                    return false;
+                                }
+                            }
+
+                        //Step24
+                        Step24:
+                            main.d_Param.D300 = 24;
+                            if (main.d_Param.D102 == 1)
+                            {
+                                var LAgetAN_pass = false;
+                                if (!CheckCondition(ref main.d_Param.D131, 0, TimeSpan.FromMinutes(2)) ||
+                                    //!CheckCondition(ref main.d_Param.D102, 1, TimeSpan.FromMinutes(2)) ||
+                                    !CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(2)))
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step24 fail");
+                                    }
+                                    else
+                                    {
+                                        LAgetAN_pass = true;
+                                    }
+                                }
+                                if (!LAgetAN_pass)
+                                {
+                                    if (!LAgetAN() || main.d_Param.D124 != 0 || main.d_Param.D101 != 1 || main.d_Param.D102 != 0)
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("LAgetAN fail");
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+                            //Step25
+                            if (main.d_Param.D100 == 1)
+                            {
+                                var UAputAN_pass = false;
+                                main.d_Param.D300 = 25;
+                                if (/*main.d_Param.D100 != 1 ||*/ main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step25 fail");
+                                    }
+                                    else
+                                    {
+                                        UAputAN_pass = true;
+                                    }
+
+                                }
+                                if (!UAputAN_pass)
+                                {
+                                    if (!UAputAN() ||
+                                   main.d_Param.D123 != 0 ||
+                                   main.d_Param.D100 != 0 ||
+                                   main.d_Param.D102 != 1)
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("UAputAN fail");
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            //Step26
+                            if (main.d_Param.D102 == 1)
+                            {
+                                var an_run_pass = false;
+                                main.d_Param.D300 = 26;
+                                if (/*main.d_Param.D102 != 1 ||*/
+                                    main.d_Param.D123 != 0 ||
+                                    main.d_Param.D124 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step26 fail");
+                                    }
+                                    else
+                                    {
+                                        an_run_pass = true;
+                                    }
+                                }
+                                if (!an_run_pass)
+                                {
+                                    an_run = Task<bool>.Run(() =>
+                                    {
+                                        if (!ANRUN())
+                                        {
+                                            if (!Finish_measure)
+                                            {
+                                                MessageBox.Show("ANRUN Fail", "Error");
+                                                return Task.FromResult(false);
+                                            }
+                                            else
+                                            {
+                                                return Task.FromResult(true);
+                                            }
+                                        }
+                                        return Task.FromResult(true);
+                                    });
+                                }
+                            }
+
+
+
+                            //Step27                                
+                            main.d_Param.D300 = 27;
+                            if (main.d_Param.D110 == 1)
+                            {
+                                var UAgetDM_pass = false;
+                                if (!CheckCondition(ref main.d_Param.D132, 0, TimeSpan.FromMinutes(2))
+                                    /*!CheckCondition(ref main.d_Param.D110, 1, TimeSpan.FromMinutes(2))*/)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step27 fail");
+                                    }
+                                    else
+                                    {
+                                        UAgetDM_pass = true;
+                                    }
+                                }
+                                if (!UAgetDM_pass)
+                                {
+                                    if (!UAgetDM() || main.d_Param.D126 != 0 || main.d_Param.D100 != 1 || main.d_Param.D110 != 0)
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("UAgetDM Fail", "Error");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            //Step28
+
+                            main.d_Param.D300 = 28;
+                            if (main.d_Param.D101 == 1)
+                            {
+                                var LAputDM_pass = false;
+                                if (/*main.d_Param.D101 != 1 ||*/
+                                    main.d_Param.D110 != 0 ||
+                                    main.d_Param.D132 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step28 fail");
+                                    }
+                                    else
+                                    {
+                                        LAputDM_pass = true;
+                                    }
+                                }
+                                if (!LAputDM_pass)
+                                {
+                                    if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("LAputDM Fail", "Error");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+                            //Step29
+
+                            main.d_Param.D300 = 29;
+                            if (main.d_Param.D110 == 1)
+                            {
+                                var dm_run_pass = false;
+                                if (main.d_Param.D110 != 1 ||
+                                    main.d_Param.D125 != 0 ||
+                                    main.d_Param.D126 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step29 fail");
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        dm_run_pass = true;
+                                    }
+                                }
+                                if (!dm_run_pass)
+                                {
+                                    dm_run = Task.Run(() =>
+                                    {
+                                        if (!DMRUN(autorun_Prarm.wafer_Size))
+                                        {
+                                            if (!Finish_measure)
+                                            {
+                                                MessageBox.Show("DMRUN Fail", "Error");
+                                                return Task.FromResult(false);
+                                            }
+                                            else
+                                            {
+                                                return Task.FromResult(true);
+                                            }
+                                        }
+                                        return Task.FromResult(true);
+                                    });
+                                }
+                            }
+
+
+                            //Step30
+
+                            main.d_Param.D300 = 30;
+                            if (main.d_Param.D111 == 1)
+                            {
+                                var LAgetTN_pass = false;
+                                if (!CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(3)) ||
+                                    //!CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(3)) ||
+                                    !CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(3)))
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step30 fail");
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        LAgetTN_pass = true;
+                                    }
+                                }
+                                if (!LAgetTN_pass)
+                                {
+                                    if (!LAgetTN() ||
+                                    main.d_Param.D128 != 0 ||
+                                    main.d_Param.D101 != 1 ||
+                                    main.d_Param.D111 != 0)
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("LAgetTN fail");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+                            //Step31
+
+                            main.d_Param.D300 = 31;
+                            if (main.d_Param.D100 == 1)
+                            {
+                                var UAputTN_pass = false;
+                                if (/*main.d_Param.D100 != 1 ||*/
+                                    main.d_Param.D111 != 0 ||
+                                    main.d_Param.D133 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step31 fail");
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        UAputTN_pass = true;
+                                    }
+                                }
+                                if (!UAputTN_pass)
+                                {
+                                    if (!UAputTN() ||
+                                   main.d_Param.D127 != 0 ||
+                                   main.d_Param.D100 != 0 ||
+                                   main.d_Param.D111 != 1)
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("UAputTN fail");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+                            main.d_Param.D300 = 32;
+                            if (main.d_Param.D111 == 1)
+                            {
+                                var TNRUN_pass = false;
+                                if (main.d_Param.D111 != 1 ||
+                                    main.d_Param.D127 != 0 ||
+                                    main.d_Param.D128 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step32 fail");
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        TNRUN_pass = true;
+                                    }
+                                }
+                                if (!TNRUN_pass)
+                                {
+                                    if (!TNRUN(autorun_Prarm.wafer_Size))
+                                    {
+                                        if (!Finish_measure)
+                                        {
+                                            MessageBox.Show("TNRUN Fail", "Error");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            //Step33
+                            main.d_Param.D300 = 33;
+                            if ((main.d_Param.D200 == 0) && (main.d_Param.D201 == 0))
+                            {
+                                if (!LAputOKLP2())
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("LAputOKLP2 fail");
+                                        return false;
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                if (!LAputNGLP3())
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("LAputNGLP3 fail");
+                                        return false;
+                                    }
+                                }
+                            }
+                            //Step34
+                            var step34_pass = false;
+                            main.d_Param.D300 = 34;
+                            if (main.d_Param.D400 != 1)
+                            {
+                                MappingCassette(LoadPortNum.Loadport1, out cassett1_status);
+                            }
+                            //MappingCassette(LoadPortNum.Loadport1, out cassett1_status);
+                            if (main.d_Param.D400 == 0)
+                            {
+                                if (main.d_Param.D100 != 0 || main.d_Param.D400 != 0)
+                                {
+                                    if (!Finish_measure)
+                                    {
+                                        MessageBox.Show("Step34 Fail");
+                                    }
+                                    else
+                                    {
+                                        step34_pass = true;
+                                    }
+
+                                }
+                                else if (!step34_pass)
+                                {
+                                    if (!UAgetLP1() || main.d_Param.D122 != 0 || main.d_Param.D100 != 1)
+                                    {
+                                        MessageBox.Show("UAgetLP1 fail");
+                                    }
+                                }
+                            }
+
+
+                            if (main.d_Param.D100 == 1 ||
+                                main.d_Param.D101 == 1 ||
+                                main.d_Param.D102 == 1 ||
+                                main.d_Param.D110 == 1 ||
+                                main.d_Param.D111 == 1)
+                            {
+                                goto Step24;
+                            }
+                            else
+                            {
+                                AutoRun_End();
+
+                            }
+                            return true;
+                        }
+                    }
 
                 }
                 else
                 {
-                    this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
-                    if (!UAgetLP1() || main.d_Param.D100 != 1)
-                    {
-                        MessageBox.Show("UAgetLP1 Fail");
-                        return false;
-                    }
-                    else
-                    {
-                        //Step6
-                        main.d_Param.D300 = 6;
-                        if (main.d_Param.D100 != 1 || main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
-                        {
-                            MessageBox.Show("Step 6 Fail", "Error");
-                            return false;
-
-                        }
-                        else
-                        {
-                            this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
-                            if (!UAputAN())
-                            {
-                                MessageBox.Show("UAputAN Fail", "Error");
-                                return false;
-                            }
-                        }
-                        //Step7
-                        main.d_Param.D300 = 7;
-                        if (main.d_Param.D102 != 1 || main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
-                        {
-                            MessageBox.Show("Step7 Fail", "Error");
-                            return false;
-                        }
-                        else
-                        {
-                            this.BeginInvoke(new Action(() => { lb_progress.Text = "UAgetLP1..."; }));
-
-                            an_run = Task<bool>.Run(() =>
-                            {
-                                if (!ANRUN())
-                                {
-                                    MessageBox.Show("ANRUN Fail", "Error");
-                                    return Task.FromResult(false);
-                                }
-                                return Task.FromResult(true);
-                            });
-
-                        }
-                        //Step8
-                        main.d_Param.D300 = 8;
-                        if (main.d_Param.D100 != 0 || main.d_Param.D400 != 0)
-                        {
-                            MessageBox.Show("Step8 Fail", "Error");
-                            return false;
-                        }
-                        if (!UAgetLP1() || main.d_Param.D100 != 1)
-                        {
-                            MessageBox.Show("UAgetLP1 Fail");
-                            return false;
-                        }
-                        //Step9
-                        main.d_Param.D300 = 9;
-                        if (main.d_Param.D131 != 0 || main.d_Param.D102 != 1 || main.d_Param.D101 != 0 || main.d_Param.D131 != 0)
-                        {
-                            MessageBox.Show("Step9 Fail", "Error");
-                            return false;
-                        }
-                        if (!LAgetAN() || main.d_Param.D124 != 0 || main.d_Param.D101 != 1 || main.d_Param.D102 != 0)
-                        {
-                            MessageBox.Show("LAgetAN Fail", "Error");
-                            return false;
-                        }
-                        //Step10
-                        main.d_Param.D300 = 10;
-                        if (main.d_Param.D100 != 1 || main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
-                        {
-                            MessageBox.Show("Step10 Fail", "Error");
-                            return false;
-                        }
-                        if (!UAputAN() || main.d_Param.D123 != 0 || main.d_Param.D100 != 0 || main.d_Param.D102 != 1)
-                        {
-                            MessageBox.Show("UAputAN Fail", "Error");
-                            return false;
-                        }
-                        //Step11
-                        main.d_Param.D300 = 11;
-                        if (main.d_Param.D102 != 1 || main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
-                        {
-                            MessageBox.Show("Step11 Fail", "Error");
-                            return false;
-                        }
-                        an_run = Task.Run(() =>
-                        {
-                            if (!ANRUN())
-                            {
-                                MessageBox.Show("ANRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-                        });
-                        //Step12
-                        main.d_Param.D300 = 12;
-                        if (main.d_Param.D101 != 1 || main.d_Param.D110 != 0 || main.d_Param.D132 != 0)
-                        {
-                            MessageBox.Show("Step12 Fail", "Error");
-                            return false;
-                        }
-                        if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
-                        {
-                            MessageBox.Show("LAputDM Fail", "Error");
-                            return false;
-                        }
-                        //Step13
-                        main.d_Param.D300 = 13;
-                        if (main.d_Param.D110 != 1 || main.d_Param.D125 != 0 || main.d_Param.D126 != 0)
-                        {
-                            MessageBox.Show("Step13 Fail", "Error");
-                            return false;
-                        }
-                        //執行外徑量測
-                        dm_run = Task.Run(() =>
-                        {
-                            if (!DMRUN(autorun_Prarm.wafer_Size))
-                            {
-                                MessageBox.Show("DMRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-
-                        });
-                        //Step14
-                        main.d_Param.D300 = 14;
-                        if (main.d_Param.D100 != 0 || main.d_Param.D400 != 0)
-                        {
-                            MessageBox.Show("Step14 Fail", "Error");
-                            return false;
-                        }
-                        if (!UAgetLP1() || main.d_Param.D100 != 1)
-                        {
-                            MessageBox.Show("UAgetLP1 Fail");
-                            return false;
-                        }
-                        //Step15
-                        main.d_Param.D300 = 15;
-                        if (main.d_Param.D131 != 0 || main.d_Param.D102 != 1 || main.d_Param.D101 != 0)
-                        {
-                            MessageBox.Show("Step15 Fail", "Error");
-                            return false;
-                        }
-                        if (!LAgetAN() || main.d_Param.D124 != 0 || main.d_Param.D101 != 1 || main.d_Param.D102 != 0)
-                        {
-                            MessageBox.Show("LAgetAN Fail");
-                            return false;
-                        }
-                        //Step16
-                        main.d_Param.D300 = 16;
-                        if (main.d_Param.D100 != 1 || main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
-                        {
-                            MessageBox.Show("Step16 Fail", "Error");
-                            return false;
-                        }
-                        if (!UAputAN() || main.d_Param.D132 != 0 || main.d_Param.D100 != 0 || main.d_Param.D102 != 1)
-                        {
-                            MessageBox.Show("UAputAN Fail", "Error");
-                            return false;
-                        }
-                        //Step17
-                        main.d_Param.D300 = 17;
-                        if (main.d_Param.D102 != 1 || main.d_Param.D123 != 0 || main.d_Param.D124 != 0)
-                        {
-                            MessageBox.Show("Step17 Fail", "Error");
-                            return false;
-                        }
-                        an_run = Task<bool>.Run(() =>
-                        {
-                            if (!ANRUN())
-                            {
-                                MessageBox.Show("ANRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-                        });
-                        //Step18
-                        main.d_Param.D300 = 18;
-                        if (main.d_Param.D132 != 0 || main.d_Param.D110 != 1 || main.d_Param.D100 != 0)
-                        {
-                            MessageBox.Show("Step18 Fail", "Error");
-                            return false;
-                        }
-                        if (!UAgetDM() || main.d_Param.D126 != 0 || main.d_Param.D100 != 1 || main.d_Param.D110 != 0)
-                        {
-                            MessageBox.Show("UAgetDM Fail", "Error");
-                            return false;
-                        }
-                        //Step19
-                        main.d_Param.D300 = 19;
-                        if (main.d_Param.D101 != 1 || main.d_Param.D110 != 0 || main.d_Param.D132 != 0)
-                        {
-                            MessageBox.Show("Step19 Fail", "Error");
-                            return false;
-                        }
-                        if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
-                        {
-                            MessageBox.Show("LAputDM Fail", "Error");
-                            return false;
-                        }
-                        //Step20
-                        main.d_Param.D300 = 20;
-                        dm_run = Task.Run(() =>
-                        {
-                            if (!DMRUN(autorun_Prarm.wafer_Size))
-                            {
-                                MessageBox.Show("DMRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-
-                        });
-                        //Step21 UAputTN()
-                        main.d_Param.D300 = 21;
-                        if (main.d_Param.D100 != 1 || main.d_Param.D111 != 0 || main.d_Param.D133 != 0)
-                        {
-                            MessageBox.Show("Step21 fail");
-                            return false;
-                        }
-                        if (!UAputTN() || main.d_Param.D127 != 0 || main.d_Param.D100 != 0 || main.d_Param.D111 != 1)
-                        {
-                            MessageBox.Show("UAputTN fail");
-                        }
-                        //Step22 TNRUN
-                        main.d_Param.D300 = 22;
-                        if (main.d_Param.D111 != 1 || main.d_Param.D127 != 0 || main.d_Param.D128 != 0)
-                        {
-                            MessageBox.Show("Step22 fail");
-                        }
-                        //Task.Run(() =>
-                        //{
-                        //    TNRUN(autorun_Prarm.wafer_Size);
-                        //});
-                        tn_run = Task<bool>.Run(() =>
-                        {
-                            if (!TNRUN(autorun_Prarm.wafer_Size))
-                            {
-                                MessageBox.Show("TNRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-                        });
-                        //Step23
-                        main.d_Param.D300 = 23;
-                        if (main.d_Param.D100 != 0 || main.d_Param.D400 != 0)
-                        {
-                            MessageBox.Show("Step23 fail");
-                        }
-                        if (!UAgetLP1() || main.d_Param.D122 != 0 || main.d_Param.D100 != 1)
-                        {
-                            MessageBox.Show("UAgetLP1 Fail");
-                            return false;
-                        }
-                    //Step24
-                    Step24:
-                        main.d_Param.D300 = 24;
-                        if (!CheckCondition(ref main.d_Param.D131, 0, TimeSpan.FromMinutes(2)) ||
-                            !CheckCondition(ref main.d_Param.D102, 1, TimeSpan.FromMinutes(2)) ||
-                            !CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(2)))
-                        {
-                            MessageBox.Show("Step24 fail");
-                        }
-                        if (!LAgetAN() || main.d_Param.D124 != 0 || main.d_Param.D101 != 1 || main.d_Param.D102 != 0)
-                        {
-                            MessageBox.Show("LAgetAN fail");
-                        }
-                        //Step25
-                        main.d_Param.D300 = 25;
-                        if (main.d_Param.D100 != 1 || main.d_Param.D102 != 0 || main.d_Param.D131 != 0)
-                        {
-                            MessageBox.Show("Step25 fail");
-                        }
-                        if (!UAputAN() ||
-                            main.d_Param.D123 != 0 ||
-                            main.d_Param.D100 != 0 ||
-                            main.d_Param.D102 != 1)
-                        {
-                            MessageBox.Show("UAputAN fail");
-                        }
-                        //Step26
-                        main.d_Param.D300 = 26;
-                        if (main.d_Param.D102 != 1 ||
-                            main.d_Param.D123 != 0 ||
-                            main.d_Param.D124 != 0)
-                        {
-                            MessageBox.Show("Step26 fail");
-                        }
-                        an_run = Task<bool>.Run(() =>
-                        {
-                            if (!ANRUN())
-                            {
-                                MessageBox.Show("ANRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-                        });
-
-                        //Step27
-                        main.d_Param.D300 = 27;
-                        if (!CheckCondition(ref main.d_Param.D132, 0, TimeSpan.FromMinutes(2)) ||
-                            !CheckCondition(ref main.d_Param.D110, 1, TimeSpan.FromMinutes(2)))
-                        {
-                            MessageBox.Show("Step27 fail");
-                        }
-                        if (!UAgetDM() || main.d_Param.D126 != 0 || main.d_Param.D100 != 1 || main.d_Param.D110 != 0)
-                        {
-                            MessageBox.Show("UAgetDM Fail", "Error");
-                            return false;
-                        }
-                        //Step28
-                        main.d_Param.D300 = 28;
-
-                        if (main.d_Param.D101 != 1 ||
-                            main.d_Param.D110 != 0 ||
-                            main.d_Param.D132 != 0)
-                        {
-                            MessageBox.Show("Step28 fail");
-                        }
-                        if (!LAputDM() || main.d_Param.D125 != 0 || main.d_Param.D101 != 0 || main.d_Param.D110 != 1)
-                        {
-                            MessageBox.Show("LAputDM Fail", "Error");
-                            return false;
-                        }
-
-                        //Step29
-                        main.d_Param.D300 = 29;
-                        if (main.d_Param.D110 != 1 ||
-                            main.d_Param.D125 != 0 ||
-                            main.d_Param.D126 != 0)
-                        {
-                            MessageBox.Show("Step29 fail");
-                            return false;
-                        }
-
-                        dm_run = Task.Run(() =>
-                        {
-                            if (!DMRUN(autorun_Prarm.wafer_Size))
-                            {
-                                MessageBox.Show("DMRUN Fail", "Error");
-                                return Task.FromResult(false);
-                            }
-                            return Task.FromResult(true);
-                        });
-                        //Step30
-                        main.d_Param.D300 = 30;
-                        if (!CheckCondition(ref main.d_Param.D101, 0, TimeSpan.FromMinutes(3)) ||
-                            !CheckCondition(ref main.d_Param.D111, 1, TimeSpan.FromMinutes(3)) ||
-                            !CheckCondition(ref main.d_Param.D133, 0, TimeSpan.FromMinutes(3)))
-                        {
-                            MessageBox.Show("Step30 fail");
-                            return false;
-                        }
-
-                        if (!LAgetTN() ||
-                            main.d_Param.D128 != 0 ||
-                            main.d_Param.D101 != 1 ||
-                            main.d_Param.D111 != 0)
-                        {
-                            MessageBox.Show("LAgetTN fail");
-                            return false;
-                        }
-                        //Step31
-                        main.d_Param.D300 = 31;
-                        if (main.d_Param.D100 != 1 ||
-                            main.d_Param.D111 != 0 ||
-                            main.d_Param.D133 != 0)
-                        {
-                            MessageBox.Show("Step31 fail");
-                            return false;
-                        }
-                        if (!UAputTN() ||
-                            main.d_Param.D127 != 0 ||
-                            main.d_Param.D100 != 0 ||
-                            main.d_Param.D111 != 1)
-                        {
-                            MessageBox.Show("UAputTN fail");
-                            return false;
-                        }
-                        //Step32
-                        main.d_Param.D300 = 32;
-                        if (main.d_Param.D111 != 1 ||
-                            main.d_Param.D127 != 0 ||
-                            main.d_Param.D128 != 0)
-                        {
-                            MessageBox.Show("Step32 fail");
-                            return false;
-                        }
-                        //tn_run = Task<bool>.Run(() =>
-                        //{
-                        //    if (!TNRUN(autorun_Prarm.wafer_Size))
-                        //    {
-                        //        MessageBox.Show("TNRUN Fail", "Error");
-                        //        return Task.FromResult(false);
-                        //    }
-                        //    return Task.FromResult(true);
-                        //});
-                        if (!TNRUN(autorun_Prarm.wafer_Size))
-                        {
-                            MessageBox.Show("TNRUN Fail", "Error");
-                            return false;
-                        }
-                        //Step33
-                        main.d_Param.D300 = 33;
-                        if ((main.d_Param.D200 == 0) && (main.d_Param.D201 == 0))
-                        {
-                            if (!LAputOKLP2())
-                            {
-                                MessageBox.Show("LAputOKLP2 fail");
-                                return false;
-                            }
-
-                        }
-                        else
-                        {
-                            if (!LAputNGLP3())
-                            {
-                                MessageBox.Show("LAputNGLP3 fail");
-                                return false;
-                            }
-                        }
-                        //Step34
-                        main.d_Param.D300 = 34;
-                        if (main.d_Param.D100 != 0 ||
-                            main.d_Param.D400 != 0)
-                        {
-                            //MessageBox.Show("Step34 Fail");
-                        }
-                        else if (!UAgetLP1() || main.d_Param.D122 != 0 || main.d_Param.D100 != 1)
-                        {
-                            MessageBox.Show("UAgetLP1 fail");
-                        }
-                        if (main.d_Param.D100 == 1 ||
-                            main.d_Param.D101 == 1 ||
-                            main.d_Param.D102 == 1 ||
-                            main.d_Param.D110 == 1 ||
-                            main.d_Param.D111 == 1)
-                        {
-                            goto Step24;
-                        }
-                        else
-                        {
-                            AutoRun_End();
-                            MessageBox.Show("finsh");
-                        }
-                        return true;
-                    }
+                    AutoRun_End();
+                    return true;
                 }
-
 
             }
             else if (main.d_Param.D400 == 1)
@@ -1217,23 +1601,23 @@ namespace Wafer_System
                 return false;
             }
             this.BeginInvoke(new Action(() => { progresBar.Increment(1); }));
-            main.d_Param.D100 = 3;
-            main.d_Param.D101 = 3;
-            main.d_Param.D102 = 3;
-            main.d_Param.D110 = 3;
-            main.d_Param.D111 = 3;
-            main.d_Param.D122 = 3;
-            main.d_Param.D123 = 3;
-            main.d_Param.D124 = 3;
-            main.d_Param.D125 = 3;
-            main.d_Param.D126 = 3;
-            main.d_Param.D127 = 3;
-            main.d_Param.D128 = 3;
-            main.d_Param.D129 = 3;
-            main.d_Param.D130 = 3;
-            main.d_Param.D131 = 3;
-            main.d_Param.D132 = 3;
-            main.d_Param.D133 = 3;
+            main.d_Param.D100 = 0;
+            main.d_Param.D101 = 0;
+            main.d_Param.D102 = 0;
+            main.d_Param.D110 = 0;
+            main.d_Param.D111 = 0;
+            main.d_Param.D122 = 0;
+            main.d_Param.D123 = 0;
+            main.d_Param.D124 = 0;
+            main.d_Param.D125 = 0;
+            main.d_Param.D126 = 0;
+            main.d_Param.D127 = 0;
+            main.d_Param.D128 = 0;
+            main.d_Param.D129 = 0;
+            main.d_Param.D130 = 0;
+            main.d_Param.D131 = 0;
+            main.d_Param.D132 = 0;
+            main.d_Param.D133 = 0;
             main.d_Param.D400 = 0;
             main.cML.Origin();
 
@@ -1298,6 +1682,8 @@ namespace Wafer_System
                 this.BeginInvoke(new Action(() => { Progres_update(false); }));
             }
             main.d_Param.D400 = 0;
+            Finish_measure = false;
+            MessageBox.Show("finsh");
             return true;
         }
 
@@ -1504,9 +1890,9 @@ namespace Wafer_System
                     cc_Points[2] = new Point2d(detect.point_converter(r_8, 270).X + (detect.edge(eight_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_8, 270).Y + (detect.edge(eight_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     var d_8 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
-                   
-                  
-                   
+
+
+
                     recDataToUpdate = col.FindById(DM_recID);
 
                     if (recDataToUpdate != null)
@@ -1519,6 +1905,10 @@ namespace Wafer_System
                             if (d_8 <= Convert.ToDouble(item.hLimit) && d_8 >= Convert.ToDouble(item.lLimit))
                             {
                                 recDataToUpdate.Diameter_Level = item.Grade;
+                            }
+                            else
+                            {
+                                recDataToUpdate.Diameter_Level = "NG";
                             }
                         }
                         // 執行更新操作
@@ -1548,6 +1938,10 @@ namespace Wafer_System
                             if (d_12 <= Convert.ToDouble(item.hLimit) && d_12 >= Convert.ToDouble(item.lLimit))
                             {
                                 recDataToUpdate.Diameter_Level = item.Grade;
+                            }
+                            else
+                            {
+                                recDataToUpdate.Diameter_Level = "NG";
                             }
                         }
                         // 執行更新操作
@@ -1630,10 +2024,11 @@ namespace Wafer_System
             //執行量測路徑
             //解析量測資料
             //記得復原
-            
+
             main.keyence.GetStorageData();
             list_laser_low.Clear();
             list_laser_up.Clear();
+            list_laser_thick.Clear();
             //this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
             try
             {
@@ -1648,21 +2043,28 @@ namespace Wafer_System
             catch (Exception ex)
             {
 
-                
-            }
-            
 
-            
+            }
+
+
+
 
             thickness = list_laser_thick.Average();
             ttv = list_laser_thick.Max() - list_laser_thick.Min();
-            foreach (var OUT1 in list_laser_low)
+            //foreach (var OUT1 in list_laser_low)
+            //{
+            //    foreach (var OUT2 in list_laser_up)
+            //    {
+            //        list_laser_low_up_Difference.Add(OUT1 - OUT2);
+            //    }
+            //}
+
+            for (int i = 0; i < list_laser_low.Count; i++)
             {
-                foreach (var OUT2 in list_laser_up)
-                {
-                    list_laser_low_up_Difference.Add(OUT1 - OUT2);
-                }
+                list_laser_low_up_Difference.Add(list_laser_low[i] - list_laser_up[i]);
             }
+
+
             var max = list_laser_low_up_Difference.Max();
             var min = list_laser_low_up_Difference.Min();
             warp = (max - min) / 2;
@@ -1674,23 +2076,35 @@ namespace Wafer_System
                     //var bow1 = list
                     break;
                 case Wafer_Size.tweleve:
-                    var C = list_laser_low[81-1];
-                    bow_point_a_value.Clear();
-                    bow_point_b_value.Clear();
-                    bow_per.Clear();
-                    bow_point_a_value.Add(list_laser_low[2-1]);
-                    bow_point_a_value.Add(list_laser_low[21-1]);
-                    bow_point_a_value.Add(list_laser_low[74 - 1]);
-                    bow_point_a_value.Add(list_laser_low[151 - 1]);
-                    bow_point_b_value.Add(list_laser_low[160-1]);
-                    bow_point_b_value.Add(list_laser_low[141- 1]);
-                    bow_point_b_value.Add(list_laser_low[88 - 1]);
-                    bow_point_b_value.Add(list_laser_low[11 - 1]);
-                    for (int i = 0; i < 4; i++)
+                    try
                     {
-                        bow_per.Add(C - (bow_point_a_value[i] + bow_point_b_value[i]));
+                        var C = list_laser_low[81 - 1];
+                        bow_point_a_value.Clear();
+                        bow_point_b_value.Clear();
+                        bow_per.Clear();
+                        bow_point_a_value.Add(list_laser_low[2 - 1]);
+                        bow_point_a_value.Add(list_laser_low[21 - 1]);
+                        bow_point_a_value.Add(list_laser_low[74 - 1]);
+                        bow_point_a_value.Add(list_laser_low[151 - 1]);
+                        bow_point_b_value.Add(list_laser_low[160 - 1]);
+                        bow_point_b_value.Add(list_laser_low[141 - 1]);
+                        bow_point_b_value.Add(list_laser_low[88 - 1]);
+                        bow_point_b_value.Add(list_laser_low[11 - 1]);
+                        for (int i = 0; i < 4; i++)
+                        {
+                            bow_per.Add(C - (bow_point_a_value[i] + bow_point_b_value[i]));
+                        }
+
+                        //bow = bow_per.Max();
+                        var maxValue = bow_per.Max(x => Math.Abs(x));
+                        bow = bow_per.Where(x => Math.Abs(x) == maxValue).FirstOrDefault() * -1;
                     }
-                    bow = bow_per.Max();
+                    catch (Exception ex)
+                    {
+
+                        throw;
+                    }
+
                     break;
                 case Wafer_Size.unknow:
                     break;
@@ -1705,7 +2119,7 @@ namespace Wafer_System
             //var t3 = main.keyence._storageData[0].outMeasurementData[2].measurementValue;
 
             //量測完成 計算.......
-           
+
 
 
             //判斷好壞...........
@@ -1755,7 +2169,7 @@ namespace Wafer_System
                         recDataToUpdate.BOW_Level = "NG";
                     }
                 }
-               
+
                 recDataToUpdate.WARP = warp.ToString();
                 foreach (var item in autorun_Prarm.Classify_dict["WARPLevel"])
                 {
@@ -1768,7 +2182,8 @@ namespace Wafer_System
                         recDataToUpdate.WARP_Level = "NG";
                     }
                 }
-                        
+
+
                 // 執行更新操作
                 col.Update(recDataToUpdate);
             }
@@ -1776,7 +2191,15 @@ namespace Wafer_System
 
 
             //假設是好的
-            main.d_Param.D201 = 0;
+            if (recDataToUpdate.WARP_Level != "NG")
+            {
+                main.d_Param.D201 = 0;
+
+            }
+            else
+            {
+                main.d_Param.D201 = 1;
+            }
             main.d_Param.D133 = 0;
             return true;
         }
@@ -2004,8 +2427,16 @@ namespace Wafer_System
                 Array.Clear(cassett1_status, 0, cassett1_status.Length);
                 if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
                 {
-                    MessageBox.Show("Cassette Mapping Fail", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    if (!Finish_measure)
+                    {
+                        MessageBox.Show("Cassette Mapping Fail", "UAgetLP1 Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
                 }
                 else
                 {
@@ -2672,11 +3103,15 @@ namespace Wafer_System
         private bool LAputOKLP2()
         {
             main.d_Param.D129 = 1;
-            if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
+            if (!Finish_measure)
             {
-                MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
+                {
+                    MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
+
             if (!MappingCassette(LoadPortNum.Loadport2, out cassett2_status))
             {
                 MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2706,6 +3141,7 @@ namespace Wafer_System
                 // 更新指定欄位
                 recDataToUpdate.Slot = get_index.ToString();
                 recDataToUpdate.Cassette_Number = autorun_Prarm.cassette2_number;
+                col.Update(recDataToUpdate);
             }
 
             main.d_Param.D101 = 0;
@@ -2715,11 +3151,15 @@ namespace Wafer_System
         private bool LAputNGLP3()
         {
             main.d_Param.D130 = 1;
-            if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
+            if (!Finish_measure)
             {
-                MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (!MappingCassette(LoadPortNum.Loadport1, out cassett1_status))
+                {
+                    MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
+
             if (!MappingCassette(LoadPortNum.Loadport3, out cassett3_status))
             {
                 MessageBox.Show("Cassette Mapping Fail", "LAput Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2749,6 +3189,7 @@ namespace Wafer_System
                 // 更新指定欄位
                 recDataToUpdate.Slot = get_index.ToString();
                 recDataToUpdate.Cassette_Number = autorun_Prarm.cassette3_number;
+                col.Update(recDataToUpdate);
             }
 
             main.d_Param.D101 = 0;
@@ -2854,7 +3295,7 @@ namespace Wafer_System
         }
 
         #region Mapping Wafer & Exchange Casette
-
+        bool Finish_measure = false;
         private bool MappingCassette(LoadPortNum loadport, out string[] map_status)
         {
             this.BeginInvoke(new Action(() => { lb_progress.Text = "Cssette_Mapping..."; }));
@@ -2892,8 +3333,12 @@ namespace Wafer_System
                             goto UpdateLoadport;
                         goto Cssette_Mapping;
                     case DialogResult.No:
-
+                        if (loadport == LoadPortNum.Loadport1)
+                        {
+                            main.d_Param.D400 = 1;
+                        }
                         //執行 Stop
+                        Finish_measure = true;
                         break;
                 }
 
@@ -2905,7 +3350,7 @@ namespace Wafer_System
             }
             string[] _map_status = new string[25];
 
-            if (Array.FindIndex(main.eFEM._Paser._GetMapResult.Result, x => x == null) != -1)
+            if (main.d_Param.D400 == 0 && Array.FindIndex(main.eFEM._Paser._GetMapResult.Result, x => x == null) != -1)
             {
                 goto Cssette_Mapping;
             }
