@@ -11,11 +11,15 @@
       "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\report_form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:report_form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\AppData\\Local\\Temp\\.vsdbgsrc\\453d82b7ca423d104dc0baae1d424ee261b544658aeb5069d5628df440ac4ef7\\Task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\recdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -24,10 +28,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\autorunpages\\auto_run_page2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:autorunpages\\auto_run_page2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|c:\\users\\user\\documents\\project\\wafer_system\\report_form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7DB55B7-23EA-458A-9752-8ABBB24D1400}|Wafer_System.csproj|solutionrelative:report_form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\AppData\\Local\\Temp\\.vsdbgsrc\\2e21d4369f2771b34c3488f6d20042115aa377e43aa3949dc8a877c55356b86e\\Number.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -82,14 +82,14 @@
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\453d82b7ca423d104dc0baae1d424ee261b544658aeb5069d5628df440ac4ef7\\Task.cs",
               "ToolTip": "C:\\Users\\User\\AppData\\Local\\Temp\\.vsdbgsrc\\453d82b7ca423d104dc0baae1d424ee261b544658aeb5069d5628df440ac4ef7\\Task.cs [\u552F\u8B80]",
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\453d82b7ca423d104dc0baae1d424ee261b544658aeb5069d5628df440ac4ef7\\Task.cs [\u552F\u8B80]",
-              "ViewState": "AQIAAJIIAAAAAAAAAAAAAJkIAAAEAAAA",
+              "ViewState": "AQIAAIwIAAAAAAAAAAAAAJsIAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T16:55:02.658Z",
               "EditorCaption": " [\u552F\u8B80]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RecData.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\RecData.cs",
               "RelativeDocumentMoniker": "RecData.cs",
@@ -108,14 +108,14 @@
               "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page2.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page2.cs",
               "RelativeToolTip": "AutoRunPages\\Auto_run_page2.cs",
-              "ViewState": "AQIAAJsGAAAAAAAAAAAAAKsGAAAaAAAA",
+              "ViewState": "AQIAAPgGAAAAAAAAAAAAAAcHAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T15:05:03.176Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Auto_run_page1.cs [\u8A2D\u8A08]",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page1.cs",
               "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page1.cs",
@@ -127,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Auto_run_page2.cs [\u8A2D\u8A08]",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\AutoRunPages\\Auto_run_page2.cs",
               "RelativeDocumentMoniker": "AutoRunPages\\Auto_run_page2.cs",
@@ -165,13 +165,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Report_Form.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Report_Form.cs",
               "RelativeDocumentMoniker": "Report_Form.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\Project\\Wafer_System\\Report_Form.cs",
               "RelativeToolTip": "Report_Form.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAAwB8AAAAKAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAuwBoAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-23T15:05:03.229Z",
               "EditorCaption": ""
@@ -249,7 +249,7 @@
         "Y": 171,
         "Width": 1882,
         "Height": 714,
-        "WindowState": 2
+        "WindowState": 0
       },
       "DocumentGroups": [
         {

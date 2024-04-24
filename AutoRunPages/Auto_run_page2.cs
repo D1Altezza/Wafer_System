@@ -1605,41 +1605,41 @@ namespace Wafer_System
         public bool TNRUN(Wafer_Size wafer_Size)
         {
             main.d_Param.D133 = 1;
-            //if (!TNRUN_ACT(wafer_Size))
-            //{
-            //    return false;
-            //}
-
-            //random 測試
-            list_laser_low.Clear();
-            list_laser_up.Clear();
-            list_laser_thick.Clear();
-            Random random1 = new Random();
-            Random random2 = new Random();
-            Random random3 = new Random();
-            for (int i = 0; i < 175; i++)
+            if (!TNRUN_ACT(wafer_Size))
             {
-                list_laser_low.Add(random1.Next(1, 100));
-                list_laser_up.Add(random2.Next(1, 100));
-                list_laser_thick.Add(random3.Next(1, 100));
+                return false;
             }
 
+            //random 測試
+            //list_laser_low.Clear();
+            //list_laser_up.Clear();
+            //list_laser_thick.Clear();
+            //Random random1 = new Random();
+            //Random random2 = new Random();
+            //Random random3 = new Random();
+            //for (int i = 0; i < 175; i++)
+            //{
+            //    list_laser_low.Add(random1.Next(1, 100));
+            //    list_laser_up.Add(random2.Next(1, 100));
+            //    list_laser_thick.Add(random3.Next(1, 100));
+            //}
 
 
-            //main.keyence.StorageSave(); 
+
+            main.keyence.StorageSave(); 
             //執行量測路徑
             //解析量測資料
             //記得復原
-            //main.keyence.GetStorageData();
-            //list_laser_low.Clear();
-            //list_laser_up.Clear();
-            //this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
-            //for (int i = 0; i < 157; i++)
-            //{
-            //    list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
-            //    list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
-            //    list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
-            //}
+            main.keyence.GetStorageData();
+            list_laser_low.Clear();
+            list_laser_up.Clear();
+            this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
+            for (int i = 0; i < 161; i++)
+            {
+                list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
+                list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
+                list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
+            }
 
             //this.BeginInvoke(new Action(() =>
             //{
@@ -1659,7 +1659,6 @@ namespace Wafer_System
             //                writer.WriteLine($"{valueA},{valueB}");
             //            }
             //        }
-
             //        Console.WriteLine($"CSV file saved at: {filePath}");
             //    }
             //    else
