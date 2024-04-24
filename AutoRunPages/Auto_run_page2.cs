@@ -1473,18 +1473,18 @@ namespace Wafer_System
             }
             mutiCam.lightControl.OFF();
 
-            Task.Run(() =>
-            {
-                var c = 0;
-                foreach (var item in tweleve_bp)
-                {
-                    this.BeginInvoke(new Action(() => { lb_progress.Text = "Save "; }));
-                    item.Save("C:\\Users\\MyUser\\Desktop\\12_INCH_" + c + ".bmp", ImageFormat.Bmp);
+            //Task.Run(() =>
+            //{
+            //    var c = 0;
+            //    foreach (var item in tweleve_bp)
+            //    {
+            //        this.BeginInvoke(new Action(() => { lb_progress.Text = "Save "; }));
+            //        item.Save("C:\\Users\\MyUser\\Desktop\\12_INCH_" + c + ".bmp", ImageFormat.Bmp);
 
-                    c++;
-                }
-                c = 0;
-            });
+            //        c++;
+            //    }
+            //    c = 0;
+            //});
 
 
             main.aCS_Motion._ACS.Command("PTP/v 2," + Convert.ToDouble(configWR.ReadSettings("AL")) + ",100");
@@ -1605,24 +1605,24 @@ namespace Wafer_System
         public bool TNRUN(Wafer_Size wafer_Size)
         {
             main.d_Param.D133 = 1;
-            //if (!TNRUN_ACT(wafer_Size))
-            //{
-            //    return false;
-            //}
+            if (!TNRUN_ACT(wafer_Size))
+            {
+                return false;
+            }
 
             //random 測試
-            list_laser_low.Clear();
-            list_laser_up.Clear();
-            list_laser_thick.Clear();
-            Random random1 = new Random();
-            Random random2 = new Random();
-            Random random3 = new Random();
-            for (int i = 0; i < 175; i++)
-            {
-                list_laser_low.Add(random1.Next(1, 100));
-                list_laser_up.Add(random2.Next(1, 100));
-                list_laser_thick.Add(random3.Next(1, 100));
-            }
+            //list_laser_low.Clear();
+            //list_laser_up.Clear();
+            //list_laser_thick.Clear();
+            //Random random1 = new Random();
+            //Random random2 = new Random();
+            //Random random3 = new Random();
+            //for (int i = 0; i < 175; i++)
+            //{
+            //    list_laser_low.Add(random1.Next(1, 100));
+            //    list_laser_up.Add(random2.Next(1, 100));
+            //    list_laser_thick.Add(random3.Next(1, 100));
+            //}
 
 
 
@@ -1630,44 +1630,29 @@ namespace Wafer_System
             //執行量測路徑
             //解析量測資料
             //記得復原
-            //main.keyence.GetStorageData();
-            //list_laser_low.Clear();
-            //list_laser_up.Clear();
+            
+            main.keyence.GetStorageData();
+            list_laser_low.Clear();
+            list_laser_up.Clear();
             //this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
-            //for (int i = 0; i < 157; i++)
-            //{
-            //    list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
-            //    list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
-            //    list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
-            //}
+            try
+            {
+                for (int i = 0; i < 160; i++)
+                {
 
-            //this.BeginInvoke(new Action(() =>
-            //{
-            //    var saveFileDialog = new SaveFileDialog();
-            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        string filePath = saveFileDialog.FileName;
+                    list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration_12[i]);
+                    list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration_12[i]);
+                    list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
+                }
+            }
+            catch (Exception ex)
+            {
 
-            //        // Write list values to the CSV file
-            //        using (StreamWriter writer = new StreamWriter(filePath))
-            //        {
-            //            for (int i = 0; i < Math.Max(list_laser_low.Count, list_laser_up.Count); i++)
-            //            {
-            //                int valueA = (i < list_laser_low.Count) ? list_laser_low[i] : 0;
-            //                int valueB = (i < list_laser_up.Count) ? list_laser_up[i] : 0;
+                
+            }
+            
 
-            //                writer.WriteLine($"{valueA},{valueB}");
-            //            }
-            //        }
-
-            //        Console.WriteLine($"CSV file saved at: {filePath}");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("File save operation canceled.");
-            //    }
-
-            //}));
+            
 
             thickness = list_laser_thick.Average();
             ttv = list_laser_thick.Max() - list_laser_thick.Min();
@@ -1689,18 +1674,18 @@ namespace Wafer_System
                     //var bow1 = list
                     break;
                 case Wafer_Size.tweleve:
-                    var C = list_laser_low[81];
+                    var C = list_laser_low[81-1];
                     bow_point_a_value.Clear();
                     bow_point_b_value.Clear();
                     bow_per.Clear();
-                    bow_point_a_value.Add(list_laser_low[2]);
-                    bow_point_a_value.Add(list_laser_low[21]);
-                    bow_point_a_value.Add(list_laser_low[74]);
-                    bow_point_a_value.Add(list_laser_low[151]);
-                    bow_point_b_value.Add(list_laser_low[160]);
-                    bow_point_b_value.Add(list_laser_low[141]);
-                    bow_point_b_value.Add(list_laser_low[88]);
-                    bow_point_b_value.Add(list_laser_low[11]);
+                    bow_point_a_value.Add(list_laser_low[2-1]);
+                    bow_point_a_value.Add(list_laser_low[21-1]);
+                    bow_point_a_value.Add(list_laser_low[74 - 1]);
+                    bow_point_a_value.Add(list_laser_low[151 - 1]);
+                    bow_point_b_value.Add(list_laser_low[160-1]);
+                    bow_point_b_value.Add(list_laser_low[141- 1]);
+                    bow_point_b_value.Add(list_laser_low[88 - 1]);
+                    bow_point_b_value.Add(list_laser_low[11 - 1]);
                     for (int i = 0; i < 4; i++)
                     {
                         bow_per.Add(C - (bow_point_a_value[i] + bow_point_b_value[i]));
@@ -2576,7 +2561,7 @@ namespace Wafer_System
                 goto Check_ON_LoadPos;
             }
             //PG2_PS
-            main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(1));
+            main.Wait_IO_Check(0, 1, 9, 1, TimeSpan.FromSeconds(10));
             //C_CL1_C4
             main.aCS_Motion._ACS.SetOutput(1, 10, 1);
             //C_CLS1
@@ -2584,15 +2569,15 @@ namespace Wafer_System
             //C_CL_C0
             main.aCS_Motion._ACS.SetOutput(1, 4, 1);
             //C_CLS
-            main.Wait_IO_Check(0, 1, 4, 1, TimeSpan.FromSeconds(1));
+            main.Wait_IO_Check(0, 1, 4, 1, TimeSpan.FromSeconds(10));
             //C_CL_C0
             main.aCS_Motion._ACS.SetOutput(1, 4, 0);
             //C_UCLS
-            main.Wait_IO_Check(0, 1, 5, 1, TimeSpan.FromSeconds(1));
+            main.Wait_IO_Check(0, 1, 5, 1, TimeSpan.FromSeconds(10));
             //C_CL1_C4
             main.aCS_Motion._ACS.SetOutput(1, 10, 0);
             //C_ UCLS 1
-            main.Wait_IO_Check(0, 1, 14, 1, TimeSpan.FromSeconds(1));
+            main.Wait_IO_Check(0, 1, 14, 1, TimeSpan.FromSeconds(10));
 
 
 

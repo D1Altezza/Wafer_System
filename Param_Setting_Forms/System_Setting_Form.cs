@@ -720,18 +720,18 @@ namespace Wafer_System.Param_Settin_Forms
             }
             auto_Run_Page2.TNRUN_ACT(wafer_Size);
             main.keyence.GetStorageData();
-            Array.Clear(main.calibration, 0, main.calibration.Length);
+            Array.Clear(main.calibration_12, 0, main.calibration_12.Length);
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("ID");
 
             dataTable.Columns.Add("Value");           
-            for (int i = 0; i < 157; i++)
+            for (int i = 0; i < 160; i++)
             {
                 DataRow dataRow = dataTable.NewRow();
                 dataRow[0] = i;
                 dataRow[1] = main.keyence._storageData[i].outMeasurementData[0].measurementValue;
                 dataTable.Rows.Add(dataRow);
-                main.calibration[i]= main.keyence._storageData[i].outMeasurementData[0].measurementValue;
+                main.calibration_12[i]= main.keyence._storageData[i].outMeasurementData[0].measurementValue;
             }
             dGV_Calibrate.DataSource = dataTable;
        

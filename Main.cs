@@ -33,7 +33,7 @@ namespace Wafer_System
 {
     public partial class Main : Form
     {
-        public bool pass = true;
+        public bool pass = false;
         LogRW logRW = new LogRW();
         ConfigWR configWR;
         public LiteDatabase db;
@@ -45,7 +45,7 @@ namespace Wafer_System
         public CML cML;
         public MutiCam mutiCam;
         public Cognex Cognex;
-        public int[] calibration = new int[157];
+        public int[] calibration_12 = new int[160];
         #endregion
 
         #region AutoRun Pages

@@ -12,34 +12,34 @@ namespace Wafer_System.Log_Fun
     {
         public void WriteLog(string message, string log_type)
         {
-            string DIRNAME = Application.StartupPath + @"\Log\" + log_type + "\u005C";
-            string FILENAME = DIRNAME + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            //string DIRNAME = Application.StartupPath + @"\Log\" + log_type + "\u005C";
+            //string FILENAME = DIRNAME + DateTime.Now.ToString("yyyyMMdd") + ".txt";
 
-            if (!Directory.Exists(DIRNAME))
-                Directory.CreateDirectory(DIRNAME);
-            //檔案路徑
-            using (StreamWriter sw = new StreamWriter(FILENAME, true))
-            {
-                Log(message, sw);
-                sw.Close();
-            } 
+            //if (!Directory.Exists(DIRNAME))
+            //    Directory.CreateDirectory(DIRNAME);
+            ////檔案路徑
+            //using (StreamWriter sw = new StreamWriter(FILENAME, true))
+            //{
+            //    Log(message, sw);
+            //    sw.Close();
+            //} 
         }
 
         private static void Log(string logMessage, StreamWriter w)
         {
-            try
-            {
-                w.Write("\r\n");
-                w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
-                w.WriteLine("");
-                w.WriteLine("{0}", logMessage);
-                w.WriteLine("-------------------------------");
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    w.Write("\r\n");
+            //    w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+            //    w.WriteLine("");
+            //    w.WriteLine("{0}", logMessage);
+            //    w.WriteLine("-------------------------------");
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
        
         }
 
@@ -63,11 +63,11 @@ namespace Wafer_System.Log_Fun
 
         private static void DumpLog(StreamReader r)
         {
-            string line;
-            while ((line = r.ReadLine()) != null)
-            {
-                Console.WriteLine(line);
-            }
+            //string line;
+            //while ((line = r.ReadLine()) != null)
+            //{
+            //    Console.WriteLine(line);
+            //}
         }
     }
 }
