@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using System.Windows.Forms;
 using Wafer_System.Config_Fun;
 using Wafer_System.Param_Settin_Forms;
@@ -30,13 +31,14 @@ namespace Wafer_System
             public string cassette1_number;
             public string cassette2_number;
             public string cassette3_number;
-        }      
+            public Dictionary<string, List<GradeScore>> Classify_dict;
+        }
         public enum Wafer_Size
         {
             eight,
             tweleve,
             unknow
-        }  
+        }
         public Autorun_Prarm autorun_Prarm;
         public Auto_run_page1(Systematics config)
         {
@@ -130,7 +132,7 @@ namespace Wafer_System
                 }
             }
         }
-
+        
         private void btn_next_page_Click(object sender, EventArgs e)
         {
             if (radio_type_Si.Checked)
@@ -142,7 +144,7 @@ namespace Wafer_System
                 autorun_Prarm.waferMode = WaferMode.Transparent;
             }
             else
-            {                
+            {
             }
             if (radio_notch_v.Checked)
             {
@@ -157,7 +159,7 @@ namespace Wafer_System
                 autorun_Prarm.waferType = WaferType.Neither;
             }
             else
-            {                
+            {
             }
             if (radio_size_8inch.Checked)
             {
@@ -176,6 +178,25 @@ namespace Wafer_System
             autorun_Prarm.cassette1_number = txt_cassette1_number.Text;
             autorun_Prarm.cassette2_number = txt_cassette2_number.Text;
             autorun_Prarm.cassette3_number = txt_cassette3_number.Text;
+            autorun_Prarm.Classify_dict = new Dictionary<string, List<GradeScore>>();
+            autorun_Prarm.Classify_dict.Add("DiameterLevel", config.Mode.Find(o => o.Name == (string)combo_Classify.SelectedItem).DiameterLevel);
+            autorun_Prarm.Classify_dict.Add("ThicknessLevel", config.Mode.Find(o => o.Name == (string)combo_Classify.SelectedItem).ThicknessLevel);
+            autorun_Prarm.Classify_dict.Add("TTVLevel", config.Mode.Find(o => o.Name == (string)combo_Classify.SelectedItem).TTVLevel);
+            autorun_Prarm.Classify_dict.Add("BowLevel", config.Mode.Find(o => o.Name == (string)combo_Classify.SelectedItem).BowLevel);
+            autorun_Prarm.Classify_dict.Add("WARPLevel", config.Mode.Find(o => o.Name == (string)combo_Classify.SelectedItem).WARPLevel);
+          
+            var mesure_data = 0.1;
+            foreach (var item in autorun_Prarm.Classify_dict["DiameterLevel"])
+            {
+                if (mesure_data <= Convert.ToDouble(item.hLimit) && mesure_data >= Convert.ToDouble(item.lLimit) )
+                {
+                    var u= item.Grade;
+                }
+            }
+
+
+
+
 
             this.Hide();
 

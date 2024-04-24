@@ -15,7 +15,7 @@ namespace Wafer_System
         [JsonProperty("mode")]
         public List<Classify> Mode { get; set; }
 
-    }
+    }   
     public class Classify
     {
         [JsonProperty("name")]

@@ -1504,12 +1504,23 @@ namespace Wafer_System
                     cc_Points[2] = new Point2d(detect.point_converter(r_8, 270).X + (detect.edge(eight_bp[2], "ref_Point_Left_Center").X - center.X) * pexil_s,
                                                detect.point_converter(r_8, 270).Y + (detect.edge(eight_bp[2], "ref_Point_Left_Center").Y - center.Y) * pexil_s);
                     var d_8 = detect.CalculateCicular(cc_Points[0], cc_Points[1], cc_Points[2]);
+                   
+                  
+                   
                     recDataToUpdate = col.FindById(DM_recID);
 
                     if (recDataToUpdate != null)
                     {
                         // 更新指定欄位
                         recDataToUpdate.Diameter = d_8.ToString();
+                        //外徑分級計算並寫入資料庫
+                        foreach (var item in autorun_Prarm.Classify_dict["DiameterLevel"])
+                        {
+                            if (d_8 <= Convert.ToDouble(item.hLimit) && d_8 >= Convert.ToDouble(item.lLimit))
+                            {
+                                recDataToUpdate.Diameter_Level = item.Grade;
+                            }
+                        }
                         // 執行更新操作
                         col.Update(recDataToUpdate);
                     }
@@ -1531,6 +1542,14 @@ namespace Wafer_System
                     {
                         // 更新指定欄位
                         recDataToUpdate.Diameter = d_12.ToString();
+                        //外徑分級計算並寫入資料庫
+                        foreach (var item in autorun_Prarm.Classify_dict["DiameterLevel"])
+                        {
+                            if (d_12 <= Convert.ToDouble(item.hLimit) && d_12 >= Convert.ToDouble(item.lLimit))
+                            {
+                                recDataToUpdate.Diameter_Level = item.Grade;
+                            }
+                        }
                         // 執行更新操作
                         col.Update(recDataToUpdate);
                     }
@@ -1586,15 +1605,19 @@ namespace Wafer_System
         public bool TNRUN(Wafer_Size wafer_Size)
         {
             main.d_Param.D133 = 1;
-            if (!TNRUN_ACT(wafer_Size))
-            {
-                return false;
-            }
+            //if (!TNRUN_ACT(wafer_Size))
+            //{
+            //    return false;
+            //}
 
+            //random 測試
+            list_laser_low.Clear();
+            list_laser_up.Clear();
+            list_laser_thick.Clear();
             Random random1 = new Random();
             Random random2 = new Random();
             Random random3 = new Random();
-            for (int i = 0; i < 157; i++)
+            for (int i = 0; i < 175; i++)
             {
                 list_laser_low.Add(random1.Next(1, 100));
                 list_laser_up.Add(random2.Next(1, 100));
@@ -1606,44 +1629,45 @@ namespace Wafer_System
             //main.keyence.StorageSave(); 
             //執行量測路徑
             //解析量測資料
-            main.keyence.GetStorageData();
-            list_laser_low.Clear();
-            list_laser_up.Clear();
+            //記得復原
+            //main.keyence.GetStorageData();
+            //list_laser_low.Clear();
+            //list_laser_up.Clear();
             //this.BeginInvoke(new Action(() => { main.keyence.StorageSave(); }));
-            for (int i = 0; i < 157; i++)
-            {
-                list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
-                list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
-                list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
-            }
+            //for (int i = 0; i < 157; i++)
+            //{
+            //    list_laser_low.Add(main.keyence._storageData[i].outMeasurementData[0].measurementValue - main.calibration[i]);
+            //    list_laser_up.Add(main.keyence._storageData[i].outMeasurementData[1].measurementValue + main.calibration[i]);
+            //    list_laser_thick.Add(main.keyence._storageData[i].outMeasurementData[2].measurementValue);
+            //}
 
-            this.BeginInvoke(new Action(() =>
-            {
-                var saveFileDialog = new SaveFileDialog();
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = saveFileDialog.FileName;
+            //this.BeginInvoke(new Action(() =>
+            //{
+            //    var saveFileDialog = new SaveFileDialog();
+            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        string filePath = saveFileDialog.FileName;
 
-                    // Write list values to the CSV file
-                    using (StreamWriter writer = new StreamWriter(filePath))
-                    {
-                        for (int i = 0; i < Math.Max(list_laser_low.Count, list_laser_up.Count); i++)
-                        {
-                            int valueA = (i < list_laser_low.Count) ? list_laser_low[i] : 0;
-                            int valueB = (i < list_laser_up.Count) ? list_laser_up[i] : 0;
+            //        // Write list values to the CSV file
+            //        using (StreamWriter writer = new StreamWriter(filePath))
+            //        {
+            //            for (int i = 0; i < Math.Max(list_laser_low.Count, list_laser_up.Count); i++)
+            //            {
+            //                int valueA = (i < list_laser_low.Count) ? list_laser_low[i] : 0;
+            //                int valueB = (i < list_laser_up.Count) ? list_laser_up[i] : 0;
 
-                            writer.WriteLine($"{valueA},{valueB}");
-                        }
-                    }
+            //                writer.WriteLine($"{valueA},{valueB}");
+            //            }
+            //        }
 
-                    Console.WriteLine($"CSV file saved at: {filePath}");
-                }
-                else
-                {
-                    Console.WriteLine("File save operation canceled.");
-                }
+            //        Console.WriteLine($"CSV file saved at: {filePath}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("File save operation canceled.");
+            //    }
 
-            }));
+            //}));
 
             thickness = list_laser_thick.Average();
             ttv = list_laser_thick.Max() - list_laser_thick.Min();
@@ -1696,7 +1720,7 @@ namespace Wafer_System
             //var t3 = main.keyence._storageData[0].outMeasurementData[2].measurementValue;
 
             //量測完成 計算.......
-
+           
 
 
             //判斷好壞...........
@@ -1709,13 +1733,57 @@ namespace Wafer_System
             {
                 // 更新指定欄位
                 recDataToUpdate.Thickness = thickness.ToString();
-                //recDataToUpdate.Thickness_Level
+                //分級計算並寫入資料庫
+                foreach (var item in autorun_Prarm.Classify_dict["ThicknessLevel"])
+                {
+                    if (thickness <= Convert.ToDouble(item.hLimit) && thickness >= Convert.ToDouble(item.lLimit))
+                    {
+                        recDataToUpdate.Thickness_Level = item.Grade;
+                    }
+                    else
+                    {
+                        recDataToUpdate.Thickness_Level = "NG";
+                    }
+                }
                 recDataToUpdate.TTV = ttv.ToString();
-                //recDataToUpdate.TTV_Level
+                //分級計算並寫入資料庫
+                foreach (var item in autorun_Prarm.Classify_dict["TTVLevel"])
+                {
+                    if (ttv <= Convert.ToDouble(item.hLimit) && ttv >= Convert.ToDouble(item.lLimit))
+                    {
+                        recDataToUpdate.TTV_Level = item.Grade;
+                    }
+                    else
+                    {
+                        recDataToUpdate.TTV_Level = "NG";
+                    }
+                }
                 recDataToUpdate.BOW = bow.ToString();
-                //recDataToUpdate.BOW_Level
+                foreach (var item in autorun_Prarm.Classify_dict["BowLevel"])
+                {
+                    if (bow <= Convert.ToDouble(item.hLimit) && bow >= Convert.ToDouble(item.lLimit))
+                    {
+                        recDataToUpdate.BOW_Level = item.Grade;
+                    }
+                    else
+                    {
+                        recDataToUpdate.BOW_Level = "NG";
+                    }
+                }
+               
                 recDataToUpdate.WARP = warp.ToString();
-                //recDataToUpdate.WARP_Level                
+                foreach (var item in autorun_Prarm.Classify_dict["WARPLevel"])
+                {
+                    if (warp <= Convert.ToDouble(item.hLimit) && warp >= Convert.ToDouble(item.lLimit))
+                    {
+                        recDataToUpdate.WARP_Level = item.Grade;
+                    }
+                    else
+                    {
+                        recDataToUpdate.WARP_Level = "NG";
+                    }
+                }
+                        
                 // 執行更新操作
                 col.Update(recDataToUpdate);
             }
